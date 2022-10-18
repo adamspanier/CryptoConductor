@@ -1,5 +1,5 @@
 
-# User Stories
+# User and Misuser Stories
 
 ### Overview
 
@@ -29,7 +29,7 @@ Clients are any entity that originate from any project in the system. This could
 
 Associates are any entity that does not have any vested interest in the system. This comprises all non-Specialist, non-Leader, and non-Client operators. Associates maintain the lowest level of access privileges.
 
-### Stories
+### User Stories
 
 #### Specialist User Stories
 - As a **Specialist**, I want to **browse pertinent projects** so I can **find out if I need to provide input**.
@@ -48,6 +48,9 @@ Associates are any entity that does not have any vested interest in the system. 
 - As a **Leader**, I want to **create automated reports** so I can **determine regular reporting criteria**.
 - As a **Leader**, I want to **receive automated reports** so I can **track overall changes in the system**.
 - As a **Leader**, I want to **limit project access** so I can **choose which specialists can open and edit**.
+- As a **Leader**, I want to **add new specialists** so I can **have then provide input**.
+- As a **Leader**, I want to **add new clients** so I can **let them see their progress**.
+- As a **Leader**, I want to **add new Associates** so I can **allow them to communcate with users**.
 
 #### Client User Stories
 - As a **Client**, I want to **view my project** so I can **check on scoring progress**.
@@ -55,3 +58,27 @@ Associates are any entity that does not have any vested interest in the system. 
 
 #### Associate User Stories
 - As an **Associate**, I want to **communicate with a leader** so I can **ask questions**.
+
+### Misuser Stories
+
+#### Specialist Misuser Stories
+- As a **Specialist _Misuser_**, I want to **open unauthorized projects** so I can **read information I'm not allowed to know**.
+- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **change other specialist input values**.
+- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **provide inappropriate input**.
+- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **act like another user**.
+- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **make changes without anyone knowing**.
+
+
+#### Leader Misuser Stories
+- As a **Leader _Misuser_**, I want to **edit project** so I can **change specialist input without permission**.
+- As a **Leader _Misuser_**, I want to **edit project** so I can **delete input I don't like**.
+- As a **Leader _Misuser_**, I want to **delete projects** so I can **delete projects I don't like**.
+- As a **Leader _Misuser_**, I want to **edit the system** so I can **delete specialists I don't like**.
+- As a **Leader _Misuser_**, I want to **change logging** so I can **make changes without anyone knowing**.
+
+#### Client Misuser Stories
+- As a **Client _Misuser_**, I want to **edit projects** so I can **change scoring**.
+- As a **Client _Misuser_**, I want to **edit projects** so I can **change text input**.
+
+#### Associate Misuser Stories
+- As an **Associate _Misuser_**, I want to **view projects** so I can **find out information that I shouldn't know**.
