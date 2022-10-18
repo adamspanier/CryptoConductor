@@ -1,7 +1,7 @@
 
 # User and Misuser Stories
 
-### Overview
+## Overview
 
 _User stories_ help elicit the requirements of any software design more completely. While many use cases can be perceived through the intended functionality of a given system, more subtle use cases can be missed without intentional probing. The _user stories_ in this document help communicate the expectations users require when using the CryptoConductor platform.
 
@@ -29,7 +29,7 @@ Clients are any entity that originate from any project in the system. This could
 
 Associates are any entity that does not have any vested interest in the system. This comprises all non-Specialist, non-Leader, and non-Client operators. Associates maintain the lowest level of access privileges.
 
-### User Stories
+## User Stories
 
 #### Specialist User Stories
 - As a **Specialist**, I want to **browse pertinent projects** so I can **find out if I need to provide input**.
@@ -59,7 +59,7 @@ Associates are any entity that does not have any vested interest in the system. 
 #### Associate User Stories
 - As an **Associate**, I want to **communicate with a leader** so I can **ask questions**.
 
-### Misuser Stories
+## Misuser Stories
 
 #### Specialist Misuser Stories
 - As a **Specialist _Misuser_**, I want to **open unauthorized projects** so I can **read information I'm not allowed to know**.
