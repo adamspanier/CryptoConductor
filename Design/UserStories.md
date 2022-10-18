@@ -32,13 +32,26 @@ Associates are any entity that does not have any vested interest in the system. 
 ### Stories
 
 #### Specialist User Stories
-As a **Specialist**, I want to **goal** so I can **rationale**.
+As a **Specialist**, I want to **browse pertinent projects** so I can **find out if I need to provide input**.
+As a **Specialist**, I want to **open pertinent projects** so I can **read existing information about the project**.
+As a **Specialist**, I want to **edit pertinent projects** so I can **add numerical scoring and text notes to the project**.
+As a **Specialist**, I want to **edit pertinent projects** so I can **change my previous input in a given project**.
+As a **Specialist**, I want to **view pertinent project scores** so I can **determine how my input affected the overall score**.
+As a **Specialist**, I want to **view pertinent projects** so I can **see what other specialists have added**.
+As a **Specialist**, I want to **view pertinent projects** so I can **ask other specialists questions about their input**.
 
 #### Leader User Stories
-As a **Leader**, I want to **goal** so I can **rationale**.
+As a **Leader**, I want to **create new projects** so I can **start the scoring process**.
+As a **Leader**, I want to **edit projects** so I can **fix errors or update information**.
+As a **Leader**, I want to **view projects** so I can **track specialist scoring changes**.
+As a **Leader**, I want to **view projects** so I can **track specialist participation**.
+As a **Leader**, I want to **create automated reports** so I can **determine regular reporting criteria**.
+As a **Leader**, I want to **receive automated reports** so I can **track overall changes in the system**.
+As a **Leader**, I want to **limit project access** so I can **choose which specialists can open and edit**.
 
 #### Client User Stories
-As a **Client**, I want to **goal** so I can **rationale**.
+As a **Client**, I want to **view my project** so I can **check on scoring progress**.
+As a **Client**, I want to **view my project** so I can **read specialist input**.
 
 #### Associate User Stories
-As an **Associate**, I want to **goal** so I can **rationale**.
+As an **Associate**, I want to **communicate with a leader** so I can **ask questions**.
