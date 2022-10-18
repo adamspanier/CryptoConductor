@@ -3,7 +3,7 @@
 
 ## Overview
 
-_User stories_ help elicit the requirements of any software design more completely. While many use cases can be perceived through the intended functionality of a given system, more subtle use cases can be missed without intentional probing. The _user stories_ in this document help communicate the expectations users require when using the CryptoConductor platform.
+_User stories_ help better elicit software design requirements for any system in a more holistic and complete manner. While many use cases can be inuitively perceived through the obvious functions of a given system, more subtle use cases can be missed without more organized and intentional probing. The _user stories_ in this document help communicate the expectations users require when using the CryptoConductor platform.
 
 
 ### Users
@@ -15,7 +15,7 @@ _User stories_ help elicit the requirements of any software design more complete
 
 #### Specialists
 
-Specialists comprise any user that will add numerical or text data in relation to any project in the system. Specialists are given a specialty, and can only submit information relating directly to that specialty. If a cybersecurity expert is involved in grading a software system, they would be given a _cybersecurity_ specialty and allowed to submit information relating only to the Software Assurance portion of the grading scale.
+Specialists comprise any user that provides numerical or text-based data in relation to any project in the system. Specialists are given one or more specialties, and can only submit information relating directly to those specialties. If a cybersecurity expert is involved in grading a software system, they would be given a _cybersecurity_ specialty and allowed to submit information relating only to the Software Assurance portion of the grading scale. Specialties are dynamic and can be added, changed, or removed for a better, more flexible set of Specialists.
 
 #### Leaders
 
