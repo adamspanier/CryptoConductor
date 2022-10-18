@@ -15,7 +15,7 @@ _User stories_ help better elicit software design requirements for any system in
 
 #### Specialists
 
-Specialists comprise any user that provides numerical or text-based data in relation to any project in the system. Specialists are given one or more specialties, and can only submit information relating directly to those specialties. If a cybersecurity expert is involved in grading a software system, they would be given a _cybersecurity_ specialty and allowed to submit information relating only to the Software Assurance portion of the grading scale. Specialties are dynamic and can be added, changed, or removed for a better, more flexible set of Specialists.
+Specialists comprise any user that provides numerical or text-based data in relation to a project in the system. Specialists are given one or more specialties, and can only submit information relating directly to those specialties. If a cybersecurity expert is involved in grading a software system, they would be given a _cybersecurity_ specialty and allowed to submit information relating only to the Software Assurance portion of the grading scale. Specialties are dynamic and can be added, changed, or removed for a better, more flexible set of Specialists.
 
 #### Leaders
 
