@@ -130,41 +130,106 @@ Associates are any entity that does not have any vested interest in the system. 
     1. Ensure a generic communication interface is available
     2. Display generic contact information with all non-authorized users  
 
+
 ## Misuser Stories
 
 #### Specialist Misuser Stories
+
 - As a **Specialist _Misuser_**, I want to **open unauthorized projects** so I can **read information I'm not allowed to know**.
-  - Mitigation Criteria: Enforce specialization-based project access
+  - _Mitigation Criteria:_ 
+    1. Ensure project view requires user specialties to view
+    2. Ensure each specialist account has a list of specialties
+    3. Specialists require authorization to change specialties
+    4. Project view uses specialist profile specialties to check access
+    5. Project view only allows access if specialist and project share at least one specialty
+
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **change other specialist input values**.
-  - Mitigation Criteria: Enforce specialization- and user-based project editing
+  - _Mitigation Criteria:_
+    1. Ensure project view requires user specific criteria to edit
+    2. Entries created by current user are given and edit button
+    3. Edit button allows user to change values on only their input
+    4. All changes to projects are tracked 
+
+- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **make changes without anyone knowing**.
+  - _Mitigation Criteria:_
+    1. Project view and edit interfaces both log all changes
+    2. Leader interface provides logging view to keep track of changes 
+
+<!--
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **provide inappropriate input**.
   - Mitigation Criteria: Implement white lists, regular expressions, and input sanitization
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **act like another user**.
   - Mitigation Criteria: Enforce user-based project editing
-- As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **make changes without anyone knowing**.
-  - Mitigation Criteria: Log all changes
+-->
 
 
 #### Leader Misuser Stories
 - As a **Leader _Misuser_**, I want to **edit project** so I can **change specialist input without permission**.
-  - Mitigation Criteria: Enforce user-based notification upon any user input change
+  - _Mitigation Criteria:_
+    1. Edit project view allows leader editing for all data
+    2. All project changes are logged by the system
+    3. All specialist input changes are reported to the specialist that created them
+
 - As a **Leader _Misuser_**, I want to **edit project** so I can **delete input I don't like**.
-  - Mitigation Criteria: Enforce user-based notification upon any user input delete
+  - _Mitigation Criteria:_
+    1. Ensure project view interface exists
+    2. Ensure delete button for specialist input exists
+    3. Clicking delete notifies specialist that input is to be deleted
+    4. Ensure accept delete button exists in delete interface
+    5. Delete only occurs when Leader and Specialist accept delete
+
 - As a **Leader _Misuser_**, I want to **delete projects** so I can **delete projects I don't like**.
-  - Mitigation Criteria: Enforce dual-leader delete and separation of duties
+  - _Mitigation Criteria:_
+    1. Ensure project view interface exists
+    2. Ensure delete project function exists
+    3. Ensure delete button exists for each project
+    4. Delete button triggers notification to all other leaders that project is to be deleted
+    5. Accept button on delete interface must be acted upon by another leader
+    6. Two leaders start a 30 day countdown to delete 
+
 - As a **Leader _Misuser_**, I want to **edit the system** so I can **delete specialists I don't like**.
-  - Mitigation Criteria: Enforce dual-leader delete
+  - _Mitigation Criteria:_
+    1. Ensure a specialist view interface exists
+    2. Ensure a delete specialist button and function exist
+    3. Delete button triggers notification to all other leaders that a specialist is to be deleted
+    4. Accept button must be triggered by another leader to delete
+    5. Delete starts a 30 day countdown to delete 
+
+<!--
 - As a **Leader _Misuser_**, I want to **change logging** so I can **make changes without anyone knowing**.
   - Mitigation Criteria: Enforce dual-leader logging changes
+-->
 
 #### Client Misuser Stories
+
 - As a **Client _Misuser_**, I want to **edit my projects** so I can **change scoring**.
-  - Mitigation Criteria: Allow client-based viewing in affiliated projects only
+  - _Mitigation Criteria:_
+    1. Ensure project view interface exists
+    2. Ensure that each project view requires a user role
+    3. Ensure each project has a client list
+    4. User role cannot be changed by users
+    5. Client list can only be changed by Leader
+    6. Project view gets user role from user profile
+    7. Project view checks client name
+    8. If client name on project list, client can view
+    9. Client cannot edit
+
 - As a **Client _Misuser_**, I want to **view other projects** so I can **learn about my competition**.
-  - Mitigation Criteria: Allow client-based viewing in affiliated projects
-- As a **Client _Misuser_**, I want to **edit my projects** so I can **change text input**.
-  - Mitigation Criteria: Disallow client editing
+  - _Mitigation Criteria:_
+    1. Ensure project view interface exists
+    2. Ensure that each project view requires a user role
+    3. Ensure each project has a client list
+    4. User role cannot be changed by users
+    5. Client list can only be changed by Leader
+    6. Project view gets user role from user profile
+    7. Project view checks client name
+    8. If client name on project list, client can view
+    9. Client cannot edit
 
 #### Associate Misuser Stories
+
 - As an **Associate _Misuser_**, I want to **view projects** so I can **find out information that I shouldn't know**.
-  - Mitigation Criteria: Least privileges in Associate users
+  - _Mitigation Criteria:_
+    1. Ensure Generic communication view exists
+    2. For non-authenticated users display communication view
+    3. Associate can email Leaders for more information 
