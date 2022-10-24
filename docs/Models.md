@@ -56,10 +56,7 @@ Each user in the system will have a user profile. Each entry in the table will h
 5. _Role_ - A foreign key entry to the user role
 6. _Specialties_ - A list of foreign keys relating to the specialty table
 7. _Projects_ - A list of project foreign keys relating to which projects a user has contributed to
-8. _DateHired_ - Date of onboarding
 9. _Active_ - A boolean for currently acting
-10. _Fired_ - A boolean determining if user was let go
-11. _Description_ - A brief description of the user
 
 #### Role Table
 
