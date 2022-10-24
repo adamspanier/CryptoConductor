@@ -54,8 +54,8 @@ Each user in the system will have a user profile. Each entry in the table will h
 3. _Last_ - The user last name
 4. _Username_ - The user's chosen screenname
 5. _Role_ - A foreign key entry to the user role
-6. _Specialties_ - A list of foreign keys relating to the specialty table
-7. _Projects_ - A list of project foreign keys relating to which projects a user has contributed to
+6. _Specialties_ - A list of foreign keys relating to the specialty table. Dropdown checkbox menu.
+7. _Projects_ - A list of project foreign keys relating to which projects a user has contributed to. Dropdown checkbox menu.
 9. _Active_ - A boolean for currently acting
 
 #### Role Table
