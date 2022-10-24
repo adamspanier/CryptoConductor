@@ -1,61 +1,33 @@
-# Views - Presentational (UI)
+# Views
 
-There will be a number of primary views:
+There will be a five primary views:
 
-What is my app making available to people?
-What functions are being made available?
-Functional perspective
-What is presented in the web browser?
+1. Login Interface
+2. Project Dashboard
+3. Project Management Dashboard
+4. Account Management
+5. Scoring Interface
 
-1. Login
-2. Project Dashboard - based on role, displays different information, new project, view, subscore, lists projects and score (specialist, client, leader)
-3. Project Manager
-4. Registration Manager
-5. Leader
-6. Client
-7. Associate
-8. Project
-9. New Project
-10. New User
-11. New Specialist
-12. New Client
+## Login Interface Component
 
-## Login
+The login view will present a username and password field and a submit button.
 
-The login view will present a username and password field and use a submit button.
+## Project Dashboard
 
-## Specialist
+The project dashboard will present user contingent project information.
 
-The specialist view will list all of the projects available to the specialist. These projects are gathered via the specialty and niche associations of the specialist. If the project and the specialist have the same specialization, the project is available to view. If the project and the specialist have the same niche, the project is available to edit.
+## Project Management Dashboard Component
 
-## Leader
+The project management dashboard will display all project fields with prefilled out current values and allows leaders to edit project details.
 
-The leader view will display all existing projects. All projects will be available for editing. All edits will be logged. The view will also provide a _new project_ button that will load the _new project_ view where details about the project can be entered. Each new project will be given a link to a project details model.
+## Project Entries Edit Interface
 
-## Client
+The project edit interface displays all project entries, and enables editing contingent on user.
 
-The client view will display projects available to clients. All projects with the client affiliated will be available for the client to view based on the client permissions.
+## Account Management 
 
-## Associate
+The account management interface allows the addition, modification, and deletion of user accounts.
 
-The associate view will present contact details such that the associate can ask for information.
+## Scoring Interface
 
-## Project
-
-The project view will display information about the project contingent on the role of the viewer. A client will see specific information where a leader will see all information.
-
-## New Project
-
-The new project view will provide a name and description text field, followed by a specialty list (contingent on available specialties), a niche list (contingent on available niches), a client list (contingent on available clients), a denial list (contingent on valid users), and will link to a new Project Entry model.
-
-## New user
-
-The new user view will allow a leader to add a user. It will contain first, last, middle, email, and phone fields.
-
-## New Specialist
-
-The new specialist view will allow a leader to add a specialist. a user list dropdown, a specialty list dropdown, a niche list dropdown.
-
-## New Client
-
-The new client view will allow a leader to add a new client. It will contain a user dropdown.
+The scoring interface provides scoring functionality contingent on current user.
