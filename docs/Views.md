@@ -1,12 +1,13 @@
 # Views
 
-There will be a five primary views:
+There will be a six primary views:
 
 1. Login Interface
 2. Project Dashboard
 3. Project Management Dashboard
-4. Account Management
-5. Scoring Interface
+4. Project Entries Dashboard
+5. Account Management
+6. Scoring Interface
 
 ## Login Interface Component
 
@@ -18,7 +19,7 @@ The project dashboard will present user contingent project information.
 
 ## Project Management Dashboard Component
 
-The project management dashboard will display all project fields with prefilled out current values and allows leaders to edit project details.
+The project management dashboard will allow the addition or modification of project information.
 
 ## Project Entries Edit Interface
 
