@@ -1,3 +1,9 @@
+# Mockup and Architecture Diagrams
+
+## Mockup
+
+## Diagrams
+
 # User and Misuser Stories
 
 ## Overview
