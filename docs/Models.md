@@ -52,7 +52,7 @@ Each user in the system will have a user profile. Each entry in the table will h
 1. _First_ - The user first name
 2. _MI_ - The user middle initial
 3. _Last_ - The user last name
-4. _ScreenName_ - The user's chosen screenname
+4. _Username_ - The user's chosen screenname
 5. _Role_ - A foreign key entry to the user role
 6. _Specialties_ - A list of foreign keys relating to the specialty table
 7. _Projects_ - A list of project foreign keys relating to which projects a user has contributed to
