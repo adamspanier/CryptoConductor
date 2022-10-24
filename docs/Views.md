@@ -1,17 +1,24 @@
-# Views
+# Views - Presentational (UI)
 
 There will be a number of primary views:
 
+What is my app making available to people?
+What functions are being made available?
+Functional perspective
+What is presented in the web browser?
+
 1. Login
-2. Specialist
-3. Leader
-4. Client
-5. Associate
-6. Project
-7. New Project
-8. New User
-8. New Specialist
-9. New Client
+2. Project Dashboard - based on role, displays different information, new project, view, subscore, lists projects and score (specialist, client, leader)
+3. Project Manager
+4. Registration Manager
+5. Leader
+6. Client
+7. Associate
+8. Project
+9. New Project
+10. New User
+11. New Specialist
+12. New Client
 
 ## Login
 
