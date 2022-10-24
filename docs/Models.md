@@ -16,9 +16,10 @@ The project table correlates specialties, users, and user information together f
 1. _Name_ - Name of the project
 2. _Description_ - Description of the project
 3. _Specialty list_ - List of associated specialties
-4. _Client list_ - List of associated clients
-5. _Denial list_ - List of users that are denied access
-6. _ProjectEntries_ - A foreign key to the related project entries
+4. _Niche list_ - List of assocaited niches
+5. _Client list_ - List of associated clients
+6. _Denial list_ - List of users that are denied access
+7. _ProjectEntries_ - A foreign key to the related project entries
 
 #### Project Entries Table
 
