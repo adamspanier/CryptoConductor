@@ -30,9 +30,11 @@
 
 ### System Context
 
-![System Context](https://github.com/adamspanier/CryptoConductor/blob/main/docs/diagrams/SystemContext.jpg)
+<p align="center">
+  <img src="https://github.com/adamspanier/CryptoConductor/blob/main/docs/diagrams/SystemContext.jpg"/>
+</p>
 
-### Contrainer Diagram
+### Container Diagram
 
 ### Component Diagram
 
