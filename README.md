@@ -8,10 +8,13 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 ## Installation
 1. python3 manage.py migrate
 2. python3 manage.py createsuperuser
+  3. Follow instructions
 
 
 ## Getting Started
-To implement CryptoConductor, simply run _python3 manage.py runserver_ from the main project directory.
+To implement CryptoConductor: 
+1. From terminal, run _python3 manage.py runserver_ from the main project directory
+2. Visit the web interface at localhost/8000
 
 ## License
 MIT License
