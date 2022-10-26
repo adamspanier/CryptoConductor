@@ -42,6 +42,12 @@
 
 ### Component Diagram
 
+
+<p align="center">
+  <img src="https://github.com/adamspanier/CryptoConductor/blob/main/docs/diagrams/Component.jpg"/>
+</p>
+
+
 # User and Misuser Stories
 
 ## Overview
