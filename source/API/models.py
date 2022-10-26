@@ -65,8 +65,8 @@ class Role(models.Model):
         return self.name
 
     class RoleAdmin(admin.ModelAdmin):
-        fields = ('name', 'description', 'users')
-        list_display = ('name', 'description', 'users')
+        fields = ('name', 'description')
+        list_display = ('name', 'description')
 
 admin.site.register(Role, Role.RoleAdmin)
 
@@ -111,8 +111,8 @@ class Project(models.Model):
         return self.name + " : Status: " + self.status
 
     class ProjectAdmin(admin.ModelAdmin):
-        fields = ('name', 'description', 'specialties', 'niches', 'clients', 'denial', 'project_entries', 'status')
-        list_display = ('name', 'description', 'specialties', 'niches', 'clients', 'denial', 'project_entries', 'status')
+        fields = ('name', 'description', 'project_entries', 'status')
+        list_display = ('name', 'description', 'project_entries', 'status')
 
 admin.site.register(Project, Project.ProjectAdmin)
 
