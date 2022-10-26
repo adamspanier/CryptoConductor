@@ -33,6 +33,8 @@ class Niche(models.Model):
         fields = ('name', 'description', 'specialty')
         list_display = ('name', 'description', 'specialty')
 
+admin.site.register(Niche, Niche.NicheAdmin)
+
 # User Model
 class User(models.Model):
     first = models.CharField(max_length=20)
@@ -51,11 +53,13 @@ class User(models.Model):
         fields = ('first', 'mi', 'last', 'username', 'role', 'active')
         list_display = ('first', 'mi', 'last', 'username', 'role', 'active')
 
+admin.site.register(User, User.UserAdmin)
+
 # Role Model
 class Role(models.Model):
     name = models.CharField(max_length=20, unique=True)
     description = models.CharField(max_length=500)
-    users = models.ManyToManyField("User", through="UserRole", symmetrical=True)
+    users = models.ManyToManyField("User", through="UserRole", related_name="roleuser")
 
     def __str__(self):
         return self.name
@@ -63,6 +67,8 @@ class Role(models.Model):
     class RoleAdmin(admin.ModelAdmin):
         fields = ('name', 'description', 'users')
         list_display = ('name', 'description', 'users')
+
+admin.site.register(Role, Role.RoleAdmin)
 
 # Project Entries Model
 class ProjectEntry(models.Model):
@@ -82,6 +88,8 @@ class ProjectEntry(models.Model):
         fields = ('username', 'specialty', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
         list_display = ('username', 'specialty', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
 
+admin.site.register(ProjectEntry, ProjectEntry.ProjectEntriesAdmin)
+
 STATUS = [
     ("OPEN", "OPEN"),
     ("IN PROGRESS", "IN PROGRESS"),
@@ -92,11 +100,11 @@ STATUS = [
 class Project(models.Model):
     name = models.CharField(max_length=40, unique=True)
     description = models.CharField(max_length=500)
-    specialties = models.ManyToManyField("Specialty", through="UserSpecialty", symmetrical=True)
+    specialties = models.ManyToManyField("Specialty", through="ProjectSpecialty", symmetrical=True)
     niches = models.ManyToManyField("Niche", through="ProjectNiche")
-    clients = models.ManyToManyField("User", through="UserProject")
-    denial = models.ManyToManyField("User", through="UserProject")
-    project_entries = models.ForeignKey("ProjectEntry", on_delete.models.CASCADE)
+    clients = models.ManyToManyField("User", related_name="clients", through="UserProject")
+    denial = models.ManyToManyField("User", related_name="denials", through="DenialProject")
+    project_entries = models.ForeignKey("ProjectEntry", on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS)
 
     def __str__(self):
@@ -106,22 +114,52 @@ class Project(models.Model):
         fields = ('name', 'description', 'specialties', 'niches', 'clients', 'denial', 'project_entries', 'status')
         list_display = ('name', 'description', 'specialties', 'niches', 'clients', 'denial', 'project_entries', 'status')
 
+admin.site.register(Project, Project.ProjectAdmin)
+
 # Through
 class ProjectNiche(models.Model):
-    project = models.ForeignKey("Project", unique_together=True, on_delete=models.CASCADE)
-    niche = models.ForeignKey("Niche", unique_together=True, on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+    niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('project', 'niche')
+
+# Through
+class ProjectSpecialty(models.Model):
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('project', 'specialty')
 
 # Through UserSpecialty Model
 class UserSpecialty(models.Model):
-    user = models.ForeignKey("User", unique_together=True, on_delete=models.CASCADE)
-    specialty = models.ForeignKey("Specialty", unique_together=True, on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'specialty')
 
 # through UserProject Model
 class UserProject(models.Model):
-    user = models.ForeignKey("User", unique_together=True, on_delete=models.CASCADE)
-    specialty = models.ForeignKey("Project", unique_together=True, on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'project')
+
+# through UserProject Model
+class DenialProject(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'project')
 
 # Through UserRole Model
 class UserRole(models.Model):
-    user = models.ForeignKey("User", unique_together=True, on_delete=models.CASCADE)
-    role = models.ForeignKey("Role", unique_together=True, on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    role = models.ForeignKey("Role", on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'role')
