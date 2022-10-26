@@ -30,6 +30,8 @@
 
 ### System Context
 
+![System Context](https://github.com/adamspanier/CryptoConductor/blob/main/docs/diagrams/SystemContext.jpg)
+
 ### Contrainer Diagram
 
 ### Component Diagram
