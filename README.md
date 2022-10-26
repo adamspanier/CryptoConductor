@@ -8,8 +8,6 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 ## Installation
 1. python3 manage.py migrate
 2. python3 manage.py createsuperuser
-  3. Follow instructions
-
 
 ## Getting Started
 To implement CryptoConductor: 
