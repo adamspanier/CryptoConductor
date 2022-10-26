@@ -23,7 +23,7 @@ Leaders can also be Specialists, but are given the added ability to create new a
 
 #### Clients
 
-Clients are any entity that originate from any project in the system. This could be a CEO of a company requesting scoring checking scoring progress, it could be a programmer that needs software analyzed checking on specialist notes, or it could be a researcher in a research project looking at the progress of the project.
+Clients are any entity that originate from any project in the system. This could be a CEO of a company requesting scoring checking scoring progress, it could be a programmer that needs software analyzed checking on specialist notes, it could be a researcher in a research project looking at the progress of the project, or it can be a venture capitalist seeking scoring for a potential investment. Clients can view data regarding their projects and make payments through the system.
 
 #### Associates
 
