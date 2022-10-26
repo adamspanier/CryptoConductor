@@ -11,7 +11,7 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 
 
 ## Getting Started
-To implement CryptoConductor, simply run python3 manage.py runserver from the main project directory.
+To implement CryptoConductor, simply run _python3 manage.py runserver_ from the main project directory.
 
 ## License
 MIT License
