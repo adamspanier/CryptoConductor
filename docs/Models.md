@@ -29,6 +29,7 @@ Each project in the project table will have a project entry table. Each entry in
 2. _Specialty_ - Specialists relevant specialty in relation to the project. A foreign key to a relevant specialty.
 3. _Current_Score_ - The current integer score of the specialist. Most recent is the final score.
 4. _Text_Notes_ - Any notes the specialist provides
+5. _Entry Time_ - When the entry was made
 
 #### Specialty Table
 
