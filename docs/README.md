@@ -36,6 +36,10 @@
 
 ### Container Diagram
 
+<p align="center">
+  <img src="https://github.com/adamspanier/CryptoConductor/blob/main/docs/diagrams/CCContainer.jpg"/>
+</p>
+
 ### Component Diagram
 
 # User and Misuser Stories
