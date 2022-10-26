@@ -6,7 +6,7 @@ CryptoConductor eases significant logistical strain for distributed user organiz
 CryptoConductor features specialist profiles for each member of your team. Each profile is given role-based domain-specific access for scoring and input based in the specialist discipline. Pulling disciplines and specialists together, CryptoConductor uses Projects to allow your team to create a unique project that coordinates all specialist input by domain and allows for customizeable weighting for the final output score. This allows every project to be correctly scoped for pertinent domains. 
 
 ## Installation
-1. python3 manage.py makemigrations
+1. python3 manage.py migrate
 2. python3 manage.py createsuperuser
 
 
