@@ -38,6 +38,4 @@ SOFTWARE.
 
 ## Design
 
-#### [User Stories](https://github.com/adamspanier/CryptoConductor/blob/main/docs/UserStories.md)
-#### [Models](https://github.com/adamspanier/CryptoConductor/blob/main/docs/Models.md)
-#### [Views](https://github.com/adamspanier/CryptoConductor/blob/main/docs/Views.md)
+#### [Design Documentation](https://github.com/adamspanier/CryptoConductor/blob/main/docs/README.md)
