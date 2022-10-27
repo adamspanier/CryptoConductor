@@ -18,8 +18,14 @@ git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConduct
 
 ## Getting Started
 To run CryptoConductor: 
-1. From terminal, run _python3 manage.py runserver_ from the main project directory
-2. Visit the web interface at localhost/8000
+1. From terminal, run:
+```
+python3 manage.py runserver 
+```
+from the main project directory
+2. Visit the web interface at localhost/8000 using a web browser.
+
+_NOTE:_ CryptoConductor will run immediately after installation. You will only need to run the above command if you've stopped the CryptoConductor instance. 
 
 ## License
 MIT License
