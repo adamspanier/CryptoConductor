@@ -6,13 +6,11 @@ CryptoConductor eases significant logistical strain for distributed user organiz
 CryptoConductor features specialist profiles for each member of your team. Each profile is given role-based domain-specific access for scoring and input based in the specialist discipline. Pulling disciplines and specialists together, CryptoConductor uses Projects to allow your team to create a unique project that coordinates all specialist input by domain and allows for customizeable weighting for the final output score. This allows every project to be correctly scoped for pertinent domains. 
 
 ## Installation
-1. git clone https://github.com/adamspanier/CryptoConductor.git
-1. python3 manage.py makemigrations
-2. python3 manage.py migrate
-3. python3 manage.py createsuperuser
+1. git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
+2. ./run.sh - CryptoConductor will start automatically when ./run.sh is used.
 
 ## Getting Started
-To implement CryptoConductor: 
+To run CryptoConductor: 
 1. From terminal, run _python3 manage.py runserver_ from the main project directory
 2. Visit the web interface at localhost/8000
 
