@@ -11,10 +11,11 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 ```
 git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
 ```
-2. CryptoConductor will start automatically when ./run.sh is used.
+2. Run the following command:
 ```
 ./run.sh
 ```
+3. CryptoConductor will start automatically when ./run.sh is used.
 
 ## Getting Started
 To run CryptoConductor: 
