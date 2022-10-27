@@ -7,11 +7,13 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 
 ## Installation
 
+1. Run the following code in a new terminal window from the directory you wnat to install into.
 ```
 git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
 ```
+2. CryptoConductor will start automatically when ./run.sh is used.
 ```
-./run.sh - CryptoConductor will start automatically when ./run.sh is used.
+./run.sh
 ```
 
 ## Getting Started
