@@ -12,7 +12,7 @@ class Specialty(models.Model):
     description = models.CharField(max_length=500, unique=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     class SpecialtyAdmin(admin.ModelAdmin):
         fields = ('name', 'description')
@@ -27,7 +27,7 @@ class Niche(models.Model):
     specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + " : " + self.specialty.name
+        return self.name.upper() + " {" + self.specialty.name + "}"
 
     class NicheAdmin(admin.ModelAdmin):
         fields = ('name', 'description', 'specialty')
@@ -47,18 +47,26 @@ class User(models.Model):
     active = models.BooleanField()
 
     def __str__(self):
-        return self.username + " : " + self.user_role.name + " : " + str(self.active)
-
-    def get_specialties(self, obj):
-        return "\n".join([p.specialties for p in obj.specialty.all()])
-
-    def get_projects(self, obj):
-        return "\n".join([p.projects for p in obj.Project.all()])
+        return str(self.username) + " : " + self.user_role.name + " : " + str(self.active)
 
     class UserAdmin(admin.ModelAdmin):
-        fields = ('first', 'mi', 'last', 'username', 'user_role', 'specialties', 'projects', 'active')
+        filter_horizontal = ('specialties', 'projects')
         list_display = ('first', 'mi', 'last', 'username', 'user_role', 'get_specialties', 'get_projects', 'active')
 
+        # Obj = User
+        def get_specialties(self, obj):
+            output = "\n".join([str(p) + " : " for p in obj.specialties.all()])[:-2]
+            return output
+
+        def get_projects(self, obj):
+            output = "\n"
+            related = False
+            for p in obj.projects.all():
+                for specialty in p.specialties.all():
+                    if specialty in obj.specialties.all() and specialty not in output:
+                        output += str(p) + " : "
+            print(output)
+            return "\n".join([str(p) + " : " for p in obj.projects.all()])[:-2]
 
 admin.site.register(User, User.UserAdmin)
 
@@ -109,24 +117,28 @@ STATUS = [
 class Project(models.Model):
     name = models.CharField(max_length=40, unique=True)
     description = models.CharField(max_length=500)
-    # specialties = models.ManyToManyField("Specialty")
+    specialties = models.ManyToManyField("Specialty")
     niches = models.ManyToManyField("Niche")
-    # project_entries = models.ForeignKey("ProjectEntry", on_delete=models.CASCADE) #Gotta figure this one out
     status = models.CharField(max_length=20, choices=STATUS)
 
     def __str__(self):
         return self.name + " : Status: " + self.status
 
-    # def get_specialties(self, obj):
-    #    return "\n".join([p.specialties for p in obj.Specialty.all()])
-
-    def get_niches(self, obj):
-        return "\n".join([p.niches for p in obj.Niche.all()])
-
     class ProjectAdmin(admin.ModelAdmin):
-        fields = ('name', 'description', 'niches', 'status')
-        list_display = ('name', 'description', 'get_niches', 'status')
+        filter_horizontal = ('niches', 'specialties')
+        list_display = ('name', 'description', 'get_specialties', 'get_niches', 'status')
 
+        # self = ProjectAdmin - The class that the method is defined in
+        # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
+        def get_specialties(self, obj):
+            return "\n".join([str(p) + " : " for p in obj.specialties.all()])[:-2]
+
+        def get_niches(self, obj):
+                return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
+
+
+# Establishes connection between project and project admin classes
+# Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
 
 # Through
