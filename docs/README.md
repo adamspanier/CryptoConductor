@@ -1,4 +1,8 @@
-# Mockup and Architecture Diagrams
+# Design
+
+## Scope
+
+The CryptoConductor prototype created for CYBR 8470 will carry out basic design and prototyping activities. Completion will see six primary dashboards created: a login interface, a project dashboard, a project management dashboard, a project entries dashboard, an account management interface, and a scoring interface. 6 primary models will serve the dashboards above: Project, Entries, Specialty, Niche, User, and Role. Controllers will be used to carry out the business logic and data fetching based on user role and access criteria.
 
 ## Mockups
 
