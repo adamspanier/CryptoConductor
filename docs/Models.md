@@ -19,14 +19,16 @@ The project table correlates specialties, users, and user information together f
 4. _Niche list_ - List of assocaited niches
 5. _Client list_ - List of associated clients
 6. _Denial list_ - List of users that are denied access
-7. _ProjectEntries_ - A foreign key to the related project entries
+7. _Status_ - Current status of the project
+7. _Public_ - Boolean value indicating whether the project is public or private
 
 #### Project Entries Table
 
 Each project in the project table will have a project entry table. Each entry in the table will be comprised of the following fields:
 
 1. _Username_ - Name of the specialist that made the entry. A foreign key to a relevant user.
-2. _Specialty_ - Specialists relevant specialty in relation to the project. A foreign key to a relevant specialty.
+2. _Niche_ - Name of the niche the specialist is creating the entry under.
+2. _Project_ - Name of the project the entry is being created for.
 3. _Current_Score_ - The current integer score of the specialist. Most recent is the final score.
 4. _Text_Notes_ - Any notes the specialist provides
 5. _Entry_Date_ - Date the entry was made
@@ -59,6 +61,7 @@ Each user in the system will have a user profile. Each entry in the table will h
 4. _Username_ - The user's chosen screenname
 5. _Role_ - A foreign key entry to the user role
 6. _Specialties_ - A list of foreign keys relating to the specialty table. Dropdown checkbox menu.
+6. _Niches_ - A list of foreign keys relating to niche table.
 7. _Projects_ - A list of project foreign keys relating to which projects a user has contributed to. Dropdown checkbox menu.
 9. _Active_ - A boolean for currently acting
 

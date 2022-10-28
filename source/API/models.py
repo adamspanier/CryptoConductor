@@ -63,19 +63,25 @@ class User(models.Model):
                 return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
 
         def get_projects(self, obj):
-            output = "\n"
+            output = []
+            print(obj.username)
             related = False
+            print("here")
             for p in obj.projects.all():
+                print("Gere")
+                print(p)
                 for specialty in p.specialties.all():
-                    if specialty in obj.specialties.all() and specialty not in output:
-                        output += str(p) + " : "
+                    print("S: " + specialty.__str__())
+                    if specialty in obj.specialties.all():
+                        print("HERE")
+                        print(p)
+                        output.append(p.name)
             print(output)
-            return "\n".join([str(p) + " : " for p in obj.projects.all()])[:-2]
+            # return "\n".join([str(p) + " : " for p in obj.projects.all()])[:-2]
+            return "\n".join([str(p) + " : " for p in output])[:-2]
 
 admin.site.register(User, User.UserAdmin)
 
-# Role Model
-# Do I need users here?
 class Role(models.Model):
     name = models.CharField(max_length=20, unique=True)
     description = models.CharField(max_length=500)
@@ -89,7 +95,6 @@ class Role(models.Model):
 
 admin.site.register(Role, Role.RoleAdmin)
 
-# Project Entries Model
 class ProjectEntry(models.Model):
     username = models.ForeignKey("User", on_delete=models.CASCADE)
     niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
@@ -153,51 +158,3 @@ class Project(models.Model):
 # Establishes connection between project and project admin classes
 # Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
-
-# Through
-class ProjectNiche(models.Model):
-    project = models.ForeignKey("Project", on_delete=models.CASCADE)
-    niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('project', 'niche')
-
-# Through
-class ProjectSpecialty(models.Model):
-    project = models.ForeignKey("Project", on_delete=models.CASCADE)
-    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('project', 'specialty')
-
-# Through UserSpecialty Model
-class UserSpecialty(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
-    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user', 'specialty')
-
-# through UserProject Model
-class UserProject(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
-    project = models.ForeignKey("Project", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user', 'project')
-
-# through UserProject Model
-class DenialProject(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
-    project = models.ForeignKey("Project", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user', 'project')
-
-# Through UserRole Model
-class UserRole(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
-    role = models.ForeignKey("Role", on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user', 'role')
