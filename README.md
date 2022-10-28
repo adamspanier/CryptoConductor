@@ -1,4 +1,5 @@
-# CryptoConductor - A Distributed Project Scoring System
+# CryptoConductor 
+### A Distributed Project Scoring System
 
 ## Summary
 CryptoConductor is designed to ease significant logistical strain for distributed user organizations that need to analyze, score, and aggregate data concerning projects. Long gone are the days of dispersed and disorganized Google spreadsheets, lost Google Docs, disorganized work distribution tasks, inefficient specialist input gathering, and non-existent intelligence and insight functionalities. CryptoConductor serves as a means for small, domain specific professionals to coordinate across intellectual domains such that a robust and accurate project analysis can be made based on a variety of different views for any entity in question. Whether the analysis concerns a new software company startup, a cutting edge technical invention, or a cross-disciplinary research project, CryptoConductor can help coordinate specialist input and automatically create a simple output score for any existing or continuing project.
