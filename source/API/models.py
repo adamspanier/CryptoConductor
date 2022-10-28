@@ -43,20 +43,24 @@ class User(models.Model):
     username = models.CharField(max_length=20, unique=True)
     user_role = models.ForeignKey("Role", on_delete=models.CASCADE)
     specialties = models.ManyToManyField("Specialty")
-    projects = models.ManyToManyField("Project")
+    niches = models.ManyToManyField("Niche")
+    projects = models.ManyToManyField("Project", blank=True)
     active = models.BooleanField()
 
     def __str__(self):
         return str(self.username) + " : " + self.user_role.name + " : " + str(self.active)
 
     class UserAdmin(admin.ModelAdmin):
-        filter_horizontal = ('specialties', 'projects')
-        list_display = ('first', 'mi', 'last', 'username', 'user_role', 'get_specialties', 'get_projects', 'active')
+        filter_horizontal = ('specialties', 'projects', 'niches')
+        list_display = ('first', 'mi', 'last', 'username', 'user_role', 'get_specialties', 'get_projects', 'get_niches', 'active')
 
         # Obj = User
         def get_specialties(self, obj):
             output = "\n".join([str(p) + " : " for p in obj.specialties.all()])[:-2]
             return output
+
+        def get_niches(self, obj):
+                return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
 
         def get_projects(self, obj):
             output = "\n"
@@ -88,7 +92,7 @@ admin.site.register(Role, Role.RoleAdmin)
 # Project Entries Model
 class ProjectEntry(models.Model):
     username = models.ForeignKey("User", on_delete=models.CASCADE)
-    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
+    niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
     project = models.ForeignKey("Project", on_delete=models.CASCADE)
     current_score = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
     text_notes = models.CharField(max_length=5000)
@@ -98,12 +102,12 @@ class ProjectEntry(models.Model):
     last_modified_time = models.TimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return self.username + " : Date Entered: " + str(self.entry_date) + " : Current Score: " + str(self.current_score)
+        return self.username.username + " : Date Entered: " + str(self.entry_date) + " : Current Score: " + str(self.current_score)
 
     class ProjectEntriesAdmin(admin.ModelAdmin):
-        fields = ('username', 'specialty', 'project', 'current_score', 'text_notes')
+        # fields = ('username', 'specialty', 'project', 'current_score', 'text_notes')
         readonly_fields = ('entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
-        list_display = ('username', 'specialty', 'project', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
+        list_display = ('username', 'niche', 'project', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
 
 admin.site.register(ProjectEntry, ProjectEntry.ProjectEntriesAdmin)
 
@@ -120,7 +124,7 @@ class Project(models.Model):
     specialties = models.ManyToManyField("Specialty")
     niches = models.ManyToManyField("Niche")
     clients = models.ManyToManyField("User")
-    denials = models.ManyToManyField("User", related_name="denial_users")
+    denials = models.ManyToManyField("User", related_name="denial_users", blank=True)
     status = models.CharField(max_length=20, choices=STATUS)
     public = models.BooleanField()
 
@@ -128,7 +132,7 @@ class Project(models.Model):
         return self.name + " : Status: " + self.status + " : Public: " + str(self.public)
 
     class ProjectAdmin(admin.ModelAdmin):
-        filter_horizontal = ('niches', 'specialties', 'clients')
+        filter_horizontal = ('niches', 'specialties', 'clients', 'denials')
         list_display = ('name', 'description', 'get_specialties', 'get_niches', 'get_clients', 'get_denials', 'status')
 
         # self = ProjectAdmin - The class that the method is defined in
