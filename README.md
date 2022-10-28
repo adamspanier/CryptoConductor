@@ -8,7 +8,7 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 ## Installation
 
 1. Run the following code in a new terminal window from your chosen installation directory.
-```
+```bash
 git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
 ```
 2. Run the following command:
