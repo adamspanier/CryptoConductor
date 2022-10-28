@@ -12,7 +12,7 @@ CryptoConductor features specialist profiles for each member of your team. Each 
 git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
 ```
 2. Run the following command:
-```
+```bash
 ./run.sh
 ```
 3. CryptoConductor will start automatically when ./run.sh is used.
@@ -21,7 +21,7 @@ git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConduct
 To run CryptoConductor: 
 
 1. From terminal, run the command below in the CryptoConductor/source directory.
-```
+```bash
 python3 manage.py runserver 
 ```
 
