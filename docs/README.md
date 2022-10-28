@@ -56,7 +56,7 @@ The CryptoConductor prototype created for CYBR 8470 will carry out basic design 
 
 ## Overview
 
-_User stories_ help better elicit software design requirements for any system in a more holistic and complete manner. While many use cases can be inuitively perceived through the obvious functions of a given system, more subtle use cases can be missed without more organized and intentional probing. The _user stories_ in this document help communicate the expectations users require when using the CryptoConductor platform.
+_User stories_ help better elicit software design requirements for any system in a more holistic manner. While many use cases can be inuitively perceived through the obvious functionality of a given system, more subtle use cases can be missed without organized and intentional probing. The _user stories_ in this document help communicate the expectations users require when using the CryptoConductor platform.
 
 
 ### Users
@@ -68,7 +68,7 @@ _User stories_ help better elicit software design requirements for any system in
 
 #### Specialists
 
-Specialists comprise any user that provides numerical or text-based data in relation to a project in the system. Specialists are given one or more specialties, and can only submit information relating directly to those specialties. If a cybersecurity expert is involved in grading a software system, they would be given a _cybersecurity_ specialty and allowed to submit information relating only to the Software Assurance portion of the grading scale. Specialties are dynamic and can be added, changed, or removed for a better, more flexible set of Specialists.
+Specialists comprise any discipline-speicific user that provides scoring data in relation to a project in the system. Specialists are given one or more specialties relating to one or more niches. Each Specialist can only submit information relating directly to those specialties and niches. If a cybersecurity expert is involved in grading a software system, they would be given a _Technology_ specialty, a _Cybersecurity_ niche, and allowed to submit information relating only to the Software Assurance portion of the grading scale. Specialties are dynamic and can be added, changed, or removed for a better, more flexible set of Specialists.
 
 #### Leaders
 
@@ -88,26 +88,27 @@ Associates are any entity that does not have any vested interest in the system. 
 
 - As a **Specialist**, I want to **browse pertinent projects** so I can **find out if I need to provide input**.
   - _Acceptance Criteria:_
-    1. Ensure view project interface exists
-    2. Ensure each project can be viewed by specialty
-    3. Each project must have a list of specializations defined
-    4. Specialist interface lists projects with specialist specializations
-    5. Project listing in specialist interface has an active edit hyperlink
+    1. Ensure project dashboard exists
+    2. Ensure each project can be viewed by specialty and niche
+    3. Each project must have a list of specializations and niches defined
+    5. Project listing in specialist project dashboard has an active edit/view hyperlink
 
 - As a **Specialist**, I want to **open pertinent projects** so I can **read existing information about the project**.
   - _Acceptance Criteria:_ 
-    1. Ensure a view project interface exists
-    2. Ensure each project can be viewed by specialty
-    3. Provide an edit hyperlink 
-    4. Open project in specialist view
-
+    1. Ensure project dashboard exists
+    2. Ensure each project can be viewed by niche
+    3. Ensure each project can be edited by specialty
+    3. Provide an edit/view hyperlink as needed
+    4. Open project project entries dashboard
+    
 - As a **Specialist**, I want to **edit pertinent projects** so I can **add numerical scoring and text notes to the project**.
   - _Acceptance Criteria:_
-    1. Ensure project view interface exists
-    2. Ensure projects can be viewed by specialty
+    1. Ensure project dashboard exists
+    2. Ensure projects can be viewed by specialty and edited by niche
     3. Provide add/edit user notes button that is available only for input made by current user
-    4. Ensure numerical user score field exists
-    5. Provide an edit numerical score button 
+    4. Ensure Notes and Score fields exists
+    5. Autopopulate username, specialty, and nice.
+    5. Provide an update/create button
     
 <!---
 - As a **Specialist**, I want to **view pertinent project scores** so I can **determine how my input affected the overall score**.
@@ -126,24 +127,24 @@ Associates are any entity that does not have any vested interest in the system. 
 
 - As a **Leader**, I want to **create new projects** so I can **start the scoring process**.
   - _Acceptance Criteria:_
-    1. Ensure new project interface exists
-    2. Leader interface provides new project button
-    3. New project process allows user to enter Name, Description, checkmark specialties, and limit access
-    4. Create button makes new project
+    1. Ensure project dashbaord exists
+    2. Leader role enables New Project button
+    3. Project management console allows user to enter Title, Description, choose specialties, niches, clients, and limit access
+    4. Ensure existence of create button
      
 - As a **Leader**, I want to **edit projects** so I can **fix errors or update information**.
   - _Acceptance Criteria:_
-    1. Ensure project edit interface exists
-    2. Leader interface provides a list of existing projects
-    3. Ensure edit button exists for each project in the leader interface list
-    4. Edit button links to project edit interface
+    1. Ensure project dashboard exists
+    2. Leader role enables edit for all projects
+    4. Edit button links to project management console
+    4. Ensure existence of update button
  
 - As a **Leader**, I want to **view projects** so I can **track specialist changes**.
   - _Acceptance Criteria:_
-    1.  Ensure project view interface exists
+    1.  Ensure project dashboard exists
     2.  Provide role based views of each project
-    3.  Ensure all changes to any given project are logged
-    4.  List change history for each piece of information in the project
+    3.  Ensure all changes to any given project are logged in project entries
+    4.  Ensure Project entires dashboard can filter by specialist, specialty, niche, and score.
 
 <!---
 - As a **Leader**, I want to **view projects** so I can **track specialist participation**.
@@ -166,10 +167,10 @@ Associates are any entity that does not have any vested interest in the system. 
 
 - As a **Client**, I want to **view my project** so I can **check on scoring progress**.
   - _Acceptance Criteria:_
-    1. Ensure view project interface exists
-    2. Ensure project view provides user specific views
-    3. Allow projects to have a client list
-    4. Display all projects that have the client contained in the client list  
+    1. Ensure project dashboard exists
+    2. Allow projects to have a client list
+    2. Ensure project dahsbaord displays only client-related projects
+    4. Ensure the existence of a view hyperlink for each project the client can view
 
 <!--
 - As a **Client**, I want to **view my project** so I can **read specialist input**.
@@ -178,10 +179,15 @@ Associates are any entity that does not have any vested interest in the system. 
 
 #### Associate User Stories
 
+- As an **Associate**, I want to **view public project information** so I can **view scores of public projects**.
+  - _Acceptance Criteria:_
+    1. Ensure project dashboard exists
+    2. Display only publically available project scores
+
 - As an **Associate**, I want to **communicate with a leader** so I can **ask questions**.
   - _Acceptance Criteria:_
-    1. Ensure a generic communication interface is available
-    2. Display generic contact information with all non-authorized users  
+    1. Ensure project dashboard is available
+    2. Display generic contact information
 
 
 ## Misuser Stories
@@ -190,23 +196,26 @@ Associates are any entity that does not have any vested interest in the system. 
 
 - As a **Specialist _Misuser_**, I want to **open unauthorized projects** so I can **read information I'm not allowed to know**.
   - _Mitigation Criteria:_ 
-    1. Ensure project view requires user specialties to view
+    1. Ensure project dashboard uses user specialties to limit data presented
     2. Ensure each specialist account has a list of specialties
-    3. Specialists require authorization to change specialties
-    4. Project view uses specialist profile specialties to check access
-    5. Project view only allows access if specialist and project share at least one specialty
+    3. Ensure each specialist account has a list of niches
+    3. Specialists require authorization from a leader to change specialties and niches
+    4. Project dashboard uses specialist profile role, specialties, and niches to check access
+    5. Project dashboard only allows viewing if specialist and project share at least one specialty
+    6. Project dashboard only allows editing of entries if specialist and project share at least one niche.
 
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **change other specialist input values**.
   - _Mitigation Criteria:_
-    1. Ensure project view requires user specific criteria to edit
-    2. Entries created by current user are given and edit button
-    3. Edit button allows user to change values on only their input
+    1. Ensure project dashboard uses user specific criteria to enable editing
+    2. Ensure specialists can only edit project entries if they share a niche
+    2. Entries created by current user are given an edit button
+    3. Edit button allows user to change values on their input
     4. All changes to projects are tracked 
 
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **make changes without anyone knowing**.
   - _Mitigation Criteria:_
-    1. Project view and edit interfaces both log all changes
-    2. Leader interface provides logging view to keep track of changes 
+    1. Project and project entries dashboards both log all changes
+    2. Ensure project dashboard displays logs hyperlink for leaders
 
 <!--
 - As a **Specialist _Misuser_**, I want to **edit unauthorized projects** so I can **provide inappropriate input**.
@@ -217,28 +226,29 @@ Associates are any entity that does not have any vested interest in the system. 
 
 
 #### Leader Misuser Stories
-- As a **Leader _Misuser_**, I want to **edit project** so I can **change specialist input without permission**.
+
+- As a **Leader _Misuser_**, I want to **edit projects** so I can **change specialist input without permission**.
   - _Mitigation Criteria:_
-    1. Edit project view allows leader editing for all data
+    1. Project dashboard allows leader to edit for all data
     2. All project changes are logged by the system
     3. All specialist input changes are reported to the specialist that created them
 
 - As a **Leader _Misuser_**, I want to **edit project** so I can **delete input I don't like**.
   - _Mitigation Criteria:_
-    1. Ensure project view interface exists
+    1. Ensure project dashboard exists
     2. Ensure delete button for specialist input exists
     3. Clicking delete notifies specialist that input is to be deleted
-    4. Ensure accept delete button exists in delete interface
+    4. Ensure accept delete prompt exists
     5. Delete only occurs when Leader and Specialist accept delete
 
 - As a **Leader _Misuser_**, I want to **delete projects** so I can **delete projects I don't like**.
   - _Mitigation Criteria:_
-    1. Ensure project view interface exists
+    1. Ensure project dashboard exists
     2. Ensure delete project function exists
     3. Ensure delete button exists for each project
     4. Delete button triggers notification to all other leaders that project is to be deleted
     5. Accept button on delete interface must be acted upon by another leader
-    6. Two leaders start a 30 day countdown to delete 
+    6. Two leaders accepting delete start a 30 day countdown to delete 
 
 - As a **Leader _Misuser_**, I want to **edit the system** so I can **delete specialists I don't like**.
   - _Mitigation Criteria:_
@@ -257,32 +267,35 @@ Associates are any entity that does not have any vested interest in the system. 
 
 - As a **Client _Misuser_**, I want to **edit my projects** so I can **change scoring**.
   - _Mitigation Criteria:_
-    1. Ensure project view interface exists
-    2. Ensure that each project view requires a user role
+    1. Ensure project dashboard exists
+    2. Ensure that each project dashboard view requires a user role
     3. Ensure each project has a client list
-    4. User role cannot be changed by users
+    4. Ensure User role can only be changed by leader
     5. Client list can only be changed by Leader
-    6. Project view gets user role from user profile
-    7. Project view checks client name
+    6. Project dashboard gets user role from user profile
+    7. Project dahsboard checks client name
     8. If client name on project list, client can view
     9. Client cannot edit
 
 - As a **Client _Misuser_**, I want to **view other projects** so I can **learn about my competition**.
   - _Mitigation Criteria:_
-    1. Ensure project view interface exists
-    2. Ensure that each project view requires a user role
+    1. Ensure project dashboard exists
+    2. Ensure that each project dashboard view requires a user role
     3. Ensure each project has a client list
-    4. User role cannot be changed by users
+    4. User role can only be changed by Leaders
     5. Client list can only be changed by Leader
-    6. Project view gets user role from user profile
-    7. Project view checks client name
+    6. Project dashboard gets user role from user profile
+    7. Project dashboard checks client name
     8. If client name on project list, client can view
     9. Client cannot edit
 
 #### Associate Misuser Stories
 
-- As an **Associate _Misuser_**, I want to **view projects** so I can **find out information that I shouldn't know**.
+- As an **Associate**, I want to **view private project information** so I can **view scores of private projects**.
   - _Mitigation Criteria:_
-    1. Ensure Generic communication view exists
-    2. For non-authenticated users display communication view
-    3. Associate can email Leaders for more information 
+  	1. Ensure project dashboard exists
+  	2. Project dashboard checks user role
+  	2. Ensure authenticated users must login
+  	3. Ensure unauthenticated users are considered associates
+  	3. If user role is not authenticated, only public project scores are displayed.
+  	4. Display generic communication information

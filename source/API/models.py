@@ -119,14 +119,17 @@ class Project(models.Model):
     description = models.CharField(max_length=500)
     specialties = models.ManyToManyField("Specialty")
     niches = models.ManyToManyField("Niche")
+    clients = models.ManyToManyField("User")
+    denials = models.ManyToManyField("User", related_name="denial_users")
     status = models.CharField(max_length=20, choices=STATUS)
+    public = models.BooleanField()
 
     def __str__(self):
-        return self.name + " : Status: " + self.status
+        return self.name + " : Status: " + self.status + " : Public: " + str(self.public)
 
     class ProjectAdmin(admin.ModelAdmin):
-        filter_horizontal = ('niches', 'specialties')
-        list_display = ('name', 'description', 'get_specialties', 'get_niches', 'status')
+        filter_horizontal = ('niches', 'specialties', 'clients')
+        list_display = ('name', 'description', 'get_specialties', 'get_niches', 'get_clients', 'get_denials', 'status')
 
         # self = ProjectAdmin - The class that the method is defined in
         # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
@@ -135,6 +138,12 @@ class Project(models.Model):
 
         def get_niches(self, obj):
                 return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
+
+        def get_clients(self, obj):
+            return "\n".join([str(p) + " : " for p in obj.clients.all()])[:-2]
+
+        def get_denials(self, obj):
+            return "\n".join([str(p) + " : " for p in obj.denials.all()])[:-2]
 
 
 # Establishes connection between project and project admin classes
