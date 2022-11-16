@@ -1,0 +1,3 @@
+[submodule "CryptoConductor-Front"]
+	path = CryptoConductor-Front
+	url = https://github.com/adamspanier/CryptoConductor.git
