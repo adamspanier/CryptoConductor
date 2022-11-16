@@ -46,6 +46,13 @@ class ProjectEntryViewSet(viewsets.ModelViewSet):
     queryset = ProjectEntry.objects.all()
     serializer_class = szs.ProjectEntrySerializer
 
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    This endpoint serves to deliver dog data to the api
+    """
+    queryset = User.objects.all()
+    serializer_class = szs.UserSerializer
+
 @action(detail=True)
 class ProjectDetailViewSet(viewsets.ModelViewSet):
     """
@@ -63,4 +70,4 @@ class ProjectEntryDetailViewSet(viewsets.ModelViewSet):
     serializer_class = szs.ProjectSerializer
 
 def index(request):
-    return HttpResponse("This is now working.")
+    return render(request, 'index.html')

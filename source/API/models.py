@@ -42,13 +42,13 @@ class User(models.Model):
     last = models.CharField(max_length=20)
     username = models.CharField(max_length=20, unique=True)
     user_role = models.ForeignKey("Role", on_delete=models.CASCADE)
-    specialties = models.ManyToManyField("Specialty")
-    niches = models.ManyToManyField("Niche")
+    specialties = models.ManyToManyField("Specialty", blank=True)
+    niches = models.ManyToManyField("Niche", blank=True)
     projects = models.ManyToManyField("Project", blank=True)
     active = models.BooleanField()
 
     def __str__(self):
-        return str(self.username) + " : " + self.user_role.name + " : " + str(self.active)
+        return str(self.username) + " -> " + self.user_role.name
 
     class UserAdmin(admin.ModelAdmin):
         filter_horizontal = ('specialties', 'projects', 'niches')
