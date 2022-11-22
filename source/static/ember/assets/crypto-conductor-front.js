@@ -60,18 +60,20 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <br><br>
+    <div class="screen">
   
-  <div class="footer">
+    <div class="footer">
   
-  Copyright 2021 | RountTable21 Inc.
+      Copyright 2021 | RountTable21 Inc.
+  
+    </div>
   
   </div>
   
   */
   {
-    "id": "BvTw33SE",
-    "block": "[[[10,\"br\"],[12],[13],[10,\"br\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"footer\"],[12],[1,\"\\n\\nCopyright 2021 | RountTable21 Inc.\\n\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
+    "id": "3zfNTR1Q",
+    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n  \"],[10,0],[14,0,\"footer\"],[12],[1,\"\\n\\n    Copyright 2021 | RountTable21 Inc.\\n\\n  \"],[13],[1,\"\\n\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
     "moduleName": "crypto-conductor-front/components/footer-display.hbs",
     "isStrictMode": false
   });
@@ -89,17 +91,22 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <table>
-    <tr>
-      <td width=1700><h1>Welcome to CryptoConductor</h1></td>
-      <td><LinksMenu/></td>
-    </tr>
-  </table>
+    <div class="screen">
+    <div class="header-content-area">
+      <div class="site-title">
+        CryptoConductor
+      </div>
+  
+      <div class="header-links">
+        <LinksMenu/>
+      </div>
+    </div>
+  </div>
   
   */
   {
-    "id": "+OnWT7vl",
-    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"1700\"],[12],[10,\"h1\"],[12],[1,\"Welcome to CryptoConductor\"],[13],[13],[1,\"\\n    \"],[10,\"td\"],[12],[8,[39,0],null,null,null],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"links-menu\"]]",
+    "id": "DaL9mq+t",
+    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"header-content-area\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"site-title\"],[12],[1,\"\\n      CryptoConductor\\n    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"header-links\"],[12],[1,\"\\n      \"],[8,[39,0],null,null,null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"links-menu\"]]",
     "moduleName": "crypto-conductor-front/components/header-display.hbs",
     "isStrictMode": false
   });
@@ -117,12 +124,18 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    Home | Contact | User
+    <table>
+    <tr>
+      <td width="100px" align="center" style="border: 0px">Project</td>
+      <td width="100px" align="center" style="border: 0px">Account</td>
+      <td width="100px" align="center" style="border: 0px">Contact</td>
+    </tr>
+  </table>
   
   */
   {
-    "id": "udskoo6K",
-    "block": "[[[1,\"Home | Contact | User\\n\"]],[],false,[]]",
+    "id": "lKMcjakf",
+    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"Project\"],[13],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"Account\"],[13],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"Contact\"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
     "moduleName": "crypto-conductor-front/components/links-menu.hbs",
     "isStrictMode": false
   });
@@ -130,7 +143,140 @@
   _exports.default = LinksMenuComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, LinksMenuComponent);
 });
-;define("crypto-conductor-front/components/login-ui", ["exports", "@ember/component", "@ember/template-factory", "@glimmer/component"], function (_exports, _component, _templateFactory, _component2) {
+;define("crypto-conductor-front/components/login-ui", ["exports", "@ember/component", "@ember/template-factory", "@glimmer/component", "@glimmer/tracking"], function (_exports, _component, _templateFactory, _component2, _tracking) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _class, _descriptor, _descriptor2, _descriptor3;
+  0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
+  /*
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <div class="screen">
+    <div class="content-area">
+  
+      <table class="login-table"><tr>
+        <td class="cell">
+  
+          <form>
+            <div class="user-input">
+              <div class="field-label">
+                <span class="material-symbols-outlined">person</span>
+              </div>
+  
+              <div class="field">
+                <Input
+                  aria-label="username"
+                  @type="text"
+                  @value={{this.UserName}}
+                />
+              </div>
+            </div>
+  
+            <div class="user-input">
+              <div class="field-label">
+                <span class="material-symbols-outlined">key</span>
+              </div>
+  
+              <div class="field">
+                <Input
+                  aria-label="password"
+                  @type="password"
+                  @value={{this.PassWord}}
+                />
+              </div>
+            </div>
+  
+            <div class="user-input">
+              <div class="field-label">
+                <span class="material-symbols-outlined">check</span>
+              </div>
+  
+              <div class="check-field">
+                <Input
+                  aria-label="remember"
+                  @type="checkbox"
+                  @checked = {{this.remember}}
+                />
+                remember me
+              </div>
+  
+              <div class="submit-field">
+                <Input
+                  aria-label = "submit"
+                  disabled = {{this.disableSubmit}}
+                  @type="submit"
+                  @value="Login"
+                  {{on "click" this.onSubmit}}
+                />
+              </div>
+            </div>
+  
+          </form>
+        </td><td style="border: 0px"></td>
+      </tr></table>
+    </div>
+  </div>
+  
+  */
+  {
+    "id": "GFyO75ql",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n    \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n      \"],[10,\"td\"],[14,0,\"cell\"],[12],[1,\"\\n\\n        \"],[10,\"form\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"username\"]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"password\"]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n              remember me\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,1],[\"click\",[30,0,[\"onSubmit\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",\"Login\"]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n        \"],[13],[1,\"\\n      \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n    \"],[13],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\"]]",
+    "moduleName": "crypto-conductor-front/components/login-ui.hbs",
+    "isStrictMode": false
+  });
+  let LoginUiComponent = (_class = class LoginUiComponent extends _component2.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "UserName", _descriptor, this);
+      _initializerDefineProperty(this, "PassWord", _descriptor2, this);
+      _initializerDefineProperty(this, "remember", _descriptor3, this);
+    }
+    get disableSubmit() {
+      // if either value is empty we don't want to allow submitting the form
+      return !this.UserName.length || !this.PassWord.length;
+    }
+    onSubmit() {
+      data = {
+        username: this.UserName,
+        password: this.PassWord
+      };
+      this.username = "SUCCESS";
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "UserName", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return "username here";
+    }
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "PassWord", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return "password here";
+    }
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "remember", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return 0;
+    }
+  })), _class);
+  _exports.default = LoginUiComponent;
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, LoginUiComponent);
+});
+;define("crypto-conductor-front/components/project-listing", ["exports", "@ember/component", "@ember/template-factory", "@glimmer/component"], function (_exports, _component, _templateFactory, _component2) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -141,29 +287,69 @@
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <br><br>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
-  Login component goes here.<br><br>
+  <div class="screen">
+    <div class="content-area">
+      <div class="project-background"></div>
   
-  The user is: {@user}<br><br>
+      <div class="content-header">
   
-  Login Form here.
+          <div class="content-username-specialty">
+            {{this.username}} - {{this.specialty}}
+          </div>
+  
+          <div class="content-role">
+            {{this.role}} Console
+          </div>
+      </div>
+  
+      <div class="project-listing">
+        <div class="listing-text">
+          <table width="100%">
+            <tr><td>1</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>2</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>3</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>4</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>5</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>6</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>7</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>8</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>9</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>10</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>12</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>13</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>14</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>15</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>16</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>17</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>18</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>19</td><td width="300px">Project Title</td><td>Actions</td></tr>
+            <tr><td>20</td><td width="300px">Project Title</td><td>Actions</td></tr>
+          </table>
+        </div>
+      </div>
+  
+    </div>
+  </div>
   
   */
   {
-    "id": "2C7oSZ9U",
-    "block": "[[[10,\"br\"],[12],[13],[10,\"br\"],[12],[13],[1,\"\\n\\nLogin component goes here.\"],[10,\"br\"],[12],[13],[10,\"br\"],[12],[13],[1,\"\\n\\nThe user is: {@user}\"],[10,\"br\"],[12],[13],[10,\"br\"],[12],[13],[1,\"\\n\\nLogin Form here.\\n\"]],[],false,[]]",
-    "moduleName": "crypto-conductor-front/components/login-ui.hbs",
+    "id": "3zU4z9VX",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n\\n        \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n          \"],[1,[30,0,[\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n        \"],[13],[1,\"\\n\\n        \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n          \"],[1,[30,0,[\"role\"]]],[1,\" Console\\n        \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n        \"],[10,\"table\"],[14,\"width\",\"100%\"],[12],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"1\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"2\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"3\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"4\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"5\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"6\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"7\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"8\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"9\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"10\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"12\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"13\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"14\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"15\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"16\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"17\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"18\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"19\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"20\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
+    "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
-  class LoginUiComponent extends _component2.default {
+  class ProjectListingComponent extends _component2.default {
     constructor() {
       super(...arguments);
-      _defineProperty(this, "user", 'Fred');
+      _defineProperty(this, "username", "Syntax");
+      _defineProperty(this, "specialty", "Cybersecurity");
+      _defineProperty(this, "role", "Knight");
     }
   }
-  _exports.default = LoginUiComponent;
-  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, LoginUiComponent);
+  _exports.default = ProjectListingComponent;
+  (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, ProjectListingComponent);
 });
 ;define("crypto-conductor-front/components/user-data", ["exports", "@ember/component", "@ember/template-factory", "@glimmer/component"], function (_exports, _component, _templateFactory, _component2) {
   "use strict";
@@ -677,16 +863,14 @@
   /*
     {{page-title "Login Portal"}}
   
-  Login Page
-  
   <LoginUi/>
   
   {{outlet}}
   
   */
   {
-    "id": "SMtyJ+lx",
-    "block": "[[[1,[28,[35,0],[\"Login Portal\"],null]],[1,\"\\n\\nLogin Page\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
+    "id": "J9HtUZEJ",
+    "block": "[[[1,[28,[35,0],[\"Login Portal\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/login.hbs",
     "isStrictMode": false
   });
@@ -704,14 +888,14 @@
   /*
     {{page-title "Project Dashboard"}}
   
-  Project Dashboard Page
+  <ProjectListing/>
   
   {{outlet}}
   
   */
   {
-    "id": "Z9BVV0vZ",
-    "block": "[[[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\nProject Dashboard Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
+    "id": "2Zrf39Jj",
+    "block": "[[[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"project-listing\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-dashboard.hbs",
     "isStrictMode": false
   });
