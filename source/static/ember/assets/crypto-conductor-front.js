@@ -60,8 +60,10 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="screen">
+    {{!Screen class that sets window scaling}}
+  <div class="screen">
   
+    {{!Format for footer}}
     <div class="footer">
   
       Copyright 2021 | RountTable21 Inc.
@@ -72,8 +74,8 @@
   
   */
   {
-    "id": "3zfNTR1Q",
-    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n  \"],[10,0],[14,0,\"footer\"],[12],[1,\"\\n\\n    Copyright 2021 | RountTable21 Inc.\\n\\n  \"],[13],[1,\"\\n\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
+    "id": "oY3L/GDU",
+    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"  \"],[10,0],[14,0,\"footer\"],[12],[1,\"\\n\\n    Copyright 2021 | RountTable21 Inc.\\n\\n  \"],[13],[1,\"\\n\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
     "moduleName": "crypto-conductor-front/components/footer-display.hbs",
     "isStrictMode": false
   });
@@ -91,12 +93,18 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <div class="screen">
+    {{!Screen class that sets window scaling}}
+  <div class="screen">
+  
+    {{!Contains header content box}}
     <div class="header-content-area">
+  
+      {{!Contians site title}}
       <div class="site-title">
         CryptoConductor
       </div>
   
+      {{!Contains header links}}
       <div class="header-links">
         <LinksMenu/>
       </div>
@@ -105,8 +113,8 @@
   
   */
   {
-    "id": "DaL9mq+t",
-    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"header-content-area\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"site-title\"],[12],[1,\"\\n      CryptoConductor\\n    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"header-links\"],[12],[1,\"\\n      \"],[8,[39,0],null,null,null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"links-menu\"]]",
+    "id": "Fa6ZjUFY",
+    "block": "[[[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"  \"],[10,0],[14,0,\"header-content-area\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"site-title\"],[12],[1,\"\\n      CryptoConductor\\n    \"],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"header-links\"],[12],[1,\"\\n      \"],[8,[39,0],null,null,null],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"links-menu\"]]",
     "moduleName": "crypto-conductor-front/components/header-display.hbs",
     "isStrictMode": false
   });
@@ -124,7 +132,8 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component"eaimeta@70e063a35619d71f
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <table>
+    {{!Table containing the site links}}
+  <table>
     <tr>
       <td width="100px" align="center" style="border: 0px">Project</td>
       <td width="100px" align="center" style="border: 0px">Account</td>
@@ -160,13 +169,22 @@
   /*
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
+  {{!Screen class that sets window scaling}}
   <div class="screen">
+  
+    {{!Define content area in center of screen}}
     <div class="content-area">
   
+      {{!Define two cell login table, one side with login, other with pic}}
       <table class="login-table"><tr>
-        <td class="cell">
   
+        {{!Contains login content}}
+        <td class="login-cell">
+  
+          {{!Define login form}}
           <form>
+  
+            {{!Username input div}}
             <div class="user-input">
               <div class="field-label">
                 <span class="material-symbols-outlined">person</span>
@@ -181,6 +199,7 @@
               </div>
             </div>
   
+            {{!Password input div}}
             <div class="user-input">
               <div class="field-label">
                 <span class="material-symbols-outlined">key</span>
@@ -195,6 +214,7 @@
               </div>
             </div>
   
+            {{!Remember Me div}}
             <div class="user-input">
               <div class="field-label">
                 <span class="material-symbols-outlined">check</span>
@@ -209,6 +229,7 @@
                 remember me
               </div>
   
+              {{!Submit div div}}
               <div class="submit-field">
                 <Input
                   aria-label = "submit"
@@ -228,8 +249,8 @@
   
   */
   {
-    "id": "GFyO75ql",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n    \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n      \"],[10,\"td\"],[14,0,\"cell\"],[12],[1,\"\\n\\n        \"],[10,\"form\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"username\"]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"password\"]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n              remember me\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,1],[\"click\",[30,0,[\"onSubmit\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",\"Login\"]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n        \"],[13],[1,\"\\n      \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n    \"],[13],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\"]]",
+    "id": "aB/WaUpu",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,\"td\"],[14,0,\"login-cell\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,\"form\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"username\"]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n\"],[1,\"          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"password\"]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n\"],[1,\"          \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n            \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n              \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n            \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n              remember me\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,1],[\"click\",[30,0,[\"onSubmit\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",\"Login\"]],null],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n        \"],[13],[1,\"\\n      \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n    \"],[13],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/login-ui.hbs",
     "isStrictMode": false
   });
@@ -241,7 +262,7 @@
       _initializerDefineProperty(this, "remember", _descriptor3, this);
     }
     get disableSubmit() {
-      // if either value is empty we don't want to allow submitting the form
+      //if either value is empty we don't want to allow submitting the form
       return !this.UserName.length || !this.PassWord.length;
     }
     onSubmit() {
@@ -289,12 +310,17 @@
   /*
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
+  {{!Screen class that sets window scaling}}
   <div class="screen">
+  
+    {{!Define content area in center of screen}}
     <div class="content-area">
+  
+      {{!Define project background box}}
       <div class="project-background"></div>
   
+      {{!Define content area header}}
       <div class="content-header">
-  
           <div class="content-username-specialty">
             {{this.username}} - {{this.specialty}}
           </div>
@@ -304,6 +330,7 @@
           </div>
       </div>
   
+      {{!Display all pertinent projects}}
       <div class="project-listing">
         <div class="listing-text">
           <table width="100%">
@@ -329,14 +356,13 @@
           </table>
         </div>
       </div>
-  
     </div>
   </div>
   
   */
   {
-    "id": "3zU4z9VX",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n    \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n\\n        \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n          \"],[1,[30,0,[\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n        \"],[13],[1,\"\\n\\n        \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n          \"],[1,[30,0,[\"role\"]]],[1,\" Console\\n        \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n        \"],[10,\"table\"],[14,\"width\",\"100%\"],[12],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"1\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"2\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"3\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"4\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"5\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"6\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"7\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"8\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"9\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"10\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"12\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"13\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"14\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"15\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"16\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"17\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"18\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"19\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"20\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
+    "id": "s34yx8qk",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"  \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n          \"],[1,[30,0,[\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n        \"],[13],[1,\"\\n\\n        \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n          \"],[1,[30,0,[\"role\"]]],[1,\" Console\\n        \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n      \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n        \"],[10,\"table\"],[14,\"width\",\"100%\"],[12],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"1\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"2\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"3\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"4\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"5\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"6\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"7\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"8\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"9\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"10\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"12\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"13\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"14\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"15\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"16\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"17\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"18\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"19\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n          \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"20\"],[13],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,\"Project Title\"],[13],[10,\"td\"],[12],[1,\"Actions\"],[13],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[]]",
     "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
