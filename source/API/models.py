@@ -42,43 +42,13 @@ class User(models.Model):
     last = models.CharField(max_length=20)
     username = models.CharField(max_length=20, unique=True)
     user_role = models.ForeignKey("Role", on_delete=models.CASCADE)
-    specialties = models.ManyToManyField("Specialty", blank=True)
-    niches = models.ManyToManyField("Niche", blank=True)
-    projects = models.ManyToManyField("Project", blank=True)
     active = models.BooleanField()
 
     def __str__(self):
         return str(self.username) + " -> " + self.user_role.name
 
     class UserAdmin(admin.ModelAdmin):
-        filter_horizontal = ('specialties', 'projects', 'niches')
-        list_display = ('first', 'mi', 'last', 'username', 'user_role', 'get_specialties', 'get_projects', 'get_niches', 'active')
-
-        # Obj = User
-        def get_specialties(self, obj):
-            output = "\n".join([str(p) + " : " for p in obj.specialties.all()])[:-2]
-            return output
-
-        def get_niches(self, obj):
-                return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
-
-        def get_projects(self, obj):
-            output = []
-            print(obj.username)
-            related = False
-            print("here")
-            for p in obj.projects.all():
-                print("Gere")
-                print(p)
-                for specialty in p.specialties.all():
-                    print("S: " + specialty.__str__())
-                    if specialty in obj.specialties.all():
-                        print("HERE")
-                        print(p)
-                        output.append(p.name)
-            print(output)
-            # return "\n".join([str(p) + " : " for p in obj.projects.all()])[:-2]
-            return "\n".join([str(p) + " : " for p in output])[:-2]
+        list_display = ('first', 'mi', 'last', 'username', 'user_role', 'active')
 
 admin.site.register(User, User.UserAdmin)
 
@@ -126,10 +96,6 @@ STATUS = [
 class Project(models.Model):
     name = models.CharField(max_length=40, unique=True)
     description = models.CharField(max_length=500)
-    specialties = models.ManyToManyField("Specialty")
-    niches = models.ManyToManyField("Niche")
-    clients = models.ManyToManyField("User")
-    denials = models.ManyToManyField("User", related_name="denial_users", blank=True)
     status = models.CharField(max_length=20, choices=STATUS)
     public = models.BooleanField()
 
@@ -137,24 +103,72 @@ class Project(models.Model):
         return self.name + " : Status: " + self.status + " : Public: " + str(self.public)
 
     class ProjectAdmin(admin.ModelAdmin):
-        filter_horizontal = ('niches', 'specialties', 'clients', 'denials')
-        list_display = ('name', 'description', 'get_specialties', 'get_niches', 'get_clients', 'get_denials', 'status')
+        list_display = ('name', 'description', 'status')
 
         # self = ProjectAdmin - The class that the method is defined in
         # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
-        def get_specialties(self, obj):
-            return "\n".join([str(p) + " : " for p in obj.specialties.all()])[:-2]
-
-        def get_niches(self, obj):
-                return "\n".join([str(p) + " : " for p in obj.niches.all()])[:-2]
-
-        def get_clients(self, obj):
-            return "\n".join([str(p) + " : " for p in obj.clients.all()])[:-2]
-
-        def get_denials(self, obj):
-            return "\n".join([str(p) + " : " for p in obj.denials.all()])[:-2]
 
 
 # Establishes connection between project and project admin classes
 # Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
+
+# Use this to find all projects related to users, and all users related to projectDashboard
+# select user where project.id = 1
+# select project where user.id = 2 etc.
+class UserToProject(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Username - " + str(self.user.username) + " : Project - " + str(self.project.name)
+
+    class UserToProjectAdmin(admin.ModelAdmin):
+        list_display = ('id', 'user', 'project')
+
+admin.site.register(UserToProject, UserToProject.UserToProjectAdmin)
+
+# Use this table to find niches that are correlated to projects and vice versa
+# select project where niche.id = 1
+# select niche where project.id = 2 etc.
+class NicheToProject(models.Model):
+    niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Niche - " + str(self.niche.name) + " : Project - " + str(self.project.name)
+
+    class NicheToProjectAdmin(admin.ModelAdmin):
+        list_display = ('id', 'niche', 'project')
+
+admin.site.register(NicheToProject, NicheToProject.NicheToProjectAdmin)
+
+# Use this table to find specialties that are related to projects and vice versa
+# select project where specialty.id = 1
+# select specialty where project.id = 2 etc.
+class SpecialtyToProject(models.Model):
+    specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Specialty - " + str(self.specialty.name) + " : Project - " + str(self.project.name)
+
+    class SpecialtyToProjectAdmin(admin.ModelAdmin):
+        list_display = ('id', 'specialty', 'project')
+
+admin.site.register(SpecialtyToProject, SpecialtyToProject.SpecialtyToProjectAdmin)
+
+# Use this table to find users that are denied certain projects and vice versa
+# select denial where project.id = 1
+# select project where denial.id = 2 ,etc
+class DenialToProject(models.Model):
+    denial = models.ForeignKey("User", on_delete=models.CASCADE)
+    project = models.ForeignKey("Project", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Denied User - " + str(self.denial.username) + " : Project - " + str(self.project.name)
+
+    class DenialToProjectAdmin(admin.ModelAdmin):
+        list_display = ('id', 'denial', 'project')
+
+admin.site.register(DenialToProject, DenialToProject.DenialToProjectAdmin)
