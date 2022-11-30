@@ -422,6 +422,20 @@ define("crypto-conductor-front/tests/test-helper", ["crypto-conductor-front/app"
   (0, _qunitDom.setup)(QUnit.assert);
   (0, _emberQunit.start)();
 });
+define("crypto-conductor-front/tests/unit/controllers/application-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Controller | application', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // TODO: Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let controller = this.owner.lookup('controller:application');
+      assert.ok(controller);
+    });
+  });
+});
 define("crypto-conductor-front/tests/unit/routes/account-management-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
   "use strict";
 
@@ -515,6 +529,20 @@ define("crypto-conductor-front/tests/unit/routes/scoring-dashboard-test", ["quni
     (0, _qunit.test)('it exists', function (assert) {
       let route = this.owner.lookup('route:scoring-dashboard');
       assert.ok(route);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/services/auth-manager-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Service | auth-manager', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // TODO: Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let service = this.owner.lookup('service:auth-manager');
+      assert.ok(service);
     });
   });
 });

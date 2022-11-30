@@ -36,37 +36,13 @@ class Niche(models.Model):
 admin.site.register(Niche, Niche.NicheAdmin)
 
 # User Model
-class User(models.Model):
-    first = models.CharField(max_length=20)
-    mi = models.CharField(max_length=20)
-    last = models.CharField(max_length=20)
-    username = models.CharField(max_length=20, unique=True)
-    user_role = models.ForeignKey("Role", on_delete=models.CASCADE)
-    active = models.BooleanField()
+# Don't need
 
-    def __str__(self):
-        return str(self.username) + " -> " + self.user_role.name
 
-    class UserAdmin(admin.ModelAdmin):
-        list_display = ('first', 'mi', 'last', 'username', 'user_role', 'active')
 
-admin.site.register(User, User.UserAdmin)
-
-class Role(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    description = models.CharField(max_length=500)
-
-    def __str__(self):
-        return self.name
-
-    class RoleAdmin(admin.ModelAdmin):
-        fields = ('name', 'description')
-        list_display = ('name', 'description')
-
-admin.site.register(Role, Role.RoleAdmin)
 
 class ProjectEntry(models.Model):
-    username = models.ForeignKey("User", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
     project = models.ForeignKey("Project", on_delete=models.CASCADE)
     current_score = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
@@ -77,12 +53,12 @@ class ProjectEntry(models.Model):
     last_modified_time = models.TimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return self.username.username + " : Date Entered: " + str(self.entry_date) + " : Current Score: " + str(self.current_score)
+        return self.user.username + " : Date Entered: " + str(self.entry_date) + " : Current Score: " + str(self.current_score)
 
     class ProjectEntriesAdmin(admin.ModelAdmin):
         # fields = ('username', 'specialty', 'project', 'current_score', 'text_notes')
         readonly_fields = ('entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
-        list_display = ('username', 'niche', 'project', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
+        list_display = ('user', 'niche', 'project', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
 
 admin.site.register(ProjectEntry, ProjectEntry.ProjectEntriesAdmin)
 
@@ -117,7 +93,7 @@ admin.site.register(Project, Project.ProjectAdmin)
 # select user where project.id = 1
 # select project where user.id = 2 etc.
 class UserToProject(models.Model):
-    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey("Project", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -162,7 +138,7 @@ admin.site.register(SpecialtyToProject, SpecialtyToProject.SpecialtyToProjectAdm
 # select denial where project.id = 1
 # select project where denial.id = 2 ,etc
 class DenialToProject(models.Model):
-    denial = models.ForeignKey("User", on_delete=models.CASCADE)
+    denial = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey("Project", on_delete=models.CASCADE)
 
     def __str__(self):

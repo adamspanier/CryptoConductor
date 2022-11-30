@@ -19,11 +19,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = models.User
         fields = ['id', 'first', 'mi', 'last', 'username', 'user_role', 'active']
 
-class RoleSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = models.Role
-        fields = ['id', 'name', 'description']
-
 class ProjectEntrySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.ProjectEntry

@@ -25,6 +25,7 @@ from django.contrib.auth import authenticate, login, logout
 from rest_framework.permissions import *
 from rest_framework.decorators import *
 from rest_framework.authentication import *
+from django.views.decorators.csrf import *
 
 import json, datetime, pytz
 from django.core import serializers
@@ -33,8 +34,51 @@ import requests
 import re
 
 """
-General View Sets for listing data
+General View Sets for exposing data
 """
+
+class Session(APIView):
+    def buildSession(self, isLoggedIn, username, userid, usergroup, error=""):
+        return Response({
+            'username': username,
+            'usergroup': usergroup,
+            'isLoggedIn': isLoggedIn,
+            'userid': userid
+        })
+
+    # get token
+    def get(self, request):
+        user = request.user
+        if user.is_authenticated:
+            group = user.groups.first()
+            return self.buildSession(True, user.username, user.id, str(group))
+        return self.buildSession(False, None, None, None, "Anon User")
+
+    # post allows authentication, send user and pass, return json=
+    def post(self, request):
+        username = request.data['username']
+        password = request.data['password']
+        print(username)
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            group = user.groups.first()
+            print(str(group))
+            return self.buildSession(True, user.username, user.id, str(group))
+            # Redirect to a success page.
+
+        else:
+            # Return an 'invalid login' error message.
+            # think about some error criteria - present login error
+            # maybe say your username pass don't match
+            return self.buildSession(False, None, None, None, "Login Error")
+
+    # delete logout
+    def delete(self, request):
+        print("HERE")
+        logout(request)
+        return self.buildSession(False, None, None, None, "Anon user")
+
 
 class SpecialtyListViewSet(viewsets.ModelViewSet):
     """
@@ -56,13 +100,6 @@ class UserListViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.get_queryset().order_by('id')
     serializer_class = szs.UserSerializer
-
-class RoleListViewSet(viewsets.ModelViewSet):
-    """
-    This endpoint serves to Role data to the api
-    """
-    queryset = Role.objects.get_queryset().order_by('id')
-    serializer_class = szs.RoleSerializer
 
 class ProjectEntryListViewSet(viewsets.ModelViewSet):
     """
@@ -132,14 +169,6 @@ class UserDetailViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.get_queryset().order_by('id')
     serializer_class = szs.UserSerializer
-
-@action(detail=True)
-class RoleDetailViewSet(viewsets.ModelViewSet):
-    """
-    This endpoint serves to Role data to the api
-    """
-    queryset = Role.objects.get_queryset().order_by('id')
-    serializer_class = szs.RoleSerializer
 
 @action(detail=True)
 class ProjectEntryDetailViewSet(viewsets.ModelViewSet):

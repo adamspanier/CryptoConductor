@@ -10,7 +10,6 @@ router = routers.DefaultRouter()
 router.register(r'specialties', views.SpecialtyListViewSet)
 router.register(r'niches', views.NicheListViewSet)
 router.register(r'users', views.UserListViewSet)
-router.register(r'roles', views.RoleListViewSet)
 router.register(r'projectEntries', views.ProjectEntryListViewSet)
 router.register(r'projects', views.ProjectListViewSet)
 router.register(r'userToProject', views.UserToProjectListViewSet)
@@ -21,7 +20,6 @@ router.register(r'denialToProject', views.DenialToProjectListViewSet)
 router.register(r'specialties/<int:id>', views.SpecialtyDetailViewSet)
 router.register(r'niches/<int:id>', views.NicheDetailViewSet)
 router.register(r'users/<int:id>', views.UserDetailViewSet)
-router.register(r'roles/<int:id>', views.RoleDetailViewSet)
 router.register(r'projectEntries/<int:id>', views.ProjectEntryDetailViewSet)
 router.register(r'projects/<int:id>', views.ProjectDetailViewSet)
 router.register(r'userToProject/<int:id>', views.UserToProjectDetailViewSet)
@@ -33,5 +31,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('session/', views.Session.as_view()),
     re_path('^', views.index, name="index")
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
