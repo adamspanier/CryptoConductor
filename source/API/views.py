@@ -77,17 +77,19 @@ class Session(APIView):
 
 class SpecialtyListViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to specialty data to the api
+    This endpoint serves specialty data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name']
     queryset = Specialty.objects.get_queryset().order_by('id')
     serializer_class = szs.SpecialtySerializer
 
 class NicheListViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to Niche data to the api
+    This endpoint serves Niche data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name', 'specialty']
     queryset = Niche.objects.get_queryset().order_by('id')
     serializer_class = szs.NicheSerializer
 
@@ -96,6 +98,7 @@ class UserListViewSet(viewsets.ModelViewSet):
     This endpoint serves User data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'username', 'first_name', 'last_name']
     queryset = User.objects.get_queryset().order_by('id')
     serializer_class = szs.UserSerializer
 
@@ -104,22 +107,25 @@ class GroupListViewSet(viewsets.ModelViewSet):
     This endpoint serves Group data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name']
     queryset = Group.objects.get_queryset().order_by('id')
     serializer_class = szs.GroupSerializer
 
 class ProjectEntryListViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to ProjectEntry data to the api
+    This endpoint serves ProjectEntry data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'user__username', 'niche__name', 'project__name', 'current_score', 'entry_date', 'last_modified_date']
     queryset = ProjectEntry.objects.get_queryset().order_by('id')
     serializer_class = szs.ProjectEntrySerializer
 
 class ProjectListViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to Project data to the api
+    This endpoint serves Project data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name', 'users__username', 'niches__name', 'denied_users__username', 'status', 'public']
     queryset = Project.objects.get_queryset().order_by('id')
     serializer_class = szs.ProjectSerializer
 
@@ -129,55 +135,60 @@ Detail oriented viewsets
 @action(detail=True)
 class SpecialtyDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to specialty data to the api
+    This endpoint serves Specialty detail data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name']
     queryset = Specialty.objects.get_queryset().order_by('id')
     serializer_class = szs.SpecialtySerializer
 
 @action(detail=True)
 class NicheDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to Niche data to the api
+    This endpoint serves Niche detail data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name', 'specialty']
     queryset = Niche.objects.get_queryset().order_by('id')
     serializer_class = szs.NicheSerializer
 
 @action(detail=True)
 class UserDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to User data to the api
+    This endpoint serves User detail data to the api
     """
     permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend]
+    search_fields = ['id', 'username', 'first_name', 'last_name']
     queryset = User.objects.get_queryset().order_by('id')
     serializer_class = szs.UserSerializer
 
 @action(detail=True)
 class GroupDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves group data to the api
+    This endpoint serves group detail data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name']
     queryset = Group.objects.get_queryset().order_by('id')
     serializer_class = szs.GroupSerializer
 
 @action(detail=True)
 class ProjectEntryDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to ProjectEntry data to the api
+    This endpoint serves ProjectEntry detail data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'user', 'niche', 'project', 'current_score', 'entry_date', 'last_modified_date']
     queryset = ProjectEntry.objects.get_queryset().order_by('id')
     serializer_class = szs.ProjectEntrySerializer
 
 @action(detail=True)
 class ProjectDetailViewSet(viewsets.ModelViewSet):
     """
-    This endpoint serves to Project data to the api
+    This endpoint serves Project detail data to the api
     """
     permission_classes = [IsAuthenticated]
+    search_fields = ['id', 'name', 'users', 'niches', 'denied_users', 'status', 'public']
     queryset = Project.objects.get_queryset().order_by('id')
     serializer_class = szs.ProjectSerializer
 

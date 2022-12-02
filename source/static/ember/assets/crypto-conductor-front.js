@@ -109,6 +109,7 @@
       super(...arguments);
       _defineProperty(this, "namespace", 'api');
     }
+    // Define query record method for querying users
     queryRecord(store, type, query) {
       return fetch('/api/users');
     }
@@ -164,7 +165,8 @@
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    {{! Template for the account management component }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
   {{!Screen class that sets window scaling}}
   <div class="screen">
@@ -189,6 +191,8 @@
   
           {{!Setup inner div for arrangement of account information}}
           <div class="account-info-text">
+  
+            {{!Setup account table structure}}
             <table id="account-table">
               <tr>
                 <td>User First:</td>
@@ -324,8 +328,8 @@
   
   */
   {
-    "id": "wx7QLMLp",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Account Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,1,\"account-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User First:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserFirst\"],[24,1,\"uf\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"userFirst\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"Specialty:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"spec\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"]],[1]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"User Last:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserLast\"],[24,1,\"ul\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userLast\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niche:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"nich\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\"]],[2]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User MI:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserMi\"],[24,1,\"um\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userMi\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Role:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"rol\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testRoles\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Username:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserName\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"username\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Projects:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"pro\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User Balance:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserBalance\"],[24,1,\"ub\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userBalance\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Active:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"act\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testActive\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"status\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"update\"],[4,[38,2],[\"click\",[30,0,[\"updateRecord\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"delete\"],[4,[38,2],[\"click\",[30,0,[\"print\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"delete\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"spec\",\"niche\",\"role\",\"proj\",\"act\"],false,[\"if\",\"input\",\"on\",\"each\",\"-track-array\"]]",
+    "id": "MXDb65Lk",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Account Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"table\"],[14,1,\"account-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User First:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserFirst\"],[24,1,\"uf\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"userFirst\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"Specialty:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"spec\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"]],[1]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"User Last:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserLast\"],[24,1,\"ul\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userLast\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niche:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"nich\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\"]],[2]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User MI:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserMi\"],[24,1,\"um\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userMi\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Role:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"rol\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testRoles\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Username:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserName\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"username\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Projects:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"pro\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User Balance:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserBalance\"],[24,1,\"ub\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userBalance\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Active:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"act\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testActive\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"status\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"update\"],[4,[38,2],[\"click\",[30,0,[\"updateRecord\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"delete\"],[4,[38,2],[\"click\",[30,0,[\"print\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"delete\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"spec\",\"niche\",\"role\",\"proj\",\"act\"],false,[\"if\",\"input\",\"on\",\"each\",\"-track-array\"]]",
     "moduleName": "crypto-conductor-front/components/account-information.hbs",
     "isStrictMode": false
   });
@@ -347,9 +351,12 @@
       _initializerDefineProperty(this, "testProjects", _descriptor13, this);
       _initializerDefineProperty(this, "testActive", _descriptor14, this);
     }
+    // Basic print function
     print() {
       console.log(this.userLast);
     }
+
+    // JS Validation, Sanitization, Escaping
     validateNames() {
       uf.value = uf.value.replace(/[&*<>/';{}]/g, '');
       ul.value = ul.value.replace(/[&*<>/';{}]/g, '');
@@ -357,6 +364,8 @@
       un.value = un.value.replace(/[&*<>/';{}]/g, '');
       ub.value = ub.value.replace(/[&*<>/';{}]/g, '');
     }
+
+    // Creates record for updating
     updateRecord() {
       var record = {
         first: this.userFirst,
@@ -372,6 +381,8 @@
       };
       console.log(record);
     }
+
+    // Handler for unauthenticated page requests
     redirectToLogin() {
       this.router.transitionTo('login');
     }
@@ -535,7 +546,6 @@
         Contact Us
       </div>
   
-  
       {{!Display account information}}
       <div class="contact-info">
   
@@ -598,8 +608,8 @@
   
   */
   {
-    "id": "831zmvD6",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"contact-content-title\"],[12],[1,\"\\n      Contact Us\\n    \"],[13],[1,\"\\n\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-info\"],[12],[1,\"\\n\\n      \"],[10,\"table\"],[14,1,\"contact-table\"],[12],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Name\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"name\"],[24,1,\"n\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"name\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Email\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"email\"],[24,1,\"e\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"email\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Message\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,2],[[24,\"aria-label\",\"message\"],[24,1,\"m\"],[24,\"rows\",\"12\"],[24,\"cols\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"message\"]]]],null],[1,\"          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[14,\"colspan\",\"2\"],[12],[1,\"\\n            \"],[10,0],[14,1,\"submit-contact\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"send\"],[24,1,\"s\"],[4,[38,1],[\"click\",[30,0,[\"sendEmail\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",[30,0,[\"send\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\",\"textarea\"]]",
+    "id": "gYTxlk4T",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"contact-content-title\"],[12],[1,\"\\n      Contact Us\\n    \"],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-info\"],[12],[1,\"\\n\\n      \"],[10,\"table\"],[14,1,\"contact-table\"],[12],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Name\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"name\"],[24,1,\"n\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"name\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Email\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"email\"],[24,1,\"e\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"email\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Message\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,2],[[24,\"aria-label\",\"message\"],[24,1,\"m\"],[24,\"rows\",\"12\"],[24,\"cols\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"message\"]]]],null],[1,\"          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[14,\"colspan\",\"2\"],[12],[1,\"\\n            \"],[10,0],[14,1,\"submit-contact\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"send\"],[24,1,\"s\"],[4,[38,1],[\"click\",[30,0,[\"sendEmail\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",[30,0,[\"send\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\",\"textarea\"]]",
     "moduleName": "crypto-conductor-front/components/contact-window.hbs",
     "isStrictMode": false
   });
@@ -611,6 +621,7 @@
       _initializerDefineProperty(this, "message", _descriptor3, this);
       _initializerDefineProperty(this, "send", _descriptor4, this);
     }
+    // JS Validation, Sanitization, and Escaping
     validateNames() {
       m.value = m.value.replace(/[&*<>/';{}]/g, '');
       n.value = n.value.replace(/[&*<>/';{}]/g, '');
@@ -619,6 +630,8 @@
     validateInput() {
       console.log(e.value);
     }
+
+    // Creates record for sending an email
     sendEmail() {
       var data = {
         name: this.name,
@@ -749,25 +762,29 @@
     {{!Table containing the site links}}
   <table>
     <tr>
+      {{! Display if authenticated }}
       {{#if this.authManager.isLoggedIn}}
         <td width="100px" align="center" style="border: 0px">
           <LinkTo @route="projectDashboard">Project</LinkTo>
         </td>
       {{/if}}
   
+      {{! Display if authenticated }}
       {{#if this.authManager.isLoggedIn}}
         <td width="100px" align="center" style="border: 0px">
           <LinkTo @route="accountManagement">Account</LinkTo>
         </td>
       {{/if}}
   
+      {{! Show contact information for anonymous users }}
       <td width="100px" align="center" style="border: 0px">
         <LinkTo @route="contactPage">Contact</LinkTo>
       </td>
-      
+  
+      {{! Display if authenticated }}
       {{#if this.authManager.isLoggedIn}}
         <td width="100px" align="center" style="border: 0px">
-          <span {{on "click" this.test}} style="cursor: pointer;">Logout</span>
+          <span {{on "click" this.logout}} style="cursor: pointer;">Logout</span>
         </td>
       {{/if}}
     </tr>
@@ -775,8 +792,8 @@
   
   */
   {
-    "id": "xuUyScA2",
-    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,1],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n    \\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"test\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"if\",\"link-to\",\"on\"]]",
+    "id": "Rr65n7sf",
+    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[1,\"    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,1],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"logout\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"if\",\"link-to\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/links-menu.hbs",
     "isStrictMode": false
   });
@@ -786,7 +803,8 @@
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "logout", _descriptor2, this);
     }
-    test() {
+    // Calls the logout function in the authManager
+    logout() {
       var logoutData = {
         username: this.authManager.username
       };
@@ -804,7 +822,7 @@
     initializer: function () {
       return 'Logout';
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "test", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "test"), _class.prototype)), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "logout", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "logout"), _class.prototype)), _class);
   _exports.default = LinksMenuComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, LinksMenuComponent);
 });
@@ -921,6 +939,7 @@
     "isStrictMode": false
   });
   let LoginUiComponent = (_class = class LoginUiComponent extends _component2.default {
+    // Called when UI is created
     constructor(owner, args) {
       super(owner, args);
       _initializerDefineProperty(this, "authManager", _descriptor, this);
@@ -931,14 +950,20 @@
       _initializerDefineProperty(this, "anonStatus", _descriptor6, this);
       this.authManager.print();
     }
+
+    // Disable the submit button until all fields are filled
     get disableSubmit() {
       //if either value is empty we don't want to allow submitting the form
       return !this.UserName.length || !this.PassWord.length;
     }
+
+    // JS Validation, Sanitization, and Escaping
     validateNames() {
       un.value = un.value.replace(/[&*<>/';{}]/g, '');
       pw.value = pw.value.replace(/[&*<>/';{}]/g, '');
     }
+
+    // Creates login data and calls login function in authManager
     submitData() {
       var loginData = {
         username: this.UserName,
@@ -949,6 +974,8 @@
       //pass into authManager
       this.authManager.login(loginData);
     }
+
+    // Redirect for logged in users
     redirectToDashboard() {
       this.router.transitionTo('projectDashboard');
     }
@@ -1041,6 +1068,8 @@
                 <tr>
                   <td>{{proj.id}}</td>
                   <td width="300px">{{proj.name}}</td>
+  
+                  {{! Show only if leader }}
                   {{#if this.isLead}}
                     <td><LinkTo @route="projectManagement">Project Dashboard</LinkTo></td>
                   {{/if}}
@@ -1060,14 +1089,17 @@
   
   */
   {
-    "id": "Oyn1wBnv",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,1,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,\"Project Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[1]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
+    "id": "xw3V/zW0",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,1,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,\"Project Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[1]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
     "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
   let ProjectListingComponent = (_class = class ProjectListingComponent extends _component2.default {
+    // Called on UI instantiation
     constructor(owner, args) {
       super(owner, args);
+
+      // If usergroup is leader, mark lead is true
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "router", _descriptor2, this);
       _initializerDefineProperty(this, "store", _descriptor3, this);
@@ -1080,23 +1112,33 @@
       if (this.authManager.usergroup == 'Leader') {
         this.isLead = true;
       }
+
+      // Get projects for this user
       this.getProjects();
     }
+
+    // For testing only
+
+    // Handler for anonymous requests
     redirectToLogin() {
       this.router.transitionTo('login');
     }
+
+    // Get project list for current users
     getProjects() {
       console.log('In Project');
 
       //get current user ID
       var this_username = this.authManager.username;
       console.log('username: ' + this_username);
-      this.store.query('user', {
+
+      // Get user Id
+      this.store.query('project', {
         filter: {
-          username: this_username
+          search: this_username
         }
-      }).then(function (user) {
-        console.log(user.id);
+      }).then(function (cu) {
+        console.log(cu);
       });
 
       // KINDA WORKS
@@ -1107,9 +1149,10 @@
 
       //WORKS
       // User current username to query for ID
-      let cur_user = this.store.findRecord('user', 4).then(function (user) {
-        console.log(user.id);
-      });
+      //let cur_user = this.store.findRecord('user', 4)
+      //  .then(function(user) {
+      //    console.log(user.type)
+      //  });
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
     configurable: true,
@@ -1349,9 +1392,12 @@
       _initializerDefineProperty(this, "public", _descriptor11, this);
       _initializerDefineProperty(this, "status", _descriptor12, this);
     }
+    // Basic print fucntion
     print() {
       console.log(this.userLast);
     }
+
+    // JS Validation, Sanitization, Escaping
     validateNames() {
       uf.value = uf.value.replace(/[&*<>/';{}]/g, '');
       ul.value = ul.value.replace(/[&*<>/';{}]/g, '');
@@ -1359,6 +1405,8 @@
       un.value = un.value.replace(/[&*<>/';{}]/g, '');
       ub.value = ub.value.replace(/[&*<>/';{}]/g, '');
     }
+
+    // Update or create data
     sendData() {
       var projectData = {
         title: this.projectTitle,
@@ -1372,6 +1420,8 @@
       };
       console.log(projectData);
     }
+
+    // Redirect for anonlymous users
     redirectToLogin() {
       this.router.transitionTo('login');
     }
@@ -1885,7 +1935,19 @@
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
-  let ProjectModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.hasMany)('user'), _dec3 = (0, _model.hasMany)('niche'), _dec4 = (0, _model.hasMany)('specialty'), _dec5 = (0, _model.attr)('string'), _dec6 = (0, _model.attr)('string'), _dec7 = (0, _model.attr)('boolean'), (_class = class ProjectModel extends _model.default {
+  let ProjectModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.hasMany)('user', {
+    async: true
+  }, {
+    inverse: null
+  }), _dec3 = (0, _model.hasMany)('niche', {
+    async: true
+  }, {
+    inverse: null
+  }), _dec4 = (0, _model.hasMany)('specialty', {
+    async: true
+  }, {
+    inverse: null
+  }), _dec5 = (0, _model.attr)('string'), _dec6 = (0, _model.attr)('string'), _dec7 = (0, _model.attr)('boolean'), (_class = class ProjectModel extends _model.default {
     constructor() {
       super(...arguments);
       _initializerDefineProperty(this, "name", _descriptor, this);
@@ -2271,8 +2333,7 @@
       });
     }
 
-    //Run queries to get specialty, niche
-
+    //Print function
     print() {
       console.log(this.username);
       console.log(this.userid);
@@ -2657,7 +2718,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+7d3b071f"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+8a0fe628"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

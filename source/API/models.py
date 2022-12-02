@@ -8,16 +8,33 @@ from django_filters import FilterSet
 import base64
 import re
 
-# User filter
-class UserFilter(FilterSet):
-    class Meta:
-        model = User
-        fields = ['username']
+# Check if illegal characters exist in text input.
+def contains_illegal_chars(value):
+    illegal = [
+        '>' in value,
+        '<' in value,
+        '&' in value,
+        '/' in value,
+        "'" in value,
+        ';' in value,
+        '[' in value,
+        ']' in value
+    ]
+
+    if any(illegal):
+        raise ValidationError('Please remove all instances of the following: <, >, &, /, \', ;, [, ]')
+
+# Validate UserName
+def validate_name(value):
+    if " " in value:
+        raise ValidationError('Spaces are not allowed in names.')
+    if len(value) < 5:
+        raise ValidationError('Please choose a name longer than 8 characters')
 
 # Specialty Model
 class Specialty(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.CharField(max_length=500, unique=True)
+    name = models.CharField(max_length=50, unique=True, validators = [contains_illegal_chars, validate_name])
+    description = models.CharField(max_length=500, unique=True, validators = [contains_illegal_chars])
 
     def __str__(self):
         return str(self.name)
@@ -30,8 +47,8 @@ admin.site.register(Specialty, Specialty.SpecialtyAdmin)
 
 # Niche Model
 class Niche(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.CharField(max_length=500)
+    name = models.CharField(max_length=50, unique=True, validators = [contains_illegal_chars, validate_name])
+    description = models.CharField(max_length=500, validators = [contains_illegal_chars])
     specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -43,15 +60,13 @@ class Niche(models.Model):
 
 admin.site.register(Niche, Niche.NicheAdmin)
 
-# User Model
-# Don't need
-
+# Project Entry model
 class ProjectEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
     project = models.ForeignKey("Project", on_delete=models.CASCADE)
     current_score = models.IntegerField(validators=[MaxValueValidator(100), MinValueValidator(0)])
-    text_notes = models.CharField(max_length=5000)
+    text_notes = models.CharField(max_length=5000, validators = [contains_illegal_chars])
     entry_date = models.DateField(auto_now_add=True, editable=False)
     entry_time = models.TimeField(auto_now_add=True, editable=False)
     last_modified_date = models.DateField(auto_now=True, editable=False)
@@ -67,6 +82,7 @@ class ProjectEntry(models.Model):
 
 admin.site.register(ProjectEntry, ProjectEntry.ProjectEntriesAdmin)
 
+# Status array for status validation
 STATUS = [
     ("OPEN", "OPEN"),
     ("IN PROGRESS", "IN PROGRESS"),
@@ -74,12 +90,13 @@ STATUS = [
     ("FINAL REVIEW", "FINAL REVIEW"),
 ]
 
+# Project model
 class Project(models.Model):
-    name = models.CharField(max_length=40, unique=True)
+    name = models.CharField(max_length=40, unique=True, validators = [contains_illegal_chars, validate_name])
     users = models.ManyToManyField(User, related_name="users")
     niches = models.ManyToManyField("Niche")
-    denied_users = models.ManyToManyField(User, related_name="denials")
-    description = models.CharField(max_length=500)
+    denied_users = models.ManyToManyField(User, related_name="denials", blank=True)
+    description = models.CharField(max_length=500, validators = [contains_illegal_chars])
     status = models.CharField(max_length=20, choices=STATUS)
     public = models.BooleanField()
 
@@ -93,67 +110,6 @@ class Project(models.Model):
         # self = ProjectAdmin - The class that the method is defined in
         # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
 
-
 # Establishes connection between project and project admin classes
 # Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
-
-# Use this to find all projects related to users, and all users related to projectDashboard
-# select user where project.id = 1
-# select project where user.id = 2 etc.
-# class UserToProject(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     project = models.ForeignKey("Project", on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return "Username - " + str(self.user.username) + " : Project - " + str(self.project.name)
-#
-#     class UserToProjectAdmin(admin.ModelAdmin):
-#         list_display = ('id', 'user', 'project')
-
-# admin.site.register(UserToProject, UserToProject.UserToProjectAdmin)
-
-# Use this table to find niches that are correlated to projects and vice versa
-# select project where niche.id = 1
-# select niche where project.id = 2 etc.
-# class NicheToProject(models.Model):
-#     niche = models.ForeignKey("Niche", on_delete=models.CASCADE)
-#     project = models.ForeignKey("Project", on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return "Niche - " + str(self.niche.name) + " : Project - " + str(self.project.name)
-#
-#     class NicheToProjectAdmin(admin.ModelAdmin):
-#         list_display = ('id', 'niche', 'project')
-#
-# admin.site.register(NicheToProject, NicheToProject.NicheToProjectAdmin)
-
-# Use this table to find specialties that are related to projects and vice versa
-# select project where specialty.id = 1
-# select specialty where project.id = 2 etc.
-# class SpecialtyToProject(models.Model):
-#     specialty = models.ForeignKey("Specialty", on_delete=models.CASCADE)
-#     project = models.ForeignKey("Project", on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return "Specialty - " + str(self.specialty.name) + " : Project - " + str(self.project.name)
-#
-#     class SpecialtyToProjectAdmin(admin.ModelAdmin):
-#         list_display = ('id', 'specialty', 'project')
-#
-# admin.site.register(SpecialtyToProject, SpecialtyToProject.SpecialtyToProjectAdmin)
-
-# Use this table to find users that are denied certain projects and vice versa
-# select denial where project.id = 1
-# select project where denial.id = 2 ,etc
-# class DenialToProject(models.Model):
-#     denial = models.ForeignKey(User, on_delete=models.CASCADE)
-#     project = models.ForeignKey("Project", on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return "Denied User - " + str(self.denial.username) + " : Project - " + str(self.project.name)
-#
-#     class DenialToProjectAdmin(admin.ModelAdmin):
-#         list_display = ('id', 'denial', 'project')
-#
-# admin.site.register(DenialToProject, DenialToProject.DenialToProjectAdmin)
