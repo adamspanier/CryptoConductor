@@ -16,6 +16,105 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
 });
+;define("crypto-conductor-front/adapters/application", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  class ApplicationAdapter extends _jsonApi.default {}
+  _exports.default = ApplicationAdapter;
+});
+;define("crypto-conductor-front/adapters/niche", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class NicheAdapter extends _jsonApi.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+  }
+  _exports.default = NicheAdapter;
+});
+;define("crypto-conductor-front/adapters/project-entry", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class ProjectEntryAdapter extends _jsonApi.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+  }
+  _exports.default = ProjectEntryAdapter;
+});
+;define("crypto-conductor-front/adapters/project", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class ProjectAdapter extends _jsonApi.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+  }
+  _exports.default = ProjectAdapter;
+});
+;define("crypto-conductor-front/adapters/specialty", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class SpecialtyAdapter extends _jsonApi.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+  }
+  _exports.default = SpecialtyAdapter;
+});
+;define("crypto-conductor-front/adapters/user", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class UserAdapter extends _jsonApi.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+    queryRecord(store, type, query) {
+      return fetch('/api/users');
+    }
+  }
+  _exports.default = UserAdapter;
+});
 ;define("crypto-conductor-front/app", ["exports", "@ember/application", "ember-resolver", "ember-load-initializers", "crypto-conductor-front/config/environment"], function (_exports, _application, _emberResolver, _emberLoadInitializers, _environment) {
   "use strict";
 
@@ -650,15 +749,22 @@
     {{!Table containing the site links}}
   <table>
     <tr>
-      <td width="100px" align="center" style="border: 0px">
-        <LinkTo @route="projectDashboard">Project</LinkTo>
-      </td>
-      <td width="100px" align="center" style="border: 0px">
-        <LinkTo @route="accountManagement">Account</LinkTo>
-      </td>
+      {{#if this.authManager.isLoggedIn}}
+        <td width="100px" align="center" style="border: 0px">
+          <LinkTo @route="projectDashboard">Project</LinkTo>
+        </td>
+      {{/if}}
+  
+      {{#if this.authManager.isLoggedIn}}
+        <td width="100px" align="center" style="border: 0px">
+          <LinkTo @route="accountManagement">Account</LinkTo>
+        </td>
+      {{/if}}
+  
       <td width="100px" align="center" style="border: 0px">
         <LinkTo @route="contactPage">Contact</LinkTo>
       </td>
+      
       {{#if this.authManager.isLoggedIn}}
         <td width="100px" align="center" style="border: 0px">
           <span {{on "click" this.test}} style="cursor: pointer;">Logout</span>
@@ -669,8 +775,8 @@
   
   */
   {
-    "id": "DNg/EbWf",
-    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,0],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,0],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,0],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"test\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"link-to\",\"if\",\"on\"]]",
+    "id": "xuUyScA2",
+    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,1],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n    \\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"test\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"if\",\"link-to\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/links-menu.hbs",
     "isStrictMode": false
   });
@@ -696,7 +802,7 @@
     enumerable: true,
     writable: true,
     initializer: function () {
-      return "Logout";
+      return 'Logout';
     }
   }), _applyDecoratedDescriptor(_class.prototype, "test", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "test"), _class.prototype)), _class);
   _exports.default = LinksMenuComponent;
@@ -722,7 +828,10 @@
   {{!Screen class that sets window scaling}}
   <div class="screen">
   
-    {{#unless this.authManager.isLoggedIn}}
+    {{#if this.authManager.isLoggedIn}}
+      logged in. Redirect.
+      {{this.redirectToDashboard}}
+    {{else}}
   
       {{!Define content area in center of screen}}
       <div class="content-area">
@@ -801,16 +910,13 @@
           </td><td style="border: 0px"></td>
         </tr></table>
       </div>
-    {{else}}
-      logged in. Redirect.
-      {{this.redirectToDashboard}}
-    {{/unless}}
+    {{/if}}
   </div>
   
   */
   {
-    "id": "gj0465+B",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[51,[30,0,[\"authManager\",\"isLoggedIn\"]]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,\"td\"],[14,0,\"login-cell\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"form\"],[12],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"username\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"password\"],[24,1,\"pw\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n                remember me\\n              \"],[13],[1,\"\\n\\n\"],[1,\"              \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,2],[\"click\",[30,0,[\"submitData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",\"Login\"]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n          \"],[13],[1,\"\\n        \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n      \"],[13],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    logged in. Redirect.\\n    \"],[1,[30,0,[\"redirectToDashboard\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[],false,[\"unless\",\"input\",\"on\"]]",
+    "id": "IaDT9JED",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"    logged in. Redirect.\\n    \"],[1,[30,0,[\"redirectToDashboard\"]]],[1,\"\\n\"]],[]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,\"td\"],[14,0,\"login-cell\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"form\"],[12],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"username\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"password\"],[24,1,\"pw\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n                remember me\\n              \"],[13],[1,\"\\n\\n\"],[1,\"              \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,2],[\"click\",[30,0,[\"submitData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",\"Login\"]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n          \"],[13],[1,\"\\n        \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n      \"],[13],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[],false,[\"if\",\"input\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/login-ui.hbs",
     "isStrictMode": false
   });
@@ -895,7 +1001,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -964,17 +1070,46 @@
       super(owner, args);
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "router", _descriptor2, this);
-      _initializerDefineProperty(this, "username", _descriptor3, this);
-      _initializerDefineProperty(this, "specialty", _descriptor4, this);
-      _initializerDefineProperty(this, "role", _descriptor5, this);
-      _initializerDefineProperty(this, "isLead", _descriptor6, this);
-      _initializerDefineProperty(this, "testProjects", _descriptor7, this);
+      _initializerDefineProperty(this, "store", _descriptor3, this);
+      _initializerDefineProperty(this, "username", _descriptor4, this);
+      _initializerDefineProperty(this, "specialty", _descriptor5, this);
+      _initializerDefineProperty(this, "role", _descriptor6, this);
+      _initializerDefineProperty(this, "isLead", _descriptor7, this);
+      _initializerDefineProperty(this, "projects", _descriptor8, this);
+      _initializerDefineProperty(this, "testProjects", _descriptor9, this);
       if (this.authManager.usergroup == 'Leader') {
         this.isLead = true;
       }
+      this.getProjects();
     }
     redirectToLogin() {
       this.router.transitionTo('login');
+    }
+    getProjects() {
+      console.log('In Project');
+
+      //get current user ID
+      var this_username = this.authManager.username;
+      console.log('username: ' + this_username);
+      this.store.query('user', {
+        filter: {
+          username: this_username
+        }
+      }).then(function (user) {
+        console.log(user.id);
+      });
+
+      // KINDA WORKS
+      // this.store.queryRecord('user', {}).then(function (user) {
+      //   //let username = user.get('id');
+      //   console.log('User ID:');
+      // });
+
+      //WORKS
+      // User current username to query for ID
+      let cur_user = this.store.findRecord('user', 4).then(function (user) {
+        console.log(user.id);
+      });
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
     configurable: true,
@@ -986,35 +1121,47 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Syntax';
     }
-  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "specialty", [_tracking.tracked], {
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "specialty", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Cybersecurity';
     }
-  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "role", [_tracking.tracked], {
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "role", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Knight';
     }
-  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "isLead", [_tracking.tracked], {
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "isLead", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return false;
     }
-  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "projects", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return null;
+    }
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1030,7 +1177,7 @@
         name: 'NebulousThing'
       }];
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype)), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "getProjects", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "getProjects"), _class.prototype)), _class);
   _exports.default = ProjectListingComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, ProjectListingComponent);
 });
@@ -1605,6 +1752,282 @@
   };
   _exports.default = _default;
 });
+;define("crypto-conductor-front/models/niche", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _dec3, _class, _descriptor, _descriptor2, _descriptor3;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let NicheModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.attr)('string'), _dec3 = (0, _model.belongsTo)('specialty', {
+    async: true
+  }), (_class = class NicheModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "name", _descriptor, this);
+      _initializerDefineProperty(this, "description", _descriptor2, this);
+      _initializerDefineProperty(this, "specialty", _descriptor3, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "name", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "description", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "specialty", [_dec3], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = NicheModel;
+});
+;define("crypto-conductor-front/models/project-entry", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProjectEntryModel = (_dec = (0, _model.belongsTo)('user', {
+    async: true
+  }), _dec2 = (0, _model.belongsTo)('niche', {
+    async: true
+  }), _dec3 = (0, _model.belongsTo)('project', {
+    async: true
+  }), _dec4 = (0, _model.attr)('number'), _dec5 = (0, _model.attr)('string'), _dec6 = (0, _model.attr)('date'), _dec7 = (0, _model.attr)('string'), _dec8 = (0, _model.attr)('date'), _dec9 = (0, _model.attr)('string'), (_class = class ProjectEntryModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "user", _descriptor, this);
+      _initializerDefineProperty(this, "niche", _descriptor2, this);
+      _initializerDefineProperty(this, "project", _descriptor3, this);
+      _initializerDefineProperty(this, "current_score", _descriptor4, this);
+      _initializerDefineProperty(this, "text_notes", _descriptor5, this);
+      _initializerDefineProperty(this, "entry_date", _descriptor6, this);
+      _initializerDefineProperty(this, "entry_time", _descriptor7, this);
+      _initializerDefineProperty(this, "last_modified_date", _descriptor8, this);
+      _initializerDefineProperty(this, "last_modified_time", _descriptor9, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "user", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "niche", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "project", [_dec3], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "current_score", [_dec4], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "text_notes", [_dec5], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "entry_date", [_dec6], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "entry_time", [_dec7], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "last_modified_date", [_dec8], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "last_modified_time", [_dec9], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = ProjectEntryModel;
+});
+;define("crypto-conductor-front/models/project", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProjectModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.hasMany)('user'), _dec3 = (0, _model.hasMany)('niche'), _dec4 = (0, _model.hasMany)('specialty'), _dec5 = (0, _model.attr)('string'), _dec6 = (0, _model.attr)('string'), _dec7 = (0, _model.attr)('boolean'), (_class = class ProjectModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "name", _descriptor, this);
+      _initializerDefineProperty(this, "users", _descriptor2, this);
+      _initializerDefineProperty(this, "niches", _descriptor3, this);
+      _initializerDefineProperty(this, "deniedUsers", _descriptor4, this);
+      _initializerDefineProperty(this, "description", _descriptor5, this);
+      _initializerDefineProperty(this, "status", _descriptor6, this);
+      _initializerDefineProperty(this, "public", _descriptor7, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "name", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "users", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "niches", [_dec3], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "deniedUsers", [_dec4], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "description", [_dec5], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "status", [_dec6], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "public", [_dec7], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = ProjectModel;
+});
+;define("crypto-conductor-front/models/specialty", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _class, _descriptor, _descriptor2;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let SpecialtyModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.attr)('string'), (_class = class SpecialtyModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "name", _descriptor, this);
+      _initializerDefineProperty(this, "description", _descriptor2, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "name", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "description", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = SpecialtyModel;
+});
+;define("crypto-conductor-front/models/user", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let UserModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.attr)('string'), _dec3 = (0, _model.attr)('string'), _dec4 = (0, _model.attr)('string'), _dec5 = (0, _model.attr)('boolean'), _dec6 = (0, _model.attr)('date'), _dec7 = (0, _model.attr)('date'), (_class = class UserModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "username", _descriptor, this);
+      _initializerDefineProperty(this, "first_name", _descriptor2, this);
+      _initializerDefineProperty(this, "last_name", _descriptor3, this);
+      _initializerDefineProperty(this, "email", _descriptor4, this);
+      _initializerDefineProperty(this, "is_active", _descriptor5, this);
+      _initializerDefineProperty(this, "last_login", _descriptor6, this);
+      _initializerDefineProperty(this, "date_joined", _descriptor7, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "username", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "first_name", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "last_name", [_dec3], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "email", [_dec4], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "is_active", [_dec5], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "last_login", [_dec6], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "date_joined", [_dec7], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = UserModel;
+});
 ;define("crypto-conductor-front/router", ["exports", "@ember/routing/router", "crypto-conductor-front/config/environment"], function (_exports, _router, _environment) {
   "use strict";
 
@@ -1676,14 +2099,14 @@
   class LoginRoute extends _route.default {}
   _exports.default = LoginRoute;
 });
-;define("crypto-conductor-front/routes/project-dashboard", ["exports", "@ember/routing/route"], function (_exports, _route) {
+;define("crypto-conductor-front/routes/project-dashboard", ["exports", "@ember/routing/route", "@ember/service"], function (_exports, _route, _service) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route"eaimeta@70e063a35619d71f
+  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service"eaimeta@70e063a35619d71f
   class ProjectDashboardRoute extends _route.default {}
   _exports.default = ProjectDashboardRoute;
 });
@@ -1804,7 +2227,7 @@
     init() {
       super.init(...arguments);
       let authService = this;
-      let data = _jquery.default.get("/session/", function (response) {
+      let data = _jquery.default.get('/session/', function (response) {
         console.log(response);
         authService.username = response.data.username;
         authService.usergroup = response.data.usergroup;
@@ -1818,7 +2241,7 @@
     login(loginData) {
       //url, data, success handler
       let authService = this;
-      _jquery.default.post("/session/", loginData, function (response) {
+      _jquery.default.post('/session/', loginData, function (response) {
         console.log(response);
         authService.username = response.data.username;
         authService.usergroup = response.data.usergroup;
@@ -1832,9 +2255,9 @@
       const csrftoken = _emberCliJsCookie.default.get('csrftoken');
       console.log(logoutData);
       let authService = this;
-      console.log("test") / _jquery.default.ajax({
-        url: "/session/",
-        type: "DELETE",
+      console.log('test') / _jquery.default.ajax({
+        url: '/session/',
+        type: 'DELETE',
         headers: {
           'X-CSRFToken': csrftoken
         },
@@ -2234,7 +2657,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+d612680a"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+7d3b071f"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

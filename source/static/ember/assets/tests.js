@@ -422,6 +422,90 @@ define("crypto-conductor-front/tests/test-helper", ["crypto-conductor-front/app"
   (0, _qunitDom.setup)(QUnit.assert);
   (0, _emberQunit.start)();
 });
+define("crypto-conductor-front/tests/unit/adapters/application-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | application', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:application');
+      assert.ok(adapter);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/adapters/niche-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | niche', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:niche');
+      assert.ok(adapter);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/adapters/project-entry-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | project entry', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:project-entry');
+      assert.ok(adapter);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/adapters/project-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | project', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:project');
+      assert.ok(adapter);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/adapters/specialty-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | specialty', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:specialty');
+      assert.ok(adapter);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/adapters/user-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | user', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:user');
+      assert.ok(adapter);
+    });
+  });
+});
 define("crypto-conductor-front/tests/unit/controllers/application-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
   "use strict";
 
@@ -433,6 +517,81 @@ define("crypto-conductor-front/tests/unit/controllers/application-test", ["qunit
     (0, _qunit.test)('it exists', function (assert) {
       let controller = this.owner.lookup('controller:application');
       assert.ok(controller);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/niche-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | niche', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('niche', {});
+      assert.ok(model);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/project-entry-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | project entry', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('project-entry', {});
+      assert.ok(model);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/project-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | project', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('project', {});
+      assert.ok(model);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/specialty-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | specialty', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('specialty', {});
+      assert.ok(model);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/user-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | user', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('user', {});
+      assert.ok(model);
     });
   });
 });
