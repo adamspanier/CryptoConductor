@@ -450,6 +450,20 @@ define("crypto-conductor-front/tests/unit/adapters/niche-test", ["qunit", "crypt
     });
   });
 });
+define("crypto-conductor-front/tests/unit/adapters/profile-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Adapter | profile', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let adapter = this.owner.lookup('adapter:profile');
+      assert.ok(adapter);
+    });
+  });
+});
 define("crypto-conductor-front/tests/unit/adapters/project-entry-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
   "use strict";
 
@@ -531,6 +545,21 @@ define("crypto-conductor-front/tests/unit/models/niche-test", ["qunit", "crypto-
     (0, _qunit.test)('it exists', function (assert) {
       let store = this.owner.lookup('service:store');
       let model = store.createRecord('niche', {});
+      assert.ok(model);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/models/profile-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Model | profile', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let store = this.owner.lookup('service:store');
+      let model = store.createRecord('profile', {});
       assert.ok(model);
     });
   });
@@ -701,6 +730,20 @@ define("crypto-conductor-front/tests/unit/services/auth-manager-test", ["qunit",
     // TODO: Replace this with your real tests.
     (0, _qunit.test)('it exists', function (assert) {
       let service = this.owner.lookup('service:auth-manager');
+      assert.ok(service);
+    });
+  });
+});
+define("crypto-conductor-front/tests/unit/services/project-data-test", ["qunit", "crypto-conductor-front/tests/helpers"], function (_qunit, _helpers) {
+  "use strict";
+
+  0; //eaimeta@70e063a35619d71f0,"qunit",0,"crypto-conductor-front/tests/helpers"eaimeta@70e063a35619d71f
+  (0, _qunit.module)('Unit | Service | project-data', function (hooks) {
+    (0, _helpers.setupTest)(hooks);
+
+    // TODO: Replace this with your real tests.
+    (0, _qunit.test)('it exists', function (assert) {
+      let service = this.owner.lookup('service:project-data');
       assert.ok(service);
     });
   });

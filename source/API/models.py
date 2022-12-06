@@ -103,9 +103,32 @@ class Project(models.Model):
     def __str__(self):
         return self.name + " : Status: " + self.status + " : Public: " + str(self.public)
 
+    def is_in(self):
+        user_list = ""
+        user_list = self.users.all()
+        for user in user_list:
+            print("test")
+
     class ProjectAdmin(admin.ModelAdmin):
         filter_horizontal = ('users', 'niches', 'denied_users')
-        list_display = ('name', 'description', 'status')
+        list_display = ('name', 'description', 'get_users', 'get_niches', 'status')
+
+        def get_users(self, obj):
+            user_list = ""
+            users = obj.users.all()
+            count = 0
+            for user in users:
+                if user.first_name is not "":
+                    user_list += user.first_name + " " + user.last_name + ", "
+            return user_list[:-2]
+
+        def get_niches(self, obj):
+            niche_list = ""
+            niches = obj.niches.all()
+            for niche in niches:
+                niche_list += niche.name + ", "
+            return niche_list[:-2]
+
 
         # self = ProjectAdmin - The class that the method is defined in
         # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
@@ -113,3 +136,32 @@ class Project(models.Model):
 # Establishes connection between project and project admin classes
 # Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    mi = models.CharField(max_length=40, validators = [contains_illegal_chars])
+    balance = models.IntegerField(validators=[MaxValueValidator(2000000000), MinValueValidator(-2000000000)])
+    specialties = models.ManyToManyField("Specialty", blank=True)
+    niches = models.ManyToManyField("Niche", blank=True)
+
+    class ProfileAdmin(admin.ModelAdmin):
+        filter_horizontal = ('specialties', 'niches')
+        list_display = ('get_first', 'mi', 'get_last', 'get_username', 'get_role', 'make_balance')
+
+        def get_first(self, obj):
+            return obj.user.first_name
+
+        def get_last(self, obj):
+            return obj.user.last_name
+
+        def get_username(self, obj):
+            return obj.user.username
+
+        def make_balance(self,obj):
+            return "$" + str('{:,}'.format(obj.balance))
+
+        def get_role(self, obj):
+            groups = obj.user.groups.all()
+            return groups[0].name
+
+admin.site.register(Profile, Profile.ProfileAdmin)

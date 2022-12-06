@@ -24,7 +24,9 @@
   });
   _exports.default = void 0;
   0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
-  class ApplicationAdapter extends _jsonApi.default {}
+  class ApplicationAdapter extends _jsonApi.default {
+    // namespace = 'api';
+  }
   _exports.default = ApplicationAdapter;
 });
 ;define("crypto-conductor-front/adapters/niche", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
@@ -43,6 +45,23 @@
     }
   }
   _exports.default = NicheAdapter;
+});
+;define("crypto-conductor-front/adapters/profile", ["exports", "crypto-conductor-front/adapters/application"], function (_exports, _application) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  0; //eaimeta@70e063a35619d71f0,"crypto-conductor-front/adapters/application"eaimeta@70e063a35619d71f
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  class ProfileAdapter extends _application.default {
+    constructor() {
+      super(...arguments);
+      _defineProperty(this, "namespace", 'api');
+    }
+  }
+  _exports.default = ProfileAdapter;
 });
 ;define("crypto-conductor-front/adapters/project-entry", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
   "use strict";
@@ -157,7 +176,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16;
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -192,6 +211,10 @@
           {{!Setup inner div for arrangement of account information}}
           <div class="account-info-text">
   
+            {{#each @user_data.user as |user|}}
+              {{user.groups}}
+            {{#each @user_data.profile as |profile|}}
+  
             {{!Setup account table structure}}
             <table id="account-table">
               <tr>
@@ -202,13 +225,13 @@
                       aria-label="UserFirst"
                       id = "uf"
                       @type="type"
-                      @value={{this.userFirst}}
+                      @value={{user.first_name}}
                       {{on "input" this.validateNames}}
                     />
                   </div>
                 </td>
                 <td width="100px">Specialty:</td>
-                  <select class="account-drops" id="spec">
+                  <select class="account-drops" id="spec" disabled={{this.isntAdmin}}>
                       {{#each this.testSpecialties as |spec|}}
                         <option>{{spec.name}}</option>
                       {{/each}}
@@ -223,13 +246,13 @@
                       aria-label="UserLast"
                       id = "ul"
                       @type="text"
-                      @value={{this.userLast}}
+                      @value={{user.last_name}}
                       {{on "input" this.validateNames}}
                     />
                   </div>
                 </td>
                 <td>Niche:</td>
-                  <select class="account-drops" id="nich">
+                  <select class="account-drops" id="nich" disabled={{this.isntAdmin}}>
                       {{#each this.testNiches as |niche|}}
                         <option>{{niche.name}}</option>
                       {{/each}}
@@ -244,14 +267,14 @@
                       aria-label="UserMi"
                       id = "um"
                       @type="text"
-                      @value={{this.userMi}}
+                      @value={{profile.mi}}
                       {{on "input" this.validateNames}}
                     />
                   </div>
                 </td>
                 <td>Role:</td>
                 <td>
-                  <select class="account-drops" id="rol">
+                  <select class="account-drops" id="rol" disabled={{this.isntAdmin}}>
                       {{#each this.testRoles as |role|}}
                         <option>{{role.name}}</option>
                       {{/each}}
@@ -266,14 +289,15 @@
                       aria-label="UserName"
                       id = "un"
                       @type="text"
-                      @value={{this.username}}
+                      disabled={{this.isntAdmin}}
+                      @value={{user.username}}
                       {{on "input" this.validateNames}}
                     />
                   </div>
                 </td>
                 <td>Projects:</td>
                 <td>
-                  <select class="account-drops" id="pro">
+                  <select class="account-drops" id="pro" disabled={{this.isntAdmin}}>
                       {{#each this.testProjects as |proj|}}
                         <option>{{proj.name}}</option>
                       {{/each}}
@@ -288,7 +312,8 @@
                       aria-label="UserBalance"
                       id = "ub"
                       @type="text"
-                      @value={{this.userBalance}}
+                      disabled={{this.isntAdmin}}
+                      @value={{profile.balance}}
                       {{on "input" this.validateNames}}
                     />
                   </div>
@@ -303,7 +328,8 @@
                 </td>
               </tr>
             </table>
-  
+            {{/each}}
+            {{/each}}
             <div class="mod-button">
               <Input
                 aria-label="update"
@@ -315,7 +341,7 @@
                 aria-label="delete"
                 @type="button"
                 @value={{this.delete}}
-                {{on "click" this.print}}
+                {{on "click" this.updateRecord}}
               />
             </div>
           </div>
@@ -328,14 +354,30 @@
   
   */
   {
-    "id": "MXDb65Lk",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Account Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"table\"],[14,1,\"account-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User First:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserFirst\"],[24,1,\"uf\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"userFirst\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"Specialty:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"spec\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"]],[1]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"User Last:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserLast\"],[24,1,\"ul\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userLast\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niche:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"nich\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\"]],[2]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User MI:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserMi\"],[24,1,\"um\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userMi\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Role:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"rol\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testRoles\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Username:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserName\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"username\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Projects:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"pro\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User Balance:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"UserBalance\"],[24,1,\"ub\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"userBalance\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Active:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"act\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testActive\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"status\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"update\"],[4,[38,2],[\"click\",[30,0,[\"updateRecord\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"delete\"],[4,[38,2],[\"click\",[30,0,[\"print\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"delete\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"spec\",\"niche\",\"role\",\"proj\",\"act\"],false,[\"if\",\"input\",\"on\",\"each\",\"-track-array\"]]",
+    "id": "k+Sns7XU",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Account Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1,[\"user\"]]],null]],null],null,[[[1,\"            \"],[1,[30,2,[\"groups\"]]],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1,[\"profile\"]]],null]],null],null,[[[1,\"\\n\"],[1,\"          \"],[10,\"table\"],[14,1,\"account-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User First:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"UserFirst\"],[24,1,\"uf\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,2,[\"first_name\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"Specialty:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"spec\"],[15,\"disabled\",[30,0,[\"isntAdmin\"]]],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[12],[1,\"User Last:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"UserLast\"],[24,1,\"ul\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,2,[\"last_name\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niche:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"nich\"],[15,\"disabled\",[30,0,[\"isntAdmin\"]]],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"name\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User MI:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"UserMi\"],[24,1,\"um\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,3,[\"mi\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Role:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"rol\"],[15,\"disabled\",[30,0,[\"isntAdmin\"]]],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testRoles\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,6,[\"name\"]]],[13],[1,\"\\n\"]],[6]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Username:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"UserName\"],[24,1,\"un\"],[16,\"disabled\",[30,0,[\"isntAdmin\"]]],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,2,[\"username\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Projects:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"pro\"],[15,\"disabled\",[30,0,[\"isntAdmin\"]]],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,7,[\"name\"]]],[13],[1,\"\\n\"]],[7]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"User Balance:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"UserBalance\"],[24,1,\"ub\"],[16,\"disabled\",[30,0,[\"isntAdmin\"]]],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,3,[\"balance\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Active:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"act\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testActive\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,8,[\"status\"]]],[13],[1,\"\\n\"]],[8]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n          \"],[13],[1,\"\\n\"]],[3]],null]],[2]],null],[1,\"          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,3],[[24,\"aria-label\",\"update\"],[4,[38,4],[\"click\",[30,0,[\"updateRecord\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n            \"],[8,[39,3],[[24,\"aria-label\",\"delete\"],[4,[38,4],[\"click\",[30,0,[\"updateRecord\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"delete\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_data\",\"user\",\"profile\",\"spec\",\"niche\",\"role\",\"proj\",\"act\"],false,[\"if\",\"each\",\"-track-array\",\"input\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/account-information.hbs",
     "isStrictMode": false
   });
   let AccountInformationComponent = (_class = class AccountInformationComponent extends _component2.default {
-    constructor() {
-      super(...arguments);
+    //Used if role == leader
+    //Used if role == leader
+
+    // For testing purposes
+
+    // For testing purposes
+
+    // For testing purposes
+
+    // For testing purposes
+
+    // For testing purposes
+
+    // Called on UI instantiation
+    constructor(owner, args) {
+      super(owner, args);
+
+      // If usergroup is leader, mark lead is true
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "router", _descriptor2, this);
       _initializerDefineProperty(this, "userFirst", _descriptor3, this);
@@ -343,14 +385,24 @@
       _initializerDefineProperty(this, "userMi", _descriptor5, this);
       _initializerDefineProperty(this, "username", _descriptor6, this);
       _initializerDefineProperty(this, "userBalance", _descriptor7, this);
-      _initializerDefineProperty(this, "update", _descriptor8, this);
-      _initializerDefineProperty(this, "delete", _descriptor9, this);
-      _initializerDefineProperty(this, "testSpecialties", _descriptor10, this);
-      _initializerDefineProperty(this, "testNiches", _descriptor11, this);
-      _initializerDefineProperty(this, "testRoles", _descriptor12, this);
-      _initializerDefineProperty(this, "testProjects", _descriptor13, this);
-      _initializerDefineProperty(this, "testActive", _descriptor14, this);
+      _initializerDefineProperty(this, "isLead", _descriptor8, this);
+      _initializerDefineProperty(this, "update", _descriptor9, this);
+      _initializerDefineProperty(this, "delete", _descriptor10, this);
+      _initializerDefineProperty(this, "isntAdmin", _descriptor11, this);
+      _initializerDefineProperty(this, "testSpecialties", _descriptor12, this);
+      _initializerDefineProperty(this, "testNiches", _descriptor13, this);
+      _initializerDefineProperty(this, "testRoles", _descriptor14, this);
+      _initializerDefineProperty(this, "testProjects", _descriptor15, this);
+      _initializerDefineProperty(this, "testActive", _descriptor16, this);
+      if (this.authManager.usergroup == 'Leader') {
+        this.isLead = true;
+      }
+      if (this.authManager.usergroup == 'Leader') {
+        this.isntAdmin = false;
+      }
+      console.log(this.isntAdmin);
     }
+
     // Basic print function
     print() {
       console.log(this.userLast);
@@ -368,11 +420,11 @@
     // Creates record for updating
     updateRecord() {
       var record = {
-        first: this.userFirst,
-        mi: this.userMi,
-        last: this.userLast,
-        username: this.username,
-        balance: this.balance,
+        first: uf.value,
+        mi: um.value,
+        last: ul.value,
+        username: un.value,
+        balance: ub.value,
         specialty: spec.value,
         niche: nich.value,
         role: rol.value,
@@ -431,21 +483,35 @@
     initializer: function () {
       return '$0.00';
     }
-  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "update", [_tracking.tracked], {
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "isLead", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
+    }
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "update", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Update';
     }
-  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "delete", [_tracking.tracked], {
+  }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "delete", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Delete';
     }
-  }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "testSpecialties", [_tracking.tracked], {
+  }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "isntAdmin", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return true;
+    }
+  }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "testSpecialties", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -458,7 +524,7 @@
         name: 'Business'
       }];
     }
-  }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "testNiches", [_tracking.tracked], {
+  }), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "testNiches", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -474,7 +540,7 @@
         parent: 'Business'
       }];
     }
-  }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "testRoles", [_tracking.tracked], {
+  }), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, "testRoles", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -489,7 +555,7 @@
         name: 'Leader'
       }];
     }
-  }), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
+  }), _descriptor15 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -502,7 +568,7 @@
         name: 'NebulousThing'
       }];
     }
-  }), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, "testActive", [_tracking.tracked], {
+  }), _descriptor16 = _applyDecoratedDescriptor(_class.prototype, "testActive", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -784,7 +850,7 @@
       {{! Display if authenticated }}
       {{#if this.authManager.isLoggedIn}}
         <td width="100px" align="center" style="border: 0px">
-          <span {{on "click" this.logout}} style="cursor: pointer;">Logout</span>
+          <span {{on "click" this.logoutLink}} style="cursor: pointer;">Logout</span>
         </td>
       {{/if}}
     </tr>
@@ -792,8 +858,8 @@
   
   */
   {
-    "id": "Rr65n7sf",
-    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[1,\"    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,1],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"logout\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"if\",\"link-to\",\"on\"]]",
+    "id": "XMmEUZfb",
+    "block": "[[[10,\"table\"],[12],[1,\"\\n  \"],[10,\"tr\"],[12],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"projectDashboard\"]],[[\"default\"],[[[[1,\"Project\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[8,[39,1],null,[[\"@route\"],[\"accountManagement\"]],[[\"default\"],[[[[1,\"Account\"]],[]]]]],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"\\n\"],[1,\"    \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n      \"],[8,[39,1],null,[[\"@route\"],[\"contactPage\"]],[[\"default\"],[[[[1,\"Contact\"]],[]]]]],[1,\"\\n    \"],[13],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"      \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"align\",\"center\"],[14,5,\"border: 0px\"],[12],[1,\"\\n        \"],[11,1],[24,5,\"cursor: pointer;\"],[4,[38,2],[\"click\",[30,0,[\"logoutLink\"]]],null],[12],[1,\"Logout\"],[13],[1,\"\\n      \"],[13],[1,\"\\n\"]],[]],null],[1,\"  \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"if\",\"link-to\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/links-menu.hbs",
     "isStrictMode": false
   });
@@ -804,7 +870,7 @@
       _initializerDefineProperty(this, "logout", _descriptor2, this);
     }
     // Calls the logout function in the authManager
-    logout() {
+    logoutLink() {
       var logoutData = {
         username: this.authManager.username
       };
@@ -822,7 +888,7 @@
     initializer: function () {
       return 'Logout';
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "logout", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "logout"), _class.prototype)), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "logoutLink", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "logoutLink"), _class.prototype)), _class);
   _exports.default = LinksMenuComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, LinksMenuComponent);
 });
@@ -847,7 +913,7 @@
   <div class="screen">
   
     {{#if this.authManager.isLoggedIn}}
-      logged in. Redirect.
+      {{!logged in. Redirect.}}
       {{this.redirectToDashboard}}
     {{else}}
   
@@ -933,13 +999,12 @@
   
   */
   {
-    "id": "IaDT9JED",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"    logged in. Redirect.\\n    \"],[1,[30,0,[\"redirectToDashboard\"]]],[1,\"\\n\"]],[]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,\"td\"],[14,0,\"login-cell\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"form\"],[12],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"username\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"password\"],[24,1,\"pw\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n                remember me\\n              \"],[13],[1,\"\\n\\n\"],[1,\"              \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,2],[\"click\",[30,0,[\"submitData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",\"Login\"]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n          \"],[13],[1,\"\\n        \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n      \"],[13],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[],false,[\"if\",\"input\",\"on\"]]",
+    "id": "7BUMyg6A",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"    \"],[1,[30,0,[\"redirectToDashboard\"]]],[1,\"\\n\"]],[]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,\"table\"],[14,0,\"login-table\"],[12],[10,\"tr\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,\"td\"],[14,0,\"login-cell\"],[12],[1,\"\\n\\n\"],[1,\"          \"],[10,\"form\"],[12],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"person\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"username\"],[24,1,\"un\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"text\",[30,0,[\"UserName\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"key\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"password\"],[24,1,\"pw\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"password\",[30,0,[\"PassWord\"]]]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n\"],[1,\"            \"],[10,0],[14,0,\"user-input\"],[12],[1,\"\\n              \"],[10,0],[14,0,\"field-label\"],[12],[1,\"\\n                \"],[10,1],[14,0,\"material-symbols-outlined\"],[12],[1,\"check\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\\n              \"],[10,0],[14,0,\"check-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"remember\"]],[[\"@type\",\"@checked\"],[\"checkbox\",[30,0,[\"remember\"]]]],null],[1,\"\\n                remember me\\n              \"],[13],[1,\"\\n\\n\"],[1,\"              \"],[10,0],[14,0,\"submit-field\"],[12],[1,\"\\n                \"],[8,[39,1],[[24,\"aria-label\",\"submit\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[4,[38,2],[\"click\",[30,0,[\"submitData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",\"Login\"]],null],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n\\n          \"],[13],[1,\"\\n        \"],[13],[10,\"td\"],[14,5,\"border: 0px\"],[12],[13],[1,\"\\n      \"],[13],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[],false,[\"if\",\"input\",\"on\"]]",
     "moduleName": "crypto-conductor-front/components/login-ui.hbs",
     "isStrictMode": false
   });
   let LoginUiComponent = (_class = class LoginUiComponent extends _component2.default {
-    // Called when UI is created
     constructor(owner, args) {
       super(owner, args);
       _initializerDefineProperty(this, "authManager", _descriptor, this);
@@ -950,32 +1015,23 @@
       _initializerDefineProperty(this, "anonStatus", _descriptor6, this);
       this.authManager.print();
     }
-
-    // Disable the submit button until all fields are filled
     get disableSubmit() {
       //if either value is empty we don't want to allow submitting the form
       return !this.UserName.length || !this.PassWord.length;
     }
-
-    // JS Validation, Sanitization, and Escaping
     validateNames() {
       un.value = un.value.replace(/[&*<>/';{}]/g, '');
       pw.value = pw.value.replace(/[&*<>/';{}]/g, '');
     }
-
-    // Creates login data and calls login function in authManager
     submitData() {
       var loginData = {
         username: this.UserName,
-        password: this.PassWord,
-        remember: this.remember
+        password: this.PassWord
       };
 
       //pass into authManager
       this.authManager.login(loginData);
     }
-
-    // Redirect for logged in users
     redirectToDashboard() {
       this.router.transitionTo('projectDashboard');
     }
@@ -994,14 +1050,14 @@
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'username here';
+      return 'JohnLeader';
     }
   }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "PassWord", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'password here';
+      return 'P@ssw0rd12345';
     }
   }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "remember", [_tracking.tracked], {
     configurable: true,
@@ -1028,7 +1084,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1036,7 +1092,15 @@
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
   const __COLOCATED_TEMPLATE__ = (0, _templateFactory.createTemplateFactory)(
   /*
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    {{! Put in css under the component }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  {{!-- {{#each @ptest as |proj|}}
+    {{proj.name}}
+    {{proj.description}}
+    {{proj.status}}
+  {{/each}} --}}
+  
   
   {{!Screen class that sets window scaling}}
   <div class="screen">
@@ -1064,14 +1128,20 @@
         <div class="project-listing">
           <div class="listing-text">
             <table width="100%" border="1px">
-              {{#each this.testProjects as |proj|}}
+              {{#each @user_projects as |proj|}}
+  
+              {{!-- {{#each @user_projects as |up|}}
+                {{up.name}}
+                {{up.id}}
+              {{/each}} --}}
+  
                 <tr>
                   <td>{{proj.id}}</td>
                   <td width="300px">{{proj.name}}</td>
   
                   {{! Show only if leader }}
                   {{#if this.isLead}}
-                    <td><LinkTo @route="projectManagement">Project Dashboard</LinkTo></td>
+                    <td><LinkTo @route="projectManagement">{{proj.name}}Dashboard</LinkTo></td>
                   {{/if}}
                   <td>Project Entries</td>
                 </tr>
@@ -1089,8 +1159,8 @@
   
   */
   {
-    "id": "xw3V/zW0",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,0,[\"testProjects\"]]],null]],null],null,[[[1,\"              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,1,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,\"Project Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[1]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
+    "id": "IehNTXy1",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1]],null]],null],null,[[[1,\"\\n\"],[1,\"\\n              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,2,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,[30,2,[\"name\"]]],[1,\"Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[2]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_projects\",\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
     "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
@@ -1103,18 +1173,16 @@
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "router", _descriptor2, this);
       _initializerDefineProperty(this, "store", _descriptor3, this);
-      _initializerDefineProperty(this, "username", _descriptor4, this);
-      _initializerDefineProperty(this, "specialty", _descriptor5, this);
-      _initializerDefineProperty(this, "role", _descriptor6, this);
-      _initializerDefineProperty(this, "isLead", _descriptor7, this);
-      _initializerDefineProperty(this, "projects", _descriptor8, this);
-      _initializerDefineProperty(this, "testProjects", _descriptor9, this);
+      _initializerDefineProperty(this, "projectData", _descriptor4, this);
+      _initializerDefineProperty(this, "username", _descriptor5, this);
+      _initializerDefineProperty(this, "specialty", _descriptor6, this);
+      _initializerDefineProperty(this, "role", _descriptor7, this);
+      _initializerDefineProperty(this, "isLead", _descriptor8, this);
+      _initializerDefineProperty(this, "projects", _descriptor9, this);
+      _initializerDefineProperty(this, "testProjects", _descriptor10, this);
       if (this.authManager.usergroup == 'Leader') {
         this.isLead = true;
       }
-
-      // Get projects for this user
-      this.getProjects();
     }
 
     // For testing only
@@ -1125,35 +1193,36 @@
     }
 
     // Get project list for current users
-    getProjects() {
-      console.log('In Project');
-
-      //get current user ID
-      var this_username = this.authManager.username;
-      console.log('username: ' + this_username);
-
-      // Get user Id
-      this.store.query('project', {
-        filter: {
-          search: this_username
-        }
-      }).then(function (cu) {
-        console.log(cu);
-      });
-
-      // KINDA WORKS
-      // this.store.queryRecord('user', {}).then(function (user) {
-      //   //let username = user.get('id');
-      //   console.log('User ID:');
-      // });
-
-      //WORKS
-      // User current username to query for ID
-      //let cur_user = this.store.findRecord('user', 4)
-      //  .then(function(user) {
-      //    console.log(user.type)
-      //  });
-    }
+    // @action
+    // getProjects() {
+    //   console.log('In Project');
+    //
+    //   //get current user ID
+    //   var this_username = this.authManager.username;
+    //   console.log('username: ' + this_username);
+    //
+    //   // Get user Id
+    //   this.store.query('project', {
+    //     filter: {
+    //       search: this_username,
+    //     }
+    //   }).then(function(cu) {
+    //       console.log(cu)
+    //   });
+    //
+    //   // KINDA WORKS
+    //   // this.store.queryRecord('user', {}).then(function (user) {
+    //   //   //let username = user.get('id');
+    //   //   console.log('User ID:');
+    //   // });
+    //
+    //   //WORKS
+    //   // User current username to query for ID
+    //   //let cur_user = this.store.findRecord('user', 4)
+    //   //  .then(function(user) {
+    //   //    console.log(user.type)
+    //   //  });
+    // }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
     configurable: true,
     enumerable: true,
@@ -1169,42 +1238,47 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "projectData", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Syntax';
     }
-  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "specialty", [_tracking.tracked], {
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "specialty", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Cybersecurity';
     }
-  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "role", [_tracking.tracked], {
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "role", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Knight';
     }
-  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "isLead", [_tracking.tracked], {
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "isLead", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return false;
     }
-  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "projects", [_tracking.tracked], {
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "projects", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return null;
     }
-  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
+  }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "testProjects", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1220,7 +1294,7 @@
         name: 'NebulousThing'
       }];
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "getProjects", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "getProjects"), _class.prototype)), _class);
+  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype)), _class);
   _exports.default = ProjectListingComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, ProjectListingComponent);
 });
@@ -1231,7 +1305,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object",0,"@ember/service",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1243,6 +1317,10 @@
   
   {{!Screen class that sets window scaling}}
   <div class="screen">
+  
+    {{#each @project as |proj|}}
+      {{proj.name}}
+    {{/each}}
   
     {{#if this.authManager.isLoggedIn}}
   
@@ -1371,8 +1449,8 @@
   
   */
   {
-    "id": "7aEESWup",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Project Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,1,\"project-management-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"Project Title:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"ProjectTitle\"],[24,1,\"pt\"],[24,\"size\",\"23\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"projectTitle\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Specialties:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"]],[1]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"Description:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,5],[[24,\"aria-label\",\"description\"],[24,1,\"d\"],[24,\"rows\",\"15\"],[24,\"cols\",\"23\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"description\"]]]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niches:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\"]],[2]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Clients:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testClientList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Denials:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testDenialList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Availability:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"ava\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"public\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"status\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"Status:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"sta\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"status\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,6,[\"status\"]]],[13],[1,\"\\n\"]],[6]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"update\"],[4,[38,2],[\"click\",[30,0,[\"sendData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"spec\",\"niche\",\"client\",\"deny\",\"pub\",\"status\"],false,[\"if\",\"input\",\"on\",\"each\",\"-track-array\",\"textarea\"]]",
+    "id": "N75/U9PB",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,1]],null]],null],null,[[[1,\"    \"],[1,[30,2,[\"name\"]]],[1,\"\\n\"]],[2]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Project Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,1,\"project-management-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"Project Title:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"ProjectTitle\"],[24,1,\"pt\"],[24,\"size\",\"23\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"projectTitle\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Specialties:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"Description:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,5],[[24,\"aria-label\",\"description\"],[24,1,\"d\"],[24,\"rows\",\"15\"],[24,\"cols\",\"23\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"description\"]]]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niches:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Clients:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testClientList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"name\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Denials:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testDenialList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,6,[\"name\"]]],[13],[1,\"\\n\"]],[6]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Availability:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"ava\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"public\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,7,[\"status\"]]],[13],[1,\"\\n\"]],[7]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"Status:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"sta\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"status\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,8,[\"status\"]]],[13],[1,\"\\n\"]],[8]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,3],[[24,\"aria-label\",\"update\"],[4,[38,4],[\"click\",[30,0,[\"sendData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@project\",\"proj\",\"spec\",\"niche\",\"client\",\"deny\",\"pub\",\"status\"],false,[\"each\",\"-track-array\",\"if\",\"input\",\"on\",\"textarea\"]]",
     "moduleName": "crypto-conductor-front/components/project-management-display.hbs",
     "isStrictMode": false
   });
@@ -1381,16 +1459,17 @@
       super(...arguments);
       _initializerDefineProperty(this, "authManager", _descriptor, this);
       _initializerDefineProperty(this, "router", _descriptor2, this);
-      _initializerDefineProperty(this, "projectTitle", _descriptor3, this);
-      _initializerDefineProperty(this, "description", _descriptor4, this);
-      _initializerDefineProperty(this, "update", _descriptor5, this);
-      _initializerDefineProperty(this, "delete", _descriptor6, this);
-      _initializerDefineProperty(this, "testSpecialties", _descriptor7, this);
-      _initializerDefineProperty(this, "testNiches", _descriptor8, this);
-      _initializerDefineProperty(this, "testClientList", _descriptor9, this);
-      _initializerDefineProperty(this, "testDenialList", _descriptor10, this);
-      _initializerDefineProperty(this, "public", _descriptor11, this);
-      _initializerDefineProperty(this, "status", _descriptor12, this);
+      _initializerDefineProperty(this, "projectData", _descriptor3, this);
+      _initializerDefineProperty(this, "projectTitle", _descriptor4, this);
+      _initializerDefineProperty(this, "description", _descriptor5, this);
+      _initializerDefineProperty(this, "update", _descriptor6, this);
+      _initializerDefineProperty(this, "delete", _descriptor7, this);
+      _initializerDefineProperty(this, "testSpecialties", _descriptor8, this);
+      _initializerDefineProperty(this, "testNiches", _descriptor9, this);
+      _initializerDefineProperty(this, "testClientList", _descriptor10, this);
+      _initializerDefineProperty(this, "testDenialList", _descriptor11, this);
+      _initializerDefineProperty(this, "public", _descriptor12, this);
+      _initializerDefineProperty(this, "status", _descriptor13, this);
     }
     // Basic print fucntion
     print() {
@@ -1435,35 +1514,40 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "projectTitle", [_tracking.tracked], {
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "projectData", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "projectTitle", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'CryptoThing';
     }
-  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "description", [_tracking.tracked], {
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "description", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Add description';
     }
-  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "update", [_tracking.tracked], {
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "update", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Update';
     }
-  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, "delete", [_tracking.tracked], {
+  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "delete", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
       return 'Delete';
     }
-  }), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, "testSpecialties", [_tracking.tracked], {
+  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "testSpecialties", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1476,7 +1560,7 @@
         name: 'Business'
       }];
     }
-  }), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, "testNiches", [_tracking.tracked], {
+  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "testNiches", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1492,7 +1576,7 @@
         parent: 'Business'
       }];
     }
-  }), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, "testClientList", [_tracking.tracked], {
+  }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "testClientList", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1511,7 +1595,7 @@
         name: 'Jill'
       }];
     }
-  }), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, "testDenialList", [_tracking.tracked], {
+  }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "testDenialList", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1530,7 +1614,7 @@
         name: 'BadGuy6'
       }];
     }
-  }), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, "public", [_tracking.tracked], {
+  }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "public", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1541,7 +1625,7 @@
         status: 'Private'
       }];
     }
-  }), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, "status", [_tracking.tracked], {
+  }), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, "status", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -1842,6 +1926,65 @@
   })), _class));
   _exports.default = NicheModel;
 });
+;define("crypto-conductor-front/models/profile", ["exports", "@ember-data/model"], function (_exports, _model) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model",0,"@ember-data/model"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProfileModel = (_dec = (0, _model.belongsTo)('user', {
+    async: true,
+    inverse: null
+  }), _dec2 = (0, _model.attr)('string'), _dec3 = (0, _model.attr)('number'), _dec4 = (0, _model.hasMany)('specialty', {
+    async: true,
+    inverse: null
+  }), _dec5 = (0, _model.hasMany)('niche', {
+    async: true,
+    inverse: null
+  }), (_class = class ProfileModel extends _model.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "users", _descriptor, this);
+      _initializerDefineProperty(this, "mi", _descriptor2, this);
+      _initializerDefineProperty(this, "balance", _descriptor3, this);
+      _initializerDefineProperty(this, "deniedUsers", _descriptor4, this);
+      _initializerDefineProperty(this, "niches", _descriptor5, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "users", [_dec], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "mi", [_dec2], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "balance", [_dec3], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "deniedUsers", [_dec4], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "niches", [_dec5], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class));
+  _exports.default = ProfileModel;
+});
 ;define("crypto-conductor-front/models/project-entry", ["exports", "@ember-data/model"], function (_exports, _model) {
   "use strict";
 
@@ -1936,16 +2079,13 @@
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
   function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
   let ProjectModel = (_dec = (0, _model.attr)('string'), _dec2 = (0, _model.hasMany)('user', {
-    async: true
-  }, {
+    async: true,
     inverse: null
   }), _dec3 = (0, _model.hasMany)('niche', {
-    async: true
-  }, {
+    async: true,
     inverse: null
   }), _dec4 = (0, _model.hasMany)('specialty', {
-    async: true
-  }, {
+    async: true,
     inverse: null
   }), _dec5 = (0, _model.attr)('string'), _dec6 = (0, _model.attr)('string'), _dec7 = (0, _model.attr)('boolean'), (_class = class ProjectModel extends _model.default {
     constructor() {
@@ -2117,15 +2257,45 @@
     this.route('contactPage');
   });
 });
-;define("crypto-conductor-front/routes/account-management", ["exports", "@ember/routing/route"], function (_exports, _route) {
+;define("crypto-conductor-front/routes/account-management", ["exports", "@ember/routing/route", "@ember/service", "rsvp", "@ember/object"], function (_exports, _route, _service, _rsvp, _object) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route"eaimeta@70e063a35619d71f
-  class AccountManagementRoute extends _route.default {}
+  var _class, _descriptor, _descriptor2;
+  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service",0,"rsvp",0,"@ember/object"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let AccountManagementRoute = (_class = class AccountManagementRoute extends _route.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "store", _descriptor, this);
+      _initializerDefineProperty(this, "authManager", _descriptor2, this);
+    }
+    model() {
+      return _rsvp.default.hash({
+        user: this.store.findAll('user'),
+        profile: this.store.findAll('profile')
+      });
+    }
+    redirectToLogin() {
+      this.router.transitionTo('login');
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype)), _class);
   _exports.default = AccountManagementRoute;
 });
 ;define("crypto-conductor-front/routes/contact-page", ["exports", "@ember/routing/route"], function (_exports, _route) {
@@ -2168,8 +2338,29 @@
     value: true
   });
   _exports.default = void 0;
+  var _class, _descriptor;
   0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service"eaimeta@70e063a35619d71f
-  class ProjectDashboardRoute extends _route.default {}
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProjectDashboardRoute = (_class = class ProjectDashboardRoute extends _route.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "store", _descriptor, this);
+    }
+    // Should fetch all records from the target api/projects
+    // Should return a JSON
+    model() {
+      let projects = this.store.findAll('project');
+      return projects;
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class);
   _exports.default = ProjectDashboardRoute;
 });
 ;define("crypto-conductor-front/routes/project-detail", ["exports", "@ember/routing/route"], function (_exports, _route) {
@@ -2183,15 +2374,34 @@
   class ProjectDetailRoute extends _route.default {}
   _exports.default = ProjectDetailRoute;
 });
-;define("crypto-conductor-front/routes/project-management", ["exports", "@ember/routing/route"], function (_exports, _route) {
+;define("crypto-conductor-front/routes/project-management", ["exports", "@ember/routing/route", "@ember/service"], function (_exports, _route, _service) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route"eaimeta@70e063a35619d71f
-  class ProjectManagementRoute extends _route.default {}
+  var _class, _descriptor;
+  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProjectManagementRoute = (_class = class ProjectManagementRoute extends _route.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "store", _descriptor, this);
+    }
+    model() {
+      let projects = this.store.findAll('project');
+      return projects;
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class);
   _exports.default = ProjectManagementRoute;
 });
 ;define("crypto-conductor-front/routes/scoring-dashboard", ["exports", "@ember/routing/route"], function (_exports, _route) {
@@ -2268,8 +2478,8 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
-  0; //eaimeta@70e063a35619d71f0,"@ember/service",0,"@glimmer/tracking",0,"@ember/object",0,"jquery",0,"ember-cli-js-cookie"eaimeta@70e063a35619d71f
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  0; //eaimeta@70e063a35619d71f0,"@ember/service",0,"@glimmer/tracking",0,"@ember/object",0,"jquery",0,"ember-cli-js-cookie",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
@@ -2280,7 +2490,8 @@
       _initializerDefineProperty(this, "username", _descriptor, this);
       _initializerDefineProperty(this, "usergroup", _descriptor2, this);
       _initializerDefineProperty(this, "userid", _descriptor3, this);
-      _initializerDefineProperty(this, "isLoggedIn", _descriptor4, this);
+      _initializerDefineProperty(this, "router", _descriptor4, this);
+      _initializerDefineProperty(this, "isLoggedIn", _descriptor5, this);
     }
     //Go to Django, let Django check current status, then returning interval
     //function is the callback for what to do when the function returns - async
@@ -2289,19 +2500,20 @@
     init() {
       super.init(...arguments);
       let authService = this;
+      console.log("INIT");
       let data = _jquery.default.get('/session/', function (response) {
-        console.log(response);
         authService.username = response.data.username;
         authService.usergroup = response.data.usergroup;
         authService.userid = response.data.userid;
         authService.isLoggedIn = response.data.isLoggedIn;
         console.log(authService.username);
       });
+      console.log(data);
     }
 
     // Post
     login(loginData) {
-      //url, data, success handler
+      const csrftoken = _emberCliJsCookie.default.get('csrftoken');
       let authService = this;
       _jquery.default.post('/session/', loginData, function (response) {
         console.log(response);
@@ -2314,16 +2526,16 @@
 
     //delete
     logout(logoutData) {
-      const csrftoken = _emberCliJsCookie.default.get('csrftoken');
-      console.log(logoutData);
+      var csrftoken = _emberCliJsCookie.default.get('csrftoken');
       let authService = this;
-      console.log('test') / _jquery.default.ajax({
+      _jquery.default.ajax({
         url: '/session/',
         type: 'DELETE',
         headers: {
           'X-CSRFToken': csrftoken
         },
         success: function (response) {
+          console.log('RESPONSE');
           console.log(response);
           authService.username = null;
           authService.usergroup = null;
@@ -2331,13 +2543,14 @@
           authService.isLoggedIn = false;
         }
       });
+      this.router.transitionTo('login');
     }
 
     //Print function
     print() {
-      console.log(this.username);
-      console.log(this.userid);
-      console.log(this.isLoggedIn);
+      console.log('AUTH USERNAME: ' + this.username);
+      console.log('AUTH ID: ' + this.userid);
+      console.log('AUTH LOGGEDIN: ' + this.isLoggedIn);
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
     configurable: true,
@@ -2354,7 +2567,12 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "isLoggedIn", [_tracking.tracked], {
+  }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "router", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "isLoggedIn", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -2392,6 +2610,44 @@
   });
   0; //eaimeta@70e063a35619d71f0,"ember-page-title/services/page-title"eaimeta@70e063a35619d71f
 });
+;define("crypto-conductor-front/services/project-data", ["exports", "@ember/service", "@glimmer/tracking", "@ember/object"], function (_exports, _service, _tracking, _object) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+  var _class, _descriptor, _descriptor2, _descriptor3;
+  0; //eaimeta@70e063a35619d71f0,"@ember/service",0,"@ember/service",0,"@glimmer/tracking",0,"@ember/object"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ProjectDataService = (_class = class ProjectDataService extends _service.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "id", _descriptor, this);
+      _initializerDefineProperty(this, "name", _descriptor2, this);
+      _initializerDefineProperty(this, "description", _descriptor3, this);
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "id", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "name", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "description", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class);
+  _exports.default = ProjectDataService;
+});
 ;define("crypto-conductor-front/services/store", ["exports", "ember-data/store"], function (_exports, _store) {
   "use strict";
 
@@ -2418,14 +2674,14 @@
   /*
     {{page-title "Account Management"}}
   
-  <AccountInformation/>
+  <AccountInformation @user_data={{@model}}/>
   
   {{outlet}}
   
   */
   {
-    "id": "TrPznNbv",
-    "block": "[[[1,[28,[35,0],[\"Account Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"account-information\",\"component\",\"-outlet\"]]",
+    "id": "ViWxGTSD",
+    "block": "[[[1,[28,[35,0],[\"Account Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@user_data\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"account-information\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/account-management.hbs",
     "isStrictMode": false
   });
@@ -2551,14 +2807,16 @@
   /*
     {{page-title "Project Dashboard"}}
   
-  <ProjectListing/>
+  
+  <ProjectListing @user_projects={{@model}}/>
+  
   
   {{outlet}}
   
   */
   {
-    "id": "2Zrf39Jj",
-    "block": "[[[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"project-listing\",\"component\",\"-outlet\"]]",
+    "id": "al4wbkHv",
+    "block": "[[[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\n\\n\"],[8,[39,1],null,[[\"@user_projects\"],[[30,1]]],null],[1,\"\\n\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-listing\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-dashboard.hbs",
     "isStrictMode": false
   });
@@ -2601,14 +2859,14 @@
   /*
     {{page-title "Project Management"}}
   
-  <ProjectManagementDisplay/>
+  <ProjectManagementDisplay @project={{@model}}/>
   
   {{outlet}}
   
   */
   {
-    "id": "09mnf3Ef",
-    "block": "[[[1,[28,[35,0],[\"Project Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"project-management-display\",\"component\",\"-outlet\"]]",
+    "id": "8VwapcmJ",
+    "block": "[[[1,[28,[35,0],[\"Project Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@project\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-management-display\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-management.hbs",
     "isStrictMode": false
   });
@@ -2718,7 +2976,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+8a0fe628"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+a5644a94"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

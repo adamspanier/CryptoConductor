@@ -110,7 +110,7 @@ REST_FRAMEWORK = {
 
 WSGI_APPLICATION = 'CryptoConductor.wsgi.application'
 
-JSON_API_FORMAT_FIELD_NAMES = 'dasherize'
+# JSON_API_FORMAT_FIELD_NAMES = 'dasherize'
 
 APPEND_SLASH = False
 

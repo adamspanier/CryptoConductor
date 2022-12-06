@@ -43,6 +43,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email', 'groups', 'username', 'is_active']
 
 """
+Serializer for Profiles
+"""
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Profile
+        fields = ['id', 'user', 'mi', 'balance']
+
+"""
 Serializer for Projects Entries
 """
 class ProjectEntrySerializer(serializers.HyperlinkedModelSerializer):

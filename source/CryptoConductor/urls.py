@@ -9,16 +9,14 @@ from django.contrib.auth.decorators import login_required
 
 # Define default router, disable trailing slash for compatibility
 router = routers.DefaultRouter(trailing_slash=False)
-
-# Create list router paths
 router.register(r'specialties', views.SpecialtyListViewSet)
 router.register(r'niches', views.NicheListViewSet)
 router.register(r'users', views.UserListViewSet)
 router.register(r'groups', views.GroupListViewSet)
 router.register(r'projectEntries', views.ProjectEntryListViewSet)
 router.register(r'projects', views.ProjectListViewSet)
+router.register(r'profiles', views.ProfileListViewSet)
 
-# Create detail router paths
 router.register(r'specialties/<int:id>', views.SpecialtyDetailViewSet)
 router.register(r'niches/<int:id>', views.NicheDetailViewSet)
 router.register(r'users/<int:id>', views.UserDetailViewSet)
@@ -26,7 +24,6 @@ router.register(r'groups/<int:id>', views.GroupDetailViewSet)
 router.register(r'projectEntries/<int:id>', views.ProjectEntryDetailViewSet)
 router.register(r'projects/<int:id>', views.ProjectDetailViewSet)
 
-# Define url patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
