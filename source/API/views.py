@@ -53,7 +53,6 @@ class Session(APIView):
     # Petition the server for the existing session token
     def get(self, request):
         user = request.user
-        print(user)
         if user.is_authenticated:
             group = user.groups.first()
             return self.buildSession(True, user.username, user.id, str(group))
@@ -63,12 +62,10 @@ class Session(APIView):
     def post(self, request):
         username = request.data['username']
         password = request.data['password']
-        print(username)
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             group = user.groups.first()
-            print(str(group))
             return self.buildSession(True, user.username, user.id, str(group))
         else:
             return self.buildSession(False, None, None, None, "Login Error")
@@ -123,7 +120,6 @@ class UserListViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         query = User.objects.filter(username=user.username)
-        print(query)
         return query
 
 # Viewset for additional user data

@@ -1095,13 +1095,6 @@
     {{! Put in css under the component }}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
-  {{!-- {{#each @ptest as |proj|}}
-    {{proj.name}}
-    {{proj.description}}
-    {{proj.status}}
-  {{/each}} --}}
-  
-  
   {{!Screen class that sets window scaling}}
   <div class="screen">
   
@@ -1130,11 +1123,6 @@
             <table width="100%" border="1px">
               {{#each @user_projects as |proj|}}
   
-              {{!-- {{#each @user_projects as |up|}}
-                {{up.name}}
-                {{up.id}}
-              {{/each}} --}}
-  
                 <tr>
                   <td>{{proj.id}}</td>
                   <td width="300px">{{proj.name}}</td>
@@ -1159,8 +1147,8 @@
   
   */
   {
-    "id": "IehNTXy1",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1]],null]],null],null,[[[1,\"\\n\"],[1,\"\\n              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,2,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,[30,2,[\"name\"]]],[1,\"Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[2]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_projects\",\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
+    "id": "xwJ+4sVq",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1]],null]],null],null,[[[1,\"\\n              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,2,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,[30,2,[\"name\"]]],[1,\"Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[2]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_projects\",\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
     "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
@@ -2283,9 +2271,6 @@
         profile: this.store.findAll('profile')
       });
     }
-    redirectToLogin() {
-      this.router.transitionTo('login');
-    }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
     configurable: true,
     enumerable: true,
@@ -2296,7 +2281,7 @@
     enumerable: true,
     writable: true,
     initializer: null
-  }), _applyDecoratedDescriptor(_class.prototype, "redirectToLogin", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "redirectToLogin"), _class.prototype)), _class);
+  })), _class);
   _exports.default = AccountManagementRoute;
 });
 ;define("crypto-conductor-front/routes/contact-page", ["exports", "@ember/routing/route"], function (_exports, _route) {
@@ -2498,7 +2483,6 @@
     init() {
       super.init(...arguments);
       let authService = this;
-      console.log("INIT");
       let data = _jquery.default.get('/session/', function (response) {
         authService.username = response.data.username;
         authService.usergroup = response.data.usergroup;
@@ -2506,7 +2490,6 @@
         authService.isLoggedIn = response.data.isLoggedIn;
         console.log(authService.username);
       });
-      console.log(data);
     }
 
     // Post creds to the server
@@ -2986,7 +2969,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+b40bf0ea"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+47207849"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

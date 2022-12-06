@@ -1,0 +1,2 @@
+django-rest-framework==3.14.0
+djangorestframework-jsonapi==6.0.0

@@ -102,12 +102,6 @@ class Project(models.Model):
     def __str__(self):
         return self.name + " : Status: " + self.status + " : Public: " + str(self.public)
 
-    def is_in(self):
-        user_list = ""
-        user_list = self.users.all()
-        for user in user_list:
-            print("test")
-
     class ProjectAdmin(admin.ModelAdmin):
         filter_horizontal = ('users', 'niches', 'denied_users')
         list_display = ('name', 'description', 'get_users', 'get_niches', 'status')
