@@ -17,12 +17,13 @@ router.register(r'projectEntries', views.ProjectEntryListViewSet)
 router.register(r'projects', views.ProjectListViewSet)
 router.register(r'profiles', views.ProfileListViewSet)
 
-router.register(r'specialties/<int:id>', views.SpecialtyDetailViewSet)
-router.register(r'niches/<int:id>', views.NicheDetailViewSet)
-router.register(r'users/<int:id>', views.UserDetailViewSet)
-router.register(r'groups/<int:id>', views.GroupDetailViewSet)
-router.register(r'projectEntries/<int:id>', views.ProjectEntryDetailViewSet)
-router.register(r'projects/<int:id>', views.ProjectDetailViewSet)
+# Individual view sets
+router.register(r'specialties/<int:id>', views.SpecialtyListViewSet)
+router.register(r'niches/<int:id>', views.NicheListViewSet)
+router.register(r'users/<int:id>', views.UserListViewSet)
+router.register(r'groups/<int:id>', views.GroupListViewSet)
+router.register(r'projectEntries/<int:id>', views.ProjectEntryListViewSet)
+router.register(r'projects/<int:id>', views.ProjectListViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

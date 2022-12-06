@@ -76,7 +76,6 @@ class ProjectEntry(models.Model):
         return self.user.username + " : Date Entered: " + str(self.entry_date) + " : Current Score: " + str(self.current_score)
 
     class ProjectEntriesAdmin(admin.ModelAdmin):
-        # fields = ('username', 'specialty', 'project', 'current_score', 'text_notes')
         readonly_fields = ('entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
         list_display = ('user', 'niche', 'project', 'current_score', 'text_notes', 'entry_date', 'entry_time', 'last_modified_date', 'last_modified_time')
 
@@ -113,6 +112,7 @@ class Project(models.Model):
         filter_horizontal = ('users', 'niches', 'denied_users')
         list_display = ('name', 'description', 'get_users', 'get_niches', 'status')
 
+        # Gets user first and last names for each project
         def get_users(self, obj):
             user_list = ""
             users = obj.users.all()
@@ -122,6 +122,7 @@ class Project(models.Model):
                     user_list += user.first_name + " " + user.last_name + ", "
             return user_list[:-2]
 
+        # Gets all niches associated with each project
         def get_niches(self, obj):
             niche_list = ""
             niches = obj.niches.all()
@@ -129,14 +130,9 @@ class Project(models.Model):
                 niche_list += niche.name + ", "
             return niche_list[:-2]
 
-
-        # self = ProjectAdmin - The class that the method is defined in
-        # obj = The parameter that the class takes. Project in this case. Based on ModelAdmin - Gives an instance of a django model
-
-# Establishes connection between project and project admin classes
-# Makes ProjectAdmin of type Project
 admin.site.register(Project, Project.ProjectAdmin)
 
+# Profile model - provides additional information about each user
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     mi = models.CharField(max_length=40, validators = [contains_illegal_chars])
@@ -148,18 +144,23 @@ class Profile(models.Model):
         filter_horizontal = ('specialties', 'niches')
         list_display = ('get_first', 'mi', 'get_last', 'get_username', 'get_role', 'make_balance')
 
+        # Get user first name
         def get_first(self, obj):
             return obj.user.first_name
 
+        # Get user last name
         def get_last(self, obj):
             return obj.user.last_name
 
+        # Get user username
         def get_username(self, obj):
             return obj.user.username
 
+        # Get user balance
         def make_balance(self,obj):
             return "$" + str('{:,}'.format(obj.balance))
 
+        # Get user balance
         def get_role(self, obj):
             groups = obj.user.groups.all()
             return groups[0].name

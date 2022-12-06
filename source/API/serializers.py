@@ -1,5 +1,4 @@
 # Serializers live here
-#
 # from rest_framework import serializers
 from . import models
 from rest_framework_json_api import serializers

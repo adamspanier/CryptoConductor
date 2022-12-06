@@ -2276,6 +2276,7 @@
       _initializerDefineProperty(this, "store", _descriptor, this);
       _initializerDefineProperty(this, "authManager", _descriptor2, this);
     }
+    // Collects user and profile data for each user
     model() {
       return _rsvp.default.hash({
         user: this.store.findAll('user'),
@@ -2349,8 +2350,7 @@
       super(...arguments);
       _initializerDefineProperty(this, "store", _descriptor, this);
     }
-    // Should fetch all records from the target api/projects
-    // Should return a JSON
+    // Collects project per user
     model() {
       let projects = this.store.findAll('project');
       return projects;
@@ -2392,6 +2392,7 @@
       super(...arguments);
       _initializerDefineProperty(this, "store", _descriptor, this);
     }
+    // Collects projects per user
     model() {
       let projects = this.store.findAll('project');
       return projects;
@@ -2493,10 +2494,7 @@
       _initializerDefineProperty(this, "router", _descriptor4, this);
       _initializerDefineProperty(this, "isLoggedIn", _descriptor5, this);
     }
-    //Go to Django, let Django check current status, then returning interval
-    //function is the callback for what to do when the function returns - async
-    // this - the reference to the immediate object you are in
-    // Get
+    // Get current session cookie
     init() {
       super.init(...arguments);
       let authService = this;
@@ -2511,7 +2509,7 @@
       console.log(data);
     }
 
-    // Post
+    // Post creds to the server
     login(loginData) {
       const csrftoken = _emberCliJsCookie.default.get('csrftoken');
       let authService = this;
@@ -2524,7 +2522,7 @@
       });
     }
 
-    //delete
+    // Delete session token and logout
     logout(logoutData) {
       var csrftoken = _emberCliJsCookie.default.get('csrftoken');
       let authService = this;
@@ -2546,7 +2544,7 @@
       this.router.transitionTo('login');
     }
 
-    //Print function
+    //Helper print function
     print() {
       console.log('AUTH USERNAME: ' + this.username);
       console.log('AUTH ID: ' + this.userid);
@@ -2672,7 +2670,9 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Account Management"}}
+    <!-- Provides account Management functions -->
+  
+  {{page-title "Account Management"}}
   
   <AccountInformation @user_data={{@model}}/>
   
@@ -2680,8 +2680,8 @@
   
   */
   {
-    "id": "ViWxGTSD",
-    "block": "[[[1,[28,[35,0],[\"Account Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@user_data\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"account-information\",\"component\",\"-outlet\"]]",
+    "id": "c95vbI7E",
+    "block": "[[[3,\" Provides account Management functions \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Account Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@user_data\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"account-information\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/account-management.hbs",
     "isStrictMode": false
   });
@@ -2703,18 +2703,14 @@
   
   {{!-- Root of the application --}}
   
-  {{!-- The following component displays Ember's default welcome message. --}}
-  
-  {{!-- Feel free to remove this! --}}
-  
   {{outlet}}
   
   <FooterDisplay/>
   
   */
   {
-    "id": "if4ZPUJV",
-    "block": "[[[1,[28,[35,0],[\"CryptoConductorFront\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[1,\"\\n\"],[1,\"\\n\"],[1,\"\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\\n\"],[8,[39,4],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"header-display\",\"component\",\"-outlet\",\"footer-display\"]]",
+    "id": "Fb46EDkA",
+    "block": "[[[1,[28,[35,0],[\"CryptoConductorFront\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[1,\"\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\\n\"],[8,[39,4],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"header-display\",\"component\",\"-outlet\",\"footer-display\"]]",
     "moduleName": "crypto-conductor-front/templates/application.hbs",
     "isStrictMode": false
   });
@@ -2730,7 +2726,9 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "ContactPage"}}
+    <!-- Provides anonymous users the ability to contact leaders -->
+  
+  {{page-title "ContactPage"}}
   
   <ContactWindow/>
   
@@ -2738,8 +2736,8 @@
   
   */
   {
-    "id": "PRFEhIEp",
-    "block": "[[[1,[28,[35,0],[\"ContactPage\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"contact-window\",\"component\",\"-outlet\"]]",
+    "id": "GS+9ZGf8",
+    "block": "[[[3,\" Provides anonymous users the ability to contact leaders \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"ContactPage\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"contact-window\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/contact-page.hbs",
     "isStrictMode": false
   });
@@ -2755,7 +2753,9 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "CryptoConductor Page"}}
+    <!-- Prompts login at first visit -->
+  
+  {{page-title "CryptoConductor Page"}}
   
   <LoginUi/>
   
@@ -2763,8 +2763,8 @@
   
   */
   {
-    "id": "zAJ+l9AI",
-    "block": "[[[1,[28,[35,0],[\"CryptoConductor Page\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
+    "id": "D6NMDf9O",
+    "block": "[[[3,\" Prompts login at first visit \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"CryptoConductor Page\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/index.hbs",
     "isStrictMode": false
   });
@@ -2780,7 +2780,9 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Login Portal"}}
+    <!-- Facilitates login functionality -->
+  
+  {{page-title "Login Portal"}}
   
   <LoginUi/>
   
@@ -2788,8 +2790,8 @@
   
   */
   {
-    "id": "J9HtUZEJ",
-    "block": "[[[1,[28,[35,0],[\"Login Portal\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
+    "id": "d/mCUhWh",
+    "block": "[[[3,\" Facilitates login functionality \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Login Portal\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,null,null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"login-ui\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/login.hbs",
     "isStrictMode": false
   });
@@ -2805,18 +2807,18 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Project Dashboard"}}
+    <!-- Provides a list of projects for the current user -->
   
+  {{page-title "Project Dashboard"}}
   
   <ProjectListing @user_projects={{@model}}/>
-  
   
   {{outlet}}
   
   */
   {
-    "id": "al4wbkHv",
-    "block": "[[[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\n\\n\"],[8,[39,1],null,[[\"@user_projects\"],[[30,1]]],null],[1,\"\\n\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-listing\",\"component\",\"-outlet\"]]",
+    "id": "hFNmWU3R",
+    "block": "[[[3,\" Provides a list of projects for the current user \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Project Dashboard\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@user_projects\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-listing\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-dashboard.hbs",
     "isStrictMode": false
   });
@@ -2832,7 +2834,10 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Project Detail"}}
+    <!-- Provides a list of project entries -->
+  <!-- Currently not implemented -->
+  
+  {{page-title "Project Detail"}}
   
   Project Detail Page
   
@@ -2840,8 +2845,8 @@
   
   */
   {
-    "id": "i2oHrytl",
-    "block": "[[[1,[28,[35,0],[\"Project Detail\"],null]],[1,\"\\n\\nProject Detail Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
+    "id": "5bUn3bwt",
+    "block": "[[[3,\" Provides a list of project entries \"],[1,\"\\n\"],[3,\" Currently not implemented \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Project Detail\"],null]],[1,\"\\n\\nProject Detail Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-detail.hbs",
     "isStrictMode": false
   });
@@ -2857,7 +2862,9 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Project Management"}}
+    <!-- Provides project specific details and allows leaders to edit them -->
+  
+  {{page-title "Project Management"}}
   
   <ProjectManagementDisplay @project={{@model}}/>
   
@@ -2865,8 +2872,8 @@
   
   */
   {
-    "id": "8VwapcmJ",
-    "block": "[[[1,[28,[35,0],[\"Project Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@project\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-management-display\",\"component\",\"-outlet\"]]",
+    "id": "QS9WeS4q",
+    "block": "[[[3,\" Provides project specific details and allows leaders to edit them \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Project Management\"],null]],[1,\"\\n\\n\"],[8,[39,1],null,[[\"@project\"],[[30,1]]],null],[1,\"\\n\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[\"@model\"],false,[\"page-title\",\"project-management-display\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/project-management.hbs",
     "isStrictMode": false
   });
@@ -2882,7 +2889,10 @@
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars"eaimeta@70e063a35619d71f
   var _default = (0, _templateFactory.createTemplateFactory)(
   /*
-    {{page-title "Scoring Dashboard"}}
+    <!-- Faciliates project scoring -->
+  <!-- Not implemented yet -->
+  
+  {{page-title "Scoring Dashboard"}}
   
   Scoring Dashboard Page
   
@@ -2890,8 +2900,8 @@
   
   */
   {
-    "id": "eVr2sIJK",
-    "block": "[[[1,[28,[35,0],[\"Scoring Dashboard\"],null]],[1,\"\\n\\nScoring Dashboard Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
+    "id": "/HQ2rWeU",
+    "block": "[[[3,\" Faciliates project scoring \"],[1,\"\\n\"],[3,\" Not implemented yet \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Scoring Dashboard\"],null]],[1,\"\\n\\nScoring Dashboard Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/scoring-dashboard.hbs",
     "isStrictMode": false
   });
@@ -2976,7 +2986,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+a5644a94"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+b40bf0ea"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

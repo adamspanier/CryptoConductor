@@ -36,10 +36,12 @@ import requests
 import re
 from django.utils.decorators import method_decorator
 
+# Facilitate getting session tokens, creating logins, and deleting session data
 @method_decorator(csrf_exempt, name='delete')
 class Session(APIView):
     permission_classes = [AllowAny]
 
+    # Helper class that creates a JSON with basic user information
     def buildSession(self, isLoggedIn, username, userid, usergroup, error=""):
         return Response({
             'username': username,
@@ -48,7 +50,7 @@ class Session(APIView):
             'userid': userid
         })
 
-    # get token
+    # Petition the server for the existing session token
     def get(self, request):
         user = request.user
         print(user)
@@ -57,7 +59,7 @@ class Session(APIView):
             return self.buildSession(True, user.username, user.id, str(group))
         return self.buildSession(False, None, None, None, "Anon User")
 
-    # post allows authentication, send user and pass, return json=
+    # Post auth credentials
     def post(self, request):
         username = request.data['username']
         password = request.data['password']
@@ -71,8 +73,7 @@ class Session(APIView):
         else:
             return self.buildSession(False, None, None, None, "Login Error")
 
-    # delete logout
-
+    # Delete current session token and logout
     def delete(self, request):
         logout(request)
         return self.buildSession(False, None, None, None, "Anon user")
@@ -86,6 +87,8 @@ class Session(APIView):
 #      def has_permission(self, request, view):
 #          return request.user.is_staff():
 
+
+# Viewset for Specialties
 class SpecialtyListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves specialty data to the api
@@ -95,8 +98,7 @@ class SpecialtyListViewSet(viewsets.ModelViewSet):
     queryset = Specialty.objects.get_queryset().order_by('id')
     serializer_class = szs.SpecialtySerializer
 
-    # can write a function that can customize the get_queryset
-
+# Viewset for Niches
 class NicheListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Niche data to the api
@@ -106,6 +108,7 @@ class NicheListViewSet(viewsets.ModelViewSet):
     queryset = Niche.objects.get_queryset().order_by('id')
     serializer_class = szs.NicheSerializer
 
+# Viewset for Users
 class UserListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves User data to the api
@@ -116,12 +119,14 @@ class UserListViewSet(viewsets.ModelViewSet):
     serializer_class = szs.UserSerializer
     filter_fields = ['username']
 
+    # return user specific data
     def get_queryset(self):
         user = self.request.user
         query = User.objects.filter(username=user.username)
         print(query)
         return query
 
+# Viewset for additional user data
 class ProfileListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Profile data to the api
@@ -132,11 +137,12 @@ class ProfileListViewSet(viewsets.ModelViewSet):
     serializer_class = szs.ProfileSerializer
     filter_fields = ['user__username']
 
+    # Return the profile for the logged in user
     def get_queryset(self):
         user = self.request.user
-        print("HERE!!!!: " + user.username)
         return Profile.objects.filter(user__username=user.username)
 
+# Viewset for group displays
 class GroupListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Group data to the api
@@ -146,6 +152,7 @@ class GroupListViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.get_queryset().order_by('id')
     serializer_class = szs.GroupSerializer
 
+# Viewset for Project Entries
 class ProjectEntryListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves ProjectEntry data to the api
@@ -156,7 +163,8 @@ class ProjectEntryListViewSet(viewsets.ModelViewSet):
     serializer_class = szs.ProjectEntrySerializer
     filter_fields = ['user__username']
 
-    # Check if user is admin - if so, give all
+    # Checks is user is admin.
+    # If true, return all projects
     # Otherwise give only projects that belong to the user
     def get_queryset(self):
         user = self.request.user
@@ -164,6 +172,7 @@ class ProjectEntryListViewSet(viewsets.ModelViewSet):
             return ProjectEntry.objects.get_queryset().order_by('id')
         return ProjectEntry.objects.filter(user__username=user.username)
 
+# Viewset for Projects
 class ProjectListViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Project data to the api
@@ -174,7 +183,8 @@ class ProjectListViewSet(viewsets.ModelViewSet):
     serializer_class = szs.ProjectSerializer
     filter_fields = ['users__username']
 
-    # Check if user is admin - if so, give all
+    # Checks is user is admin.
+    # If true, return all projects
     # Otherwise give only projects that belong to the user
     def get_queryset(self):
         user = self.request.user
@@ -182,7 +192,6 @@ class ProjectListViewSet(viewsets.ModelViewSet):
             return Project.objects.get_queryset().order_by('id')
         return Project.objects.filter(users__username=user.username)
 
-# Eliminate these
 """
 Detail oriented viewsets
 """
@@ -191,7 +200,7 @@ class SpecialtyDetailViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Specialty detail data to the api
     """
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     search_fields = ['id', 'name']
     queryset = Specialty.objects.get_queryset().order_by('id')
     serializer_class = szs.SpecialtySerializer
@@ -201,7 +210,7 @@ class NicheDetailViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Niche detail data to the api
     """
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     search_fields = ['id', 'name', 'specialty']
     queryset = Niche.objects.get_queryset().order_by('id')
     serializer_class = szs.NicheSerializer
@@ -211,7 +220,7 @@ class UserDetailViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves User detail data to the api
     """
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     search_fields = ['id', 'username', 'first_name', 'last_name']
     queryset = User.objects.get_queryset().order_by('id')
     serializer_class = szs.UserSerializer
@@ -221,7 +230,7 @@ class GroupDetailViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves group detail data to the api
     """
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     search_fields = ['id', 'name']
     queryset = Group.objects.get_queryset().order_by('id')
     serializer_class = szs.GroupSerializer
@@ -241,7 +250,7 @@ class ProjectDetailViewSet(viewsets.ModelViewSet):
     """
     This endpoint serves Project detail data to the api
     """
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     search_fields = ['id', 'name', 'users', 'niches', 'denied_users', 'status', 'public']
     queryset = Project.objects.get_queryset().order_by('id')
     serializer_class = szs.ProjectSerializer
