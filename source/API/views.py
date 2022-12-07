@@ -32,7 +32,7 @@ from rest_framework import permissions
 import json, datetime, pytz
 from django.core import serializers
 from . import serializers as szs
-import requests
+# import requests
 import re
 from django.utils.decorators import method_decorator
 

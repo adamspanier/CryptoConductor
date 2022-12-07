@@ -112,7 +112,7 @@ class Project(models.Model):
             users = obj.users.all()
             count = 0
             for user in users:
-                if user.first_name is not "":
+                if user.first_name != "":
                     user_list += user.first_name + " " + user.last_name + ", "
             return user_list[:-2]
 
