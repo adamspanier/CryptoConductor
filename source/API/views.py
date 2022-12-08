@@ -75,14 +75,13 @@ class Session(APIView):
         logout(request)
         return self.buildSession(False, None, None, None, "Anon user")
 
-# Custom permission to check for admin
+# # Custom permission to check for admin
 # class AdminCheckPermission(permissions.BasePermission):
-#      """
-#      Global permission check for staff user
-#      """
-#
-#      def has_permission(self, request, view):
-#          return request.user.is_staff():
+#       """
+#       Global permission check for staff user
+#       """
+#       def has_permission(self, request, view):
+#           return request.user.is_staff():
 
 
 # Viewset for Specialties
