@@ -592,7 +592,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+  var _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
   0; //eaimeta@70e063a35619d71f0,"ember-cli-htmlbars",0,"@glimmer/component",0,"@glimmer/tracking",0,"@ember/debug",0,"@ember/object"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -617,7 +617,7 @@
   
         <table id="contact-table">
           <tr>
-            <td>Name</td>
+            <td>Full Name</td>
             <td>
               <Input
                 aria-label="name"
@@ -625,7 +625,7 @@
                 @type="type"
                 size = "30"
                 @value={{this.name}}
-                {{on "input" this.validateNames}}
+                {{on "input" this.validateName}}
               />
             </td>
           </tr>
@@ -638,7 +638,7 @@
                 @type="type"
                 size = "30"
                 @value={{this.email}}
-                {{on "input" this.validateNames}}
+                {{on "input" this.validateEmail}}
               />
             </td>
           </tr>
@@ -651,7 +651,7 @@
                 @value={{this.message}}
                 rows="12"
                 cols="30"
-                {{on "input" this.validateNames}}
+                {{on "input" this.validateName}}
               />
             </td>
           </tr>
@@ -660,6 +660,7 @@
               <div id="submit-contact">
                 <Input
                   aria-label="send"
+                  disabled = {{this.disableSubmit}}
                   id = "s"
                   @type="submit"
                   @value={{this.send}}
@@ -674,8 +675,8 @@
   
   */
   {
-    "id": "gYTxlk4T",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"contact-content-title\"],[12],[1,\"\\n      Contact Us\\n    \"],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-info\"],[12],[1,\"\\n\\n      \"],[10,\"table\"],[14,1,\"contact-table\"],[12],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Name\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"name\"],[24,1,\"n\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"name\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Email\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"email\"],[24,1,\"e\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"email\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Message\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,2],[[24,\"aria-label\",\"message\"],[24,1,\"m\"],[24,\"rows\",\"12\"],[24,\"cols\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"message\"]]]],null],[1,\"          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[14,\"colspan\",\"2\"],[12],[1,\"\\n            \"],[10,0],[14,1,\"submit-contact\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"send\"],[24,1,\"s\"],[4,[38,1],[\"click\",[30,0,[\"sendEmail\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",[30,0,[\"send\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\",\"textarea\"]]",
+    "id": "BsE08hOs",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-background\"],[12],[13],[1,\"\\n\\n    \"],[10,0],[14,0,\"contact-content-title\"],[12],[1,\"\\n      Contact Us\\n    \"],[13],[1,\"\\n\\n\"],[1,\"    \"],[10,0],[14,0,\"contact-info\"],[12],[1,\"\\n\\n      \"],[10,\"table\"],[14,1,\"contact-table\"],[12],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Full Name\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"name\"],[24,1,\"n\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateName\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"name\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Email\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,0],[[24,\"aria-label\",\"email\"],[24,1,\"e\"],[24,\"size\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateEmail\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"email\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"Message\"],[13],[1,\"\\n          \"],[10,\"td\"],[12],[1,\"\\n            \"],[8,[39,2],[[24,\"aria-label\",\"message\"],[24,1,\"m\"],[24,\"rows\",\"12\"],[24,\"cols\",\"30\"],[4,[38,1],[\"input\",[30,0,[\"validateName\"]]],null]],[[\"@value\"],[[30,0,[\"message\"]]]],null],[1,\"          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n        \"],[10,\"tr\"],[12],[1,\"\\n          \"],[10,\"td\"],[14,\"colspan\",\"2\"],[12],[1,\"\\n            \"],[10,0],[14,1,\"submit-contact\"],[12],[1,\"\\n              \"],[8,[39,0],[[24,\"aria-label\",\"send\"],[16,\"disabled\",[30,0,[\"disableSubmit\"]]],[24,1,\"s\"],[4,[38,1],[\"click\",[30,0,[\"sendEmail\"]]],null]],[[\"@type\",\"@value\"],[\"submit\",[30,0,[\"send\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"],[13],[1,\"\\n\"]],[],false,[\"input\",\"on\",\"textarea\"]]",
     "moduleName": "crypto-conductor-front/components/contact-window.hbs",
     "isStrictMode": false
   });
@@ -686,15 +687,35 @@
       _initializerDefineProperty(this, "email", _descriptor2, this);
       _initializerDefineProperty(this, "message", _descriptor3, this);
       _initializerDefineProperty(this, "send", _descriptor4, this);
+      _initializerDefineProperty(this, "good", _descriptor5, this);
     }
-    // JS Validation, Sanitization, and Escaping
-    validateNames() {
-      m.value = m.value.replace(/[&*<>/';{}]/g, '');
-      n.value = n.value.replace(/[&*<>/';{}]/g, '');
+    // JS Validation, Sanitization for name
+    validateName() {
+      n.value = n.value.replace(/[!@#$%^(<>?)&*<>/';{}1234567890]/g, '');
+    }
+
+    // JS Validation, Sanitization for message
+    validateMessage() {
+      m.value = m.value.replace(/[@#%^&*<>/';{}]/g, '');
+    }
+
+    // JS Validation, Sanitization for email
+    validateEmail() {
       e.value = e.value.replace(/[&*<>/';{}]/g, '');
+      const atArray = e.value.split("@");
+      var atLength = atArray.length; //Must be 2
+      if (atLength == 2) {
+        const comArray = atArray[1].split(".com");
+        var comLength = comArray.length;
+        if (comLength == 2) {
+          this.good = true;
+        }
+      }
+      console.log(this.good);
     }
-    validateInput() {
-      console.log(e.value);
+    get disableSubmit() {
+      //if either value is empty we don't want to allow submitting the form
+      return !this.name.length || !this.email.length || !this.message.length || this.good == false;
     }
 
     // Creates record for sending an email
@@ -711,21 +732,21 @@
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'Enter your name';
+      return '';
     }
   }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "email", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'Enter a valid email';
+      return '';
     }
   }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "message", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'Enter a brief message';
+      return '';
     }
   }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "send", [_tracking.tracked], {
     configurable: true,
@@ -734,7 +755,14 @@
     initializer: function () {
       return 'Send';
     }
-  }), _applyDecoratedDescriptor(_class.prototype, "validateNames", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "validateNames"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "validateInput", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "validateInput"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "sendEmail", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "sendEmail"), _class.prototype)), _class);
+  }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "good", [_tracking.tracked], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: function () {
+      return false;
+    }
+  }), _applyDecoratedDescriptor(_class.prototype, "validateName", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "validateName"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "validateMessage", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "validateMessage"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "validateEmail", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "validateEmail"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "sendEmail", [_object.action], Object.getOwnPropertyDescriptor(_class.prototype, "sendEmail"), _class.prototype)), _class);
   _exports.default = ContactWindowComponent;
   (0, _component.setComponentTemplate)(__COLOCATED_TEMPLATE__, ContactWindowComponent);
 });
@@ -1050,14 +1078,14 @@
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'JohnLeader';
+      return '';
     }
   }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, "PassWord", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
     writable: true,
     initializer: function () {
-      return 'P@ssw0rd12345';
+      return '';
     }
   }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, "remember", [_tracking.tracked], {
     configurable: true,
@@ -1306,10 +1334,6 @@
   {{!Screen class that sets window scaling}}
   <div class="screen">
   
-    {{#each @project as |proj|}}
-      {{proj.name}}
-    {{/each}}
-  
     {{#if this.authManager.isLoggedIn}}
   
       {{!Define content area in center of screen}}
@@ -1437,8 +1461,8 @@
   
   */
   {
-    "id": "N75/U9PB",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,1]],null]],null],null,[[[1,\"    \"],[1,[30,2,[\"name\"]]],[1,\"\\n\"]],[2]],null],[1,\"\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Project Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,1,\"project-management-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"Project Title:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,3],[[24,\"aria-label\",\"ProjectTitle\"],[24,1,\"pt\"],[24,\"size\",\"23\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"projectTitle\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Specialties:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"Description:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,5],[[24,\"aria-label\",\"description\"],[24,1,\"d\"],[24,\"rows\",\"15\"],[24,\"cols\",\"23\"],[4,[38,4],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"description\"]]]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niches:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Clients:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testClientList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"name\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Denials:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"testDenialList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,6,[\"name\"]]],[13],[1,\"\\n\"]],[6]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Availability:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"ava\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"public\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,7,[\"status\"]]],[13],[1,\"\\n\"]],[7]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"Status:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"sta\"],[12],[1,\"\\n\"],[42,[28,[37,1],[[28,[37,1],[[30,0,[\"status\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,8,[\"status\"]]],[13],[1,\"\\n\"]],[8]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,3],[[24,\"aria-label\",\"update\"],[4,[38,4],[\"click\",[30,0,[\"sendData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@project\",\"proj\",\"spec\",\"niche\",\"client\",\"deny\",\"pub\",\"status\"],false,[\"each\",\"-track-array\",\"if\",\"input\",\"on\",\"textarea\"]]",
+    "id": "7aEESWup",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"account-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-title\"],[12],[1,\"\\n            Project Management Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-info\"],[12],[1,\"\\n\\n\"],[1,\"        \"],[10,0],[14,0,\"account-info-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,1,\"project-management-table\"],[12],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"200px\"],[12],[1,\"Project Title:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,1],[[24,\"aria-label\",\"ProjectTitle\"],[24,1,\"pt\"],[24,\"size\",\"23\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@type\",\"@value\"],[\"type\",[30,0,[\"projectTitle\"]]]],null],[1,\"\\n                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Specialties:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testSpecialties\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,1,[\"name\"]]],[13],[1,\"\\n\"]],[1]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"Description:\"],[13],[1,\"\\n              \"],[10,\"td\"],[14,\"width\",\"100px\"],[14,\"rowspan\",\"8\"],[14,5,\"vertical-align: top;\"],[12],[1,\"\\n                \"],[10,0],[14,0,\"field\"],[12],[1,\"\\n                  \"],[8,[39,5],[[24,\"aria-label\",\"description\"],[24,1,\"d\"],[24,\"rows\",\"15\"],[24,\"cols\",\"23\"],[4,[38,2],[\"input\",[30,0,[\"validateNames\"]]],null]],[[\"@value\"],[[30,0,[\"description\"]]]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Niches:\"],[13],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testNiches\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\"]],[2]],null],[1,\"                \"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Clients:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testClientList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,3,[\"name\"]]],[13],[1,\"\\n\"]],[3]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Denials:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"testDenialList\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,4,[\"name\"]]],[13],[1,\"\\n\"]],[4]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"Availability:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"ava\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"public\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,5,[\"status\"]]],[13],[1,\"\\n\"]],[5]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\"Status:\"],[13],[1,\"\\n              \"],[10,\"td\"],[12],[1,\"\\n                \"],[10,\"select\"],[14,0,\"account-drops\"],[14,1,\"sta\"],[12],[1,\"\\n\"],[42,[28,[37,4],[[28,[37,4],[[30,0,[\"status\"]]],null]],null],null,[[[1,\"                      \"],[10,\"option\"],[12],[1,[30,6,[\"status\"]]],[13],[1,\"\\n\"]],[6]],null],[1,\"                \"],[13],[1,\"\\n              \"],[13],[1,\"\\n            \"],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n            \"],[10,\"tr\"],[12],[10,\"td\"],[12],[1,\" \"],[13],[13],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"mod-button\"],[12],[1,\"\\n            \"],[8,[39,1],[[24,\"aria-label\",\"update\"],[4,[38,2],[\"click\",[30,0,[\"sendData\"]]],null]],[[\"@type\",\"@value\"],[\"button\",[30,0,[\"update\"]]]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"spec\",\"niche\",\"client\",\"deny\",\"pub\",\"status\"],false,[\"if\",\"input\",\"on\",\"each\",\"-track-array\",\"textarea\"]]",
     "moduleName": "crypto-conductor-front/components/project-management-display.hbs",
     "isStrictMode": false
   });
@@ -2969,7 +2993,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+47207849"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+9400fcf8"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map
