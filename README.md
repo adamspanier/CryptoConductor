@@ -32,6 +32,16 @@ python3 manage.py runserver
 
 _NOTE:_ CryptoConductor will run immediately after installation. You will only need to run the above command if you've stopped the CryptoConductor instance. 
 
+## Getting Started
+
+To run CryptoConductor Docker container
+
+1. Run the docker.sh shell script
+```bash
+./docker.sh
+```
+
+
 ## License
 MIT License
 
