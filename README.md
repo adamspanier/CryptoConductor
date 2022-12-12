@@ -26,8 +26,6 @@ python3 manage.py runserver
 
 2. Visit the web interface at localhost:8000 using a web browser.
 
-_NOTE:_ CryptoConductor will run immediately after installation. You will only need to run the above command if you've stopped the CryptoConductor instance. 
-
 ## Docker Container Instructions
 
 To run CryptoConductor via Docker container
