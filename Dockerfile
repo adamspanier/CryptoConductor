@@ -25,10 +25,10 @@ RUN python -m pip install djangorestframework-jsonapi['django-filter']
 COPY . $DockerHOME
 
 # run this command to install all dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r source/requirements.txt
 
 # port where the Django app runs
 EXPOSE 8000
 
 # start server
-CMD python manage.py runserver
+# CMD python source/manage.py runserver

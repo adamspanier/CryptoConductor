@@ -16,17 +16,15 @@
   });
   0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
 });
-;define("crypto-conductor-front/adapters/application", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
+;define("crypto-conductor-front/adapters/application", ["exports", "@ember-data/adapter/json-api", "@ember/service", "@ember/object"], function (_exports, _jsonApi, _service, _object) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api"eaimeta@70e063a35619d71f
-  class ApplicationAdapter extends _jsonApi.default {
-    // namespace = 'api';
-  }
+  0; //eaimeta@70e063a35619d71f0,"@ember-data/adapter/json-api",0,"@ember/service",0,"@ember/object"eaimeta@70e063a35619d71f
+  class ApplicationAdapter extends _jsonApi.default {}
   _exports.default = ApplicationAdapter;
 });
 ;define("crypto-conductor-front/adapters/niche", ["exports", "@ember-data/adapter/json-api"], function (_exports, _jsonApi) {
@@ -699,17 +697,27 @@
       m.value = m.value.replace(/[@#%^&*<>/';{}]/g, '');
     }
 
-    // JS Validation, Sanitization for email
+    // JS Validation, Sanitization for email input
     validateEmail() {
       e.value = e.value.replace(/[&*<>/';{}]/g, '');
       const atArray = e.value.split("@");
       var atLength = atArray.length; //Must be 2
       if (atLength == 2) {
-        const comArray = atArray[1].split(".com");
+        const comArray = atArray[1].split(".");
         var comLength = comArray.length;
         if (comLength == 2) {
-          this.good = true;
+          var domainLength = comArray[1].length;
+          if (domainLength > 1 && domainLength < 4) {
+            console.log(domainLength);
+            this.good = true;
+          } else {
+            this.good = false;
+          }
+        } else {
+          this.good = false;
         }
+      } else {
+        this.good = false;
       }
       console.log(this.good);
     }
@@ -1157,7 +1165,7 @@
   
                   {{! Show only if leader }}
                   {{#if this.isLead}}
-                    <td><LinkTo @route="projectManagement">{{proj.name}}Dashboard</LinkTo></td>
+                    <td><LinkTo @route="projectManagement">{{proj.name}} Dashboard</LinkTo></td>
                   {{/if}}
                   <td>Project Entries</td>
                 </tr>
@@ -1175,8 +1183,8 @@
   
   */
   {
-    "id": "xwJ+4sVq",
-    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1]],null]],null],null,[[[1,\"\\n              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,2,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,[30,2,[\"name\"]]],[1,\"Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[2]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_projects\",\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
+    "id": "b64o6Pv5",
+    "block": "[[[10,\"link\"],[14,\"rel\",\"stylesheet\"],[14,6,\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"],[12],[13],[1,\"\\n\\n\"],[10,0],[14,0,\"screen\"],[12],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n\"],[1,\"    \"],[10,0],[14,0,\"content-area\"],[12],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-background\"],[12],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"content-header\"],[12],[1,\"\\n          \"],[10,0],[14,0,\"content-username-specialty\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"username\"]]],[1,\" - \"],[1,[30,0,[\"specialty\"]]],[1,\"\\n          \"],[13],[1,\"\\n\\n          \"],[10,0],[14,0,\"content-role\"],[12],[1,\"\\n            \"],[1,[30,0,[\"authManager\",\"usergroup\"]]],[1,\" Console\\n          \"],[13],[1,\"\\n      \"],[13],[1,\"\\n\\n\"],[1,\"      \"],[10,0],[14,0,\"project-listing\"],[12],[1,\"\\n        \"],[10,0],[14,0,\"listing-text\"],[12],[1,\"\\n          \"],[10,\"table\"],[14,\"width\",\"100%\"],[14,\"border\",\"1px\"],[12],[1,\"\\n\"],[42,[28,[37,2],[[28,[37,2],[[30,1]],null]],null],null,[[[1,\"\\n              \"],[10,\"tr\"],[12],[1,\"\\n                \"],[10,\"td\"],[12],[1,[30,2,[\"id\"]]],[13],[1,\"\\n                \"],[10,\"td\"],[14,\"width\",\"300px\"],[12],[1,[30,2,[\"name\"]]],[13],[1,\"\\n\\n\"],[41,[30,0,[\"isLead\"]],[[[1,\"                  \"],[10,\"td\"],[12],[8,[39,3],null,[[\"@route\"],[\"projectManagement\"]],[[\"default\"],[[[[1,[30,2,[\"name\"]]],[1,\" Dashboard\"]],[]]]]],[13],[1,\"\\n\"]],[]],null],[1,\"                \"],[10,\"td\"],[12],[1,\"Project Entries\"],[13],[1,\"\\n              \"],[13],[1,\"\\n\"]],[2]],null],[1,\"\\n          \"],[13],[1,\"\\n        \"],[13],[1,\"\\n      \"],[13],[1,\"\\n    \"],[13],[1,\"\\n\"]],[]],[[[1,\"      test\\n      \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\"]],[]]],[13],[1,\"\\n\"]],[\"@user_projects\",\"proj\"],false,[\"if\",\"each\",\"-track-array\",\"link-to\"]]",
     "moduleName": "crypto-conductor-front/components/project-listing.hbs",
     "isStrictMode": false
   });
@@ -2276,7 +2284,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor, _descriptor2;
+  var _class, _descriptor, _descriptor2, _descriptor3;
   0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service",0,"rsvp",0,"@ember/object"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2287,7 +2295,15 @@
       super(...arguments);
       _initializerDefineProperty(this, "store", _descriptor, this);
       _initializerDefineProperty(this, "authManager", _descriptor2, this);
+      _initializerDefineProperty(this, "router", _descriptor3, this);
     }
+    beforeModel() {
+      console.log(this.authManager.isLoggedIn);
+      if (!this.authManager.isLoggedIn) {
+        this.router.transitionTo('login'); // Implicitly aborts the on-going transition.
+      }
+    }
+
     // Collects user and profile data for each user
     model() {
       return _rsvp.default.hash({
@@ -2301,6 +2317,11 @@
     writable: true,
     initializer: null
   }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "router", [_service.service], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -2348,7 +2369,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor;
+  var _class, _descriptor, _descriptor2, _descriptor3;
   0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2358,13 +2379,32 @@
     constructor() {
       super(...arguments);
       _initializerDefineProperty(this, "store", _descriptor, this);
+      _initializerDefineProperty(this, "router", _descriptor2, this);
+      _initializerDefineProperty(this, "authManager", _descriptor3, this);
     }
+    beforeModel() {
+      console.log(this.authManager.isLoggedIn);
+      if (!this.authManager.isLoggedIn) {
+        this.router.transitionTo('login'); // Implicitly aborts the on-going transition.
+      }
+    }
+
     // Collects project per user
     model() {
       let projects = this.store.findAll('project');
       return projects;
     }
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "store", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "router", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
     configurable: true,
     enumerable: true,
     writable: true,
@@ -2390,7 +2430,7 @@
     value: true
   });
   _exports.default = void 0;
-  var _class, _descriptor;
+  var _class, _descriptor, _descriptor2, _descriptor3;
   0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service"eaimeta@70e063a35619d71f
   function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2400,7 +2440,16 @@
     constructor() {
       super(...arguments);
       _initializerDefineProperty(this, "store", _descriptor, this);
+      _initializerDefineProperty(this, "router", _descriptor2, this);
+      _initializerDefineProperty(this, "authManager", _descriptor3, this);
     }
+    beforeModel() {
+      console.log(this.authManager.isLoggedIn);
+      if (!this.authManager.isLoggedIn) {
+        this.router.transitionTo('login'); // Implicitly aborts the on-going transition.
+      }
+    }
+
     // Collects projects per user
     model() {
       let projects = this.store.findAll('project');
@@ -2411,18 +2460,56 @@
     enumerable: true,
     writable: true,
     initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "router", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
   })), _class);
   _exports.default = ProjectManagementRoute;
 });
-;define("crypto-conductor-front/routes/scoring-dashboard", ["exports", "@ember/routing/route"], function (_exports, _route) {
+;define("crypto-conductor-front/routes/scoring-dashboard", ["exports", "@ember/routing/route", "@ember/service", "@ember/object"], function (_exports, _route, _service, _object) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route"eaimeta@70e063a35619d71f
-  class ScoringDashboardRoute extends _route.default {}
+  var _class, _descriptor, _descriptor2;
+  0; //eaimeta@70e063a35619d71f0,"@ember/routing/route",0,"@ember/service",0,"@ember/object"eaimeta@70e063a35619d71f
+  function _initializerDefineProperty(target, property, descriptor, context) { if (!descriptor) return; Object.defineProperty(target, property, { enumerable: descriptor.enumerable, configurable: descriptor.configurable, writable: descriptor.writable, value: descriptor.initializer ? descriptor.initializer.call(context) : void 0 }); }
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
+  function _initializerWarningHelper(descriptor, context) { throw new Error('Decorating class property failed. Please ensure that ' + 'proposal-class-properties is enabled and runs after the decorators transform.'); }
+  let ScoringDashboardRoute = (_class = class ScoringDashboardRoute extends _route.default {
+    constructor() {
+      super(...arguments);
+      _initializerDefineProperty(this, "router", _descriptor, this);
+      _initializerDefineProperty(this, "authManager", _descriptor2, this);
+    }
+    // Redirect to login if unauthenticated
+    beforeModel() {
+      console.log(this.authManager.isLoggedIn);
+      if (!this.authManager.isLoggedIn) {
+        this.router.transitionTo('login'); // Implicitly aborts the on-going transition.
+      }
+    }
+  }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "router", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, "authManager", [_service.service], {
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    initializer: null
+  })), _class);
   _exports.default = ScoringDashboardRoute;
 });
 ;define("crypto-conductor-front/serializers/-default", ["exports", "@ember-data/serializer/json"], function (_exports, _json) {
@@ -2512,7 +2599,6 @@
         authService.usergroup = response.data.usergroup;
         authService.userid = response.data.userid;
         authService.isLoggedIn = response.data.isLoggedIn;
-        console.log(authService.username);
       });
     }
 
@@ -2540,8 +2626,6 @@
           'X-CSRFToken': csrftoken
         },
         success: function (response) {
-          console.log('RESPONSE');
-          console.log(response);
           authService.username = null;
           authService.usergroup = null;
           authService.userid = null;
@@ -2552,11 +2636,7 @@
     }
 
     //Helper print function
-    print() {
-      console.log('AUTH USERNAME: ' + this.username);
-      console.log('AUTH ID: ' + this.userid);
-      console.log('AUTH LOGGEDIN: ' + this.isLoggedIn);
-    }
+    print() {}
   }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, "username", [_tracking.tracked], {
     configurable: true,
     enumerable: true,
@@ -2901,14 +2981,22 @@
   
   {{page-title "Scoring Dashboard"}}
   
-  Scoring Dashboard Page
+    {{#if this.authManager.isLoggedIn}}
+  
+      Scoring Dashboard Page
+  
+    {{else}}
+  
+      {{this.redirectToLogin}}
+  
+    {{/if}}
   
   {{outlet}}
   
   */
   {
-    "id": "/HQ2rWeU",
-    "block": "[[[3,\" Faciliates project scoring \"],[1,\"\\n\"],[3,\" Not implemented yet \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Scoring Dashboard\"],null]],[1,\"\\n\\nScoring Dashboard Page\\n\\n\"],[46,[28,[37,2],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"component\",\"-outlet\"]]",
+    "id": "ARf/zcHh",
+    "block": "[[[3,\" Faciliates project scoring \"],[1,\"\\n\"],[3,\" Not implemented yet \"],[1,\"\\n\\n\"],[1,[28,[35,0],[\"Scoring Dashboard\"],null]],[1,\"\\n\\n\"],[41,[30,0,[\"authManager\",\"isLoggedIn\"]],[[[1,\"\\n    Scoring Dashboard Page\\n\\n\"]],[]],[[[1,\"\\n    \"],[1,[30,0,[\"redirectToLogin\"]]],[1,\"\\n\\n\"]],[]]],[1,\"\\n\"],[46,[28,[37,3],null,null],null,null,null],[1,\"\\n\"]],[],false,[\"page-title\",\"if\",\"component\",\"-outlet\"]]",
     "moduleName": "crypto-conductor-front/templates/scoring-dashboard.hbs",
     "isStrictMode": false
   });
@@ -2993,7 +3081,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"0.0.0+9400fcf8"});
+            require("crypto-conductor-front/app")["default"].create({"name":"crypto-conductor-front","version":"beta+e34fc443"});
           }
         
 //# sourceMappingURL=crypto-conductor-front.map

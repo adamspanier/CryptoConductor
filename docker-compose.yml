@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  web:
+    image: adamspanier/cryptoconductor-web
+    build: .
+    ports:
+      - "8000:8000"
+    command: python3 source/manage.py runserver 0.0.0.0:8000
+#
+# version: "2"
+# services:
+#   web:
+#     image: adamspanier/cryptoconductor-web
+#     cpu_shares: 100
+#     mem_limit: 262144000
+#     ports:
+#       - "8000:8000"
+#     command: python3 source/manage.py runserver 0.0.0.0:8000
+#     logging:
+#       driver: awslogs
+#       options:
+#         awslogs-group: CryptoConductor
+#         awslogs-region: us-east-1
+#         awslogs-stream-prefix: web
