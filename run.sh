@@ -1,6 +1,7 @@
 !#/bin/bash
 
 	cd source/
+		sudo apt install python3-pip
 		python3 -m pip install Django
 		python3 -m pip install djangorestframework
 		python3 -m pip install djangorestframework-jsonapi
