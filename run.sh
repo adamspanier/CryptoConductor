@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 	cd source/
 		sudo apt install python3-pip
@@ -9,4 +9,5 @@
 		python3 manage.py makemigrations
 		python3 manage.py migrate
 		python3 manage.py createsuperuser
-		python3 manage.py runserver
+		#python3 manage.py runserver
+		./docker.sh
