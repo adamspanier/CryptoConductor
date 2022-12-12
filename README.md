@@ -13,35 +13,31 @@ CryptoConductor features specialist profiles for each member of your team. This 
 1. Run the following code in a new terminal window from your chosen installation directory.
 ```bash
 git clone https://github.com/adamspanier/CryptoConductor.git && cd CryptoConductor
-git clone https://github.com/adamspanier/CryptoConductor-Front.git
+git clone https://github.com/adamspanier/CryptoConductor-Front.git && ./run.sh
 ```
-2. Run the following command:
-```bash
-./run.sh
-```
-3. CryptoConductor will start automatically when ./run.sh is used.
 
-## Getting Started
-To run CryptoConductor: 
+## Python Instructions
+To run CryptoConductor via Python: 
 
 1. From terminal, run the command below in the CryptoConductor/source directory.
 ```bash
 python3 manage.py runserver 
 ```
 
-2. Visit the web interface at localhost/8000 using a web browser.
+2. Visit the web interface at localhost:8000 using a web browser.
 
 _NOTE:_ CryptoConductor will run immediately after installation. You will only need to run the above command if you've stopped the CryptoConductor instance. 
 
 ## Docker Container Instructions
 
-To run CryptoConductor Docker container
+To run CryptoConductor via Docker container
 
 1. Run the docker.sh shell script
 ```bash
 ./docker.sh
 ```
 
+2. Visit the web interface at localhost:8000 using a web browser.
 
 ## License
 MIT License
