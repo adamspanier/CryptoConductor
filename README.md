@@ -30,7 +30,7 @@ python3 manage.py runserver
 
 To run CryptoConductor via Docker container
 
-1. Run the docker.sh shell script
+1. Run the docker.sh shell script in the CryptoConductor main directory.
 ```bash
 ./docker.sh
 ```
